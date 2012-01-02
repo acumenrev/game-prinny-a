@@ -113,8 +113,6 @@ bool CGame::GameInit()
 /************************************************************************/
 void CGame::InitObject()
 {
-
-
 }
 /************************************************************************/
 /*                                Render                                */
@@ -167,7 +165,7 @@ void CGame::Run()
 					sprintf(m_fps, "%s%d", "Fps: ", 1000/(m_currentTime - m_lastTime));
 					m_frame = 0;
 				}
-				CreateText(m_fps);
+				//CreateText(m_fps);
 				m_frame++;
 				m_dxManager->EndDraw();
 				m_lastTime = m_currentTime;
