@@ -166,6 +166,7 @@ void CGame::Run()
 					m_frame = 0;
 				}
 				//CreateText(m_fps);
+				SetWindowText(m_hWnd,m_fps);
 				m_frame++;
 				m_dxManager->EndDraw();
 				m_lastTime = m_currentTime;
