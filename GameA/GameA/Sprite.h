@@ -22,8 +22,20 @@ public:
 class AllSprite
 {
 public:
+	/************************************************************************/
+	/*                               Variables                              */
+	/************************************************************************/
+	
+	CSprite* m_menu;
+	CSprite* m_menuInGame;
+	/************************************************************************/
+	/*                               Constructor                            */
+	/************************************************************************/
+
 	AllSprite(LPDIRECT3DDEVICE9 d3ddev)
 	{
 		// load all sprites in here
+		m_menu = new CSprite(d3ddev,"Pics\\Menu.PNG",D3DCOLOR_ARGB(100,100,100,100));
+		m_menuInGame = new CSprite(d3ddev,"Pics\\MenuInGame.PNG",D3DCOLOR_ARGB(100,100,100,100));
 	}
 };

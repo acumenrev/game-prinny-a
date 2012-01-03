@@ -11,7 +11,7 @@ CMenuInGame::CMenuInGame(void)
 //////////////////////////////////////////////////////////////////////////
 CMenuInGame::CMenuInGame(AllSprite* allSprite)
 {
-	m_allSprite = allSprite;
+	m_allSprites = allSprite;
 	m_choice = 1;
 	m_menuY = 0;
 	m_jumpMenu = 95; // can set later

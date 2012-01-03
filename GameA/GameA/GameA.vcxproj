@@ -111,6 +111,10 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StdAfx.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Pics\Menu.png" />
+    <None Include="Pics\MenuInGame.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
