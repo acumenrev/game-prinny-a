@@ -1,3 +1,5 @@
+#include <windows.h>
+#include <stdlib.h>
 //Define Window Size:
 #pragma once
 #define WINDOW_WIDTH 800
@@ -19,3 +21,12 @@ enum GameState
 	GameDeath
 };
 //////////////////////////////////////////////////////////////////////////
+RECT Rectangle(float fX, float fY, int width, int height)
+{
+	RECT r;
+	r.top = fY;
+	r.left = fX;
+	r.bottom = fY + height;
+	r.right = fX + width;
+	return r;
+}
