@@ -4,6 +4,7 @@
 #include "Information.h"
 #include "Sprite.h"
 #include "Input.h"
+#include "Collision.h"
 
 class CCMenu
 {
@@ -25,6 +26,8 @@ public:
 	/*                           Methods                                    */
 	/************************************************************************/
 	void Render();
+	void RenderAbout();
 	int Update(char keys[256], char lastKeys[256],int &currentState);
+	int UpdateAbout(char keys[256], char lastKeys[256],int &currentState);
 };
 

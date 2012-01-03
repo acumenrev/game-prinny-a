@@ -51,11 +51,10 @@ bool CCollision::CheckStayInAnotherRect(RECT a, RECT b)
 RECT CCollision::_Rectangle(float fX, float fY, int width, int height)
 {
 	RECT r;
-	r.top = fY;
-	r.left = fX;
-	r.bottom = fY + height;
-	r.right = fX + width;
+	r.top = (long)fY;
+	r.left = (long)fX;
+	r.bottom = (long)fY + (long)height;
+	r.right = (long)fX + (long)width;
 	return r;
-}
 }
 #pragma endregion 
