@@ -21,7 +21,7 @@ enum GameState
 	GameDeath
 };
 //////////////////////////////////////////////////////////////////////////
-RECT Rectangle(float fX, float fY, int width, int height)
+RECT _Rectangle(float fX, float fY, int width, int height)
 {
 	RECT r;
 	r.top = fY;
