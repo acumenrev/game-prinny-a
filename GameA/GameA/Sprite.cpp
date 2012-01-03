@@ -25,6 +25,7 @@ CSprite::CSprite(LPDIRECT3DDEVICE9 d3ddev, char* fileName, D3DCOLOR color)
 	{
 		return;
 	}
+	result = D3DXCreateSprite(d3ddev,&m_spriteHandler);
 	result = D3DXCreateTextureFromFileEx(d3ddev,
 		fileName,
 		m_info.Width,

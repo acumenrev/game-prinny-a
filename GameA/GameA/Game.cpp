@@ -123,6 +123,7 @@ bool CGame::GameInit()
 	}
 	// keyboard
 	m_input = new CInput(m_hInstance,m_hWnd);
+	InitObject();
 	return true;
 }
 /************************************************************************/
