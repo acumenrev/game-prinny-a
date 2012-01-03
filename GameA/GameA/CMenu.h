@@ -11,7 +11,7 @@ public:
 	/************************************************************************/
 	/*                              Variables                               */
 	/************************************************************************/
-	AllSprite* m_allSprite;
+	AllSprite* m_allSprites;
 	int m_choice;
 	int m_jumpMenu;		// distance between 2 menu entries
 	int m_menuY;		// selected region's y-coordinate

@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Pics\Menu.png" />
+    <None Include="Pics\MenuBG.png" />
     <None Include="Pics\MenuInGame.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

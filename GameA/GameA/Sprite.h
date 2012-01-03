@@ -28,14 +28,23 @@ public:
 	
 	CSprite* m_menu;
 	CSprite* m_menuInGame;
+	CSprite* m_backgroundMenu;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
 
 	AllSprite(LPDIRECT3DDEVICE9 d3ddev)
 	{
-		// load all sprites in here
-		m_menu = new CSprite(d3ddev,"Pics\\Menu.PNG",D3DCOLOR_ARGB(100,100,100,100));
+		/************************************************************************/
+		/*                            All sprites			                    */
+		/************************************************************************/
+
+		// Main menu
+		m_menu = new CSprite(d3ddev,"Pics\\Menu.PNG",D3DCOLOR_ARGB(100,100,100,100)); 
+		// Background in GameMenu
+		m_backgroundMenu = new CSprite(d3ddev,"Pics\\MenuBG.PNG",D3DCOLOR_ARGB(100,100,100,100));
+		// Menu in game
 		m_menuInGame = new CSprite(d3ddev,"Pics\\MenuInGame.PNG",D3DCOLOR_ARGB(100,100,100,100));
+		
 	}
 };
