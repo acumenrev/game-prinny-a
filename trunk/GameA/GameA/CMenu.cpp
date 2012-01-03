@@ -101,7 +101,9 @@ void CCMenu::Render()
 	// render selected region
 
 }
-
+/************************************************************************/
+/*                          Render About                                */
+/************************************************************************/
 void CCMenu::RenderAbout()
 {
 	CCollision* m_rect = new CCollision();
@@ -111,7 +113,9 @@ void CCMenu::RenderAbout()
 	m_allSprites->m_prinny->Render(350,250,m_rect->_Rectangle(0,0,41,46),D3DCOLOR_ARGB(255,255,255,255));
 
 }
-
+/************************************************************************/
+/*                           Update About                               */
+/************************************************************************/
 int CCMenu::UpdateAbout(char keys[256], char lastKeys[256],int &currentState)
 {
 	if(KEYDOWN(keys,DIK_RETURN) && KEYUP(lastKeys,DIK_RETURN))

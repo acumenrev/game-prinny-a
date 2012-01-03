@@ -29,5 +29,6 @@ public:
 	void RenderAbout();
 	int Update(char keys[256], char lastKeys[256],int &currentState);
 	int UpdateAbout(char keys[256], char lastKeys[256],int &currentState);
+	int GetUpdate();
 };
 

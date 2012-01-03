@@ -2,6 +2,7 @@
 #include <stdlib.h>
 //Define Window Size:
 #pragma once
+#define SizeTile 50
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 #define APPNAME "Prinny"
