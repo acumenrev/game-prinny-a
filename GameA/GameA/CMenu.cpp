@@ -13,7 +13,7 @@ CCMenu::CCMenu(AllSprite* allSprite)
 {
 	m_allSprites = allSprite;
 	m_choice = 1;
-	// m_jumpMenu = 95; // need to set later
+	// m_jumpMenu = 95; // need to set later //60
 	m_menuY = 0;
 }
 /************************************************************************/
