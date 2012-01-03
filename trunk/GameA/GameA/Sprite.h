@@ -30,7 +30,7 @@ public:
 	CSprite* m_menuInGame;
 	CSprite* m_backgroundMenu;
 	CSprite* m_prinny;
-	
+	CSprite* m_border;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -49,5 +49,7 @@ public:
 		m_menuInGame = new CSprite(d3ddev,"Pics\\MenuInGame.PNG",D3DCOLOR_ARGB(100,100,100,100));
 		//Priny
 		m_prinny = new CSprite (d3ddev,"Pics\\Prinny\\walking.png",D3DCOLOR_ARGB(100,101,141,209));
+		// BorderMenu
+		m_border = new CSprite (d3ddev,"Pics\\Border.png",D3DCOLOR_ARGB(100,101,141,209));
 	}
 };
