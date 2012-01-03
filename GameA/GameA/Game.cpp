@@ -83,6 +83,23 @@ LRESULT CALLBACK CGame::WndProc(HWND hWnd,UINT msg,WPARAM wParam ,LPARAM lParam)
 {
 	switch(msg)
 	{
+	case WM_CREATE:
+		break;
+	case WM_KEYDOWN:
+		switch(wParam)
+		{
+		case VK_ESCAPE:
+			int e = MessageBox(NULL,"Quit program ?","",MB_YESNO | MB_ICONQUESTION);
+			if(e==IDYES)
+			{
+				DestroyWindow(hWnd);
+			}
+			break;
+		}
+		return 0;
+	case WM_QUIT:
+		DestroyWindow(hWnd);
+		return 0;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
@@ -113,27 +130,12 @@ bool CGame::GameInit()
 /************************************************************************/
 void CGame::InitObject()
 {
-}
-/************************************************************************/
-/*                                Render                                */
-/************************************************************************/
-void CGame::Render()
-{
-
-}
-/************************************************************************/
-/*                                Render Death                          */
-/************************************************************************/
-void CGame::RenderDeath()
-{
-
-}
-/************************************************************************/
-/*                                Render Gameplay                       */
-/************************************************************************/
-void CGame::RenderGamePlay()
-{
-
+	// Init all sprites
+	m_allSprite = new AllSprite(m_dxManager->m_directXDevice);
+	// Render menu when begin game
+	m_currentState = GameMenu;
+	m_menuInGame = new CMenuInGame(m_allSprite);
+	m_menu = new CCMenu(m_allSprite);
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -165,7 +167,6 @@ void CGame::Run()
 					sprintf(m_fps, "%s%d", "Fps: ", 1000/(m_currentTime - m_lastTime));
 					m_frame = 0;
 				}
-				//CreateText(m_fps);
 				SetWindowText(m_hWnd,m_fps);
 				m_frame++;
 				m_dxManager->EndDraw();
@@ -175,46 +176,57 @@ void CGame::Run()
 	}
 }
 /************************************************************************/
-/*                                 Update                               */
+/*                                Render                                */
 /************************************************************************/
-void CGame::Update()
+void CGame::Render()
+{
+	switch(m_currentState)
+	{
+	case GamePlay:
+		RenderGamePlay();
+		break;
+	case GameDeath:
+		RenderDeath();
+		break;
+	case GameMenu:
+		m_menu->Render();
+		break;
+	case MenuIn:
+		RenderGamePlay();
+		m_menuInGame->Render();
+		break;
+	}
+}
+/************************************************************************/
+/*                                Render Death                          */
+/************************************************************************/
+void CGame::RenderDeath()
 {
 
 }
 /************************************************************************/
-/*                                Update Gameplay                       */
+/*                                Render Game play                      */
+/************************************************************************/
+void CGame::RenderGamePlay()
+{
+	
+}
+
+/************************************************************************/
+/*                                 Update                               */
+/************************************************************************/
+void CGame::Update()
+{
+	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&keys);
+	// Do something
+	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&m_lastKeys);
+}
+/************************************************************************/
+/*                                Update Game play                      */
 /************************************************************************/
 void CGame::UpdateGamePlay()
 {
 
 }
-/************************************************************************/
-/*                                Create text on window                 */
-/************************************************************************/
-void CGame::CreateText(char* s)
-{
-	ID3DXFont* m_font;	
-	D3DXCreateFont(
-		m_dxManager->m_directXDevice,
-		20,
-		0,
-		FW_BOLD,
-		0,
-		FALSE,
-		DEFAULT_CHARSET,
-		OUT_DEFAULT_PRECIS,
-		DEFAULT_QUALITY,
-		DEFAULT_PITCH | FF_DONTCARE,
-		TEXT("Arial"),
-		&m_font);
-	D3DCOLOR fontColor = D3DCOLOR_ARGB(255,255,255,255);
-	// Create a rectangle indicate where on the screen it should be drawn
-	RECT rect;
-	rect.left = 2;
-	rect.right = 450;
-	rect.top = 10;
-	rect.bottom = rect.top + 20;
-	// Draw some text
-	m_font->DrawTextA(NULL,s,-1,&rect,0,fontColor);
-}
+
 #pragma endregion

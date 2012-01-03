@@ -19,3 +19,11 @@ public:
 	void Render(float fX, float fY, RECT rect, D3DCOLOR color, float rotate, float Xscaling, float yScaling);
 };
 
+class AllSprite
+{
+public:
+	AllSprite(LPDIRECT3DDEVICE9 d3ddev)
+	{
+		// load all sprites in here
+	}
+};

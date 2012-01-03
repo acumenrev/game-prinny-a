@@ -77,25 +77,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CMenu.h" />
     <ClInclude Include="CObject.h" />
+    <ClInclude Include="CObjectsList.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="DXManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Information.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="MenuInGame.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CObject.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="DXManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuInGame.cpp" />
     <ClCompile Include="Position.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StdAfx.cpp" />
