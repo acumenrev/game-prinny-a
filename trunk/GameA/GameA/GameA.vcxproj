@@ -112,9 +112,11 @@
     <ClCompile Include="StdAfx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Pics\Border.png" />
     <None Include="Pics\Menu.png" />
     <None Include="Pics\MenuBG.png" />
     <None Include="Pics\MenuInGame.png" />
+    <None Include="Pics\Prinny\walking.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
