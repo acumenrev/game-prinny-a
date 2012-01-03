@@ -92,7 +92,7 @@ void CCMenu::Render()
 	// render background
 
 	// render menu
-
+	m_allSprite->m_menu->Render(120,120);
 	// render selected region
 }
 

@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pics">
+      <UniqueIdentifier>{808fc4e8-1663-4535-9e39-6d8b953fe5aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Information.h">
@@ -110,5 +113,13 @@
     <ClCompile Include="Rectangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pics\Menu.png">
+      <Filter>Pics</Filter>
+    </None>
+    <None Include="Pics\MenuInGame.png">
+      <Filter>Pics</Filter>
+    </None>
   </ItemGroup>
 </Project>

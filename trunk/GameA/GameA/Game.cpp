@@ -44,7 +44,7 @@ bool CGame::InitWindow(HINSTANCE hInstance)
 	w.cbClsExtra = 0;
 	w.cbWndExtra = 0;
 	w.lpfnWndProc = (WNDPROC)WndProc;
-	w.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	w.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	w.hCursor = LoadCursor(NULL,IDC_ARROW);
 	w.hIcon = NULL;
 	w.lpszClassName = APPNAME;
@@ -217,7 +217,7 @@ void CGame::RenderGamePlay()
 /************************************************************************/
 void CGame::Update()
 {
-	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&keys);
+	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&m_keys);
 	// Do something
 	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&m_lastKeys);
 }
