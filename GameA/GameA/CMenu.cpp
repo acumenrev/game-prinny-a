@@ -95,6 +95,8 @@ void CCMenu::Render()
 	// render menu
 	m_allSprites->m_menu->Render(285,235);
 	// render selected region
+	
+	m_allSprites->m_prinny->Render(0,0);
 }
 
 #pragma endregion

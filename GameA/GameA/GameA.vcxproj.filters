@@ -16,6 +16,9 @@
     <Filter Include="Pics">
       <UniqueIdentifier>{808fc4e8-1663-4535-9e39-6d8b953fe5aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pics\Prinny">
+      <UniqueIdentifier>{cbcb852b-0676-4f54-86c8-20bec38fef05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Information.h">
@@ -115,13 +118,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pics\Menu.png">
-      <Filter>Pics</Filter>
-    </None>
     <None Include="Pics\MenuInGame.png">
       <Filter>Pics</Filter>
     </None>
     <None Include="Pics\MenuBG.png">
+      <Filter>Pics</Filter>
+    </None>
+    <None Include="Pics\Menu.png">
+      <Filter>Pics</Filter>
+    </None>
+    <None Include="Pics\Prinny\walking.png">
+      <Filter>Pics\Prinny</Filter>
+    </None>
+    <None Include="Pics\Border.png">
       <Filter>Pics</Filter>
     </None>
   </ItemGroup>
