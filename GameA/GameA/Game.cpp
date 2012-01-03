@@ -231,11 +231,31 @@ void CGame::Update()
 		break;
 	case GameMenu:
 		m_menu->Update(m_keys,m_lastKeys,m_currentState);
+		//int mainMenuChoice;
+		//mainMenuChoice = m_menu->Update(m_keys,m_lastKeys,m_currentState);
+		//if(mainMenuChoice == 1) // New Game
+		//{
+		//	m_currentState = GamePlay;
+		//	// Load map
+		//}
+		//if(mainMenuChoice == 2) // Continue
+		//{
+		//	// Read saved file
+		//	m_currentState = GamePlay;
+		//	// Load map
+		//}
 		break;
 	case GameAbout:
 		m_menu->UpdateAbout(m_keys,m_lastKeys,m_currentState);
 		break;
 	case MenuIn:
+		int menuInGameChoice;
+		menuInGameChoice = m_menuInGame->Update(m_keys,m_lastKeys,m_currentState);
+		if(menuInGameChoice == 1)
+		{
+			// Save file
+			m_currentState = GamePlay;
+		}
 		break;
 	case GameExit:
 		PostQuitMessage(0);
