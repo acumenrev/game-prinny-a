@@ -165,7 +165,7 @@ void CGame::Run()
 				if(m_frame == 10)
 				{
 					//float temp = (float)(1000/(m_currentTime - m_lastTime));
-					sprintf(m_fps, "%s%d", "Fps: ", 1000/(m_currentTime - m_lastTime));
+					sprintf_s(m_fps, "%s%d", "Fps: ", 1000/(m_currentTime - m_lastTime));
 					m_frame = 0;
 				}
 				SetWindowText(m_hWnd,m_fps);
@@ -191,6 +191,9 @@ void CGame::Render()
 		break;
 	case GameMenu:
 		m_menu->Render();
+		break;
+	case GameAbout:
+		m_menu->RenderAbout();
 		break;
 	case MenuIn:
 		RenderGamePlay();
@@ -229,7 +232,13 @@ void CGame::Update()
 	case GameMenu:
 		m_menu->Update(m_keys,m_lastKeys,m_currentState);
 		break;
+	case GameAbout:
+		m_menu->UpdateAbout(m_keys,m_lastKeys,m_currentState);
+		break;
 	case MenuIn:
+		break;
+	case GameExit:
+		PostQuitMessage(0);
 		break;
 	}
 	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&m_lastKeys);

@@ -59,7 +59,7 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 	// Handle event when RETURN key pressed
 	if(KEYDOWN(keys,DIK_RETURN) && KEYUP(lastKeys,DIK_RETURN))
 	{
-		switch(currentState)
+		switch(m_choice)
 		{
 		case 1: // New Game
 			return 1; // ???
@@ -67,8 +67,8 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 		case 2: // Continue
 			return 2; // ???
 			break;
-		case 3: // Quit
-			return 3;
+		case 3: // About
+			currentState = GameAbout;
 			break;
 		case 4: // Quit
 			currentState = GameExit;
@@ -99,8 +99,26 @@ void CCMenu::Render()
 	m_allSprites->m_border->Render(270,(float)(m_menuY+260));
 	m_allSprites->m_menu->Render(275,235);
 	// render selected region
-	
-	m_allSprites->m_prinny->Render(0,0);
+
 }
 
+void CCMenu::RenderAbout()
+{
+	CCollision* m_rect = new CCollision();
+	// render background
+	m_allSprites->m_backgroundMenu->Render(0,0);
+	// sprite
+	m_allSprites->m_prinny->Render(350,250,m_rect->_Rectangle(0,0,41,46),D3DCOLOR_ARGB(255,255,255,255));
+
+}
+
+int CCMenu::UpdateAbout(char keys[256], char lastKeys[256],int &currentState)
+{
+	if(KEYDOWN(keys,DIK_RETURN) && KEYUP(lastKeys,DIK_RETURN))
+	{
+		currentState = GameMenu;
+		return 1;
+	}
+	return 1;
+}
 #pragma endregion
