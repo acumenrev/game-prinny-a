@@ -121,5 +121,8 @@
     <None Include="Pics\MenuInGame.png">
       <Filter>Pics</Filter>
     </None>
+    <None Include="Pics\MenuBG.png">
+      <Filter>Pics</Filter>
+    </None>
   </ItemGroup>
 </Project>

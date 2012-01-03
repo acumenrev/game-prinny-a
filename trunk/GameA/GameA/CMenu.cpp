@@ -11,7 +11,7 @@ CCMenu::CCMenu(void)
 //////////////////////////////////////////////////////////////////////////
 CCMenu::CCMenu(AllSprite* allSprite)
 {
-	m_allSprite = allSprite;
+	m_allSprites = allSprite;
 	m_choice = 1;
 	// m_jumpMenu = 95; // need to set later
 	m_menuY = 0;
@@ -75,6 +75,7 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 		}
 		return 0;
 	}
+	return 1;
 }
 /************************************************************************/
 /*                          Render menu                                 */
@@ -90,9 +91,9 @@ void CCMenu::Render()
 
 	as->_Text_menu->Render(0,142+text_y);*/
 	// render background
-
+	m_allSprites->m_backgroundMenu->Render(0,0);
 	// render menu
-	m_allSprite->m_menu->Render(120,120);
+	m_allSprites->m_menu->Render(285,235);
 	// render selected region
 }
 
