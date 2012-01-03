@@ -219,7 +219,19 @@ void CGame::RenderGamePlay()
 void CGame::Update()
 {
 	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&m_keys);
-	// Do something
+	switch(m_currentState)
+	{
+	case GamePlay:
+		UpdateGamePlay();
+		break;
+	case GameDeath:
+		break;
+	case GameMenu:
+		m_menu->Update(m_keys,m_lastKeys,m_currentState);
+		break;
+	case MenuIn:
+		break;
+	}
 	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&m_lastKeys);
 }
 /************************************************************************/

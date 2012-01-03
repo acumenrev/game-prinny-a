@@ -13,7 +13,7 @@ CCMenu::CCMenu(AllSprite* allSprite)
 {
 	m_allSprites = allSprite;
 	m_choice = 1;
-	// m_jumpMenu = 95; // need to set later //60
+	m_jumpMenu = 60; // need to set later //60
 	m_menuY = 0;
 }
 /************************************************************************/
@@ -45,16 +45,16 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 		m_choice++;
 	}
 	// set m_choice to 1 when its value greater than qualities of menu entries
-	if(m_menuY > 2*m_jumpMenu)
+	if(m_menuY > 3*m_jumpMenu)
 	{
 		m_menuY = 0;
 		m_choice = 1;
 	}
-	// set m_choice to 3 when its value less than 0
+	// set m_choice to 4 when its value less than 0
 	if(m_menuY < 0)
 	{
-		m_menuY = 2*m_jumpMenu;
-		m_choice = 3;
+		m_menuY = 3*m_jumpMenu;
+		m_choice = 4;
 	}
 	// Handle event when RETURN key pressed
 	if(KEYDOWN(keys,DIK_RETURN) && KEYUP(lastKeys,DIK_RETURN))
@@ -68,6 +68,9 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 			return 2; // ???
 			break;
 		case 3: // Quit
+			return 3;
+			break;
+		case 4: // Quit
 			currentState = GameExit;
 			break;
 		default:
@@ -93,7 +96,8 @@ void CCMenu::Render()
 	// render background
 	m_allSprites->m_backgroundMenu->Render(0,0);
 	// render menu
-	m_allSprites->m_menu->Render(285,235);
+	m_allSprites->m_border->Render(270,(float)(m_menuY+260));
+	m_allSprites->m_menu->Render(275,235);
 	// render selected region
 	
 	m_allSprites->m_prinny->Render(0,0);

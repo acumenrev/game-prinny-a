@@ -13,8 +13,9 @@ enum GameState
 	GamePlay=0,
 	GameMenu=1,
 	GameContinue=2,
-	GameExit=3,
-	MenuIn=4,
+	GameAbout = 3,
+	GameExit=4,
+	MenuIn=5,
 	GameDeath
 };
 //////////////////////////////////////////////////////////////////////////
