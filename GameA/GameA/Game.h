@@ -35,7 +35,6 @@ public:
 	int m_currentState;
 	CCMenu* m_menu;
 	CMenuInGame* m_menuInGame;
-	CCollision* m_rect;
 	CCObject* m_object;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */
