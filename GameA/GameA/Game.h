@@ -15,7 +15,9 @@
 #include "CMenu.h"
 #include "MenuInGame.h"
 #include "Collision.h"
+#include "QuadTree.h"
 #include "CPrinny.h"
+#include "Camera.h"
 class CGame
 {
 public:
@@ -34,11 +36,15 @@ public:
 	UINT64 m_lastTime;
 	AllSprite* m_allSprite;
 	int m_currentState;
+	int m_currentMap;
 	CCMenu* m_menu;
 	CMenuInGame* m_menuInGame;
 	CCObject* m_object;
-	CPrinny* m_prinny;
+	CQuadTree* m_quadTree;
+	CQuadTree* m_quadTreeMap1;
+	CQuadTree* m_quadTreeeMap2;
 	CCamera* m_camera;
+	CPrinny* m_prinny;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */
 	/************************************************************************/
@@ -53,7 +59,7 @@ public:
 	void Run();
 	static LRESULT CALLBACK WndProc(HWND hWnd,UINT msg,WPARAM wParam ,LPARAM lParam);
 	bool InitWindow(HINSTANCE hInstance);
-	//void Loadmap();
+	void Loadmap();
 	void Render();
 	void Update();
 	void UpdateGamePlay(/*char keys[256]/ *, char lastKeys[256]* /*/);
