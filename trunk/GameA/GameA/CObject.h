@@ -22,6 +22,7 @@ public:
 	bool m_canBeDestroyed;
 	int m_spriteIndex;
 	bool m_checkedItem;
+	int m_scale;
 
 	/************************************************************************/
 	/*                    Constructor & Destructor                          */
