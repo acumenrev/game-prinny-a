@@ -14,6 +14,7 @@
 #include "Sprite.h"
 #include "CMenu.h"
 #include "MenuInGame.h"
+#include "Collision.h"
 class CGame
 {
 public:
@@ -34,6 +35,8 @@ public:
 	int m_currentState;
 	CCMenu* m_menu;
 	CMenuInGame* m_menuInGame;
+	CCollision* m_rect;
+	CCObject* ob;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */
 	/************************************************************************/

@@ -12,6 +12,7 @@ public:
 	CPosition m_pos;
 	int m_iWidth;
 	int m_iHeight;
+	// Constructors & Destructor
 	char m_style;
 	RECT m_workingArea;
 	float m_vX;
