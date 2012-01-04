@@ -223,7 +223,7 @@ void CGame::RenderDeath()
 void CGame::RenderGamePlay()
 {
 		int index_sprite = m_object->m_spriteIndex;
-		m_allSprite->m_prinny->Render(350+m_prinny->x,250,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
+		m_allSprite->m_prinny->Render(350+m_prinny->x,250+m_prinny->y,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
 }
 
 /************************************************************************/
@@ -263,55 +263,14 @@ void CGame::Update()
 /************************************************************************/
 /*                                Update Game play                      */
 /************************************************************************/
-void CGame::UpdateGamePlay(/*char keys[256]/ *, char lastKeys[256]* /*/)
+void CGame::UpdateGamePlay()
 {
-	/*int delayMax = 7;
-	static int delay = 0 ;
-	
-	if(KEYDOWN(keys,DIK_LEFT)/ * && KEYUP(lastKeys,DIK_LEFT)* /)
-	{
-		m_object->m_scale = 1;
-		delay++;
-		m_object->m_vX -= 3;
-		if(m_object->m_vX+350 < 0)
-		{
-			m_object->m_vX = WINDOW_WIDTH - 41 -350;
-		}
-		if (delay>=delayMax)
-		{
-			m_object->m_spriteIndex++;
-			if(m_object->m_spriteIndex>=6)
-			{
-				m_object->m_spriteIndex=0;
-			}
-			delay = 0;
-		}	
-	}	
-	if(KEYDOWN(keys,DIK_RIGHT)/ * && KEYUP(lastKeys,DIK_LEFT)* /)
-	{
-		m_object->m_scale = -1;
-		delay++;
-		m_object->m_vX += 3;
-		if(m_object->m_vX+350 < 0)
-		{
-			m_object->m_vX = WINDOW_WIDTH - 41 -350;
-		}
-
-		if (delay>=delayMax)
-		{
-			m_object->m_spriteIndex++;
-			if(m_object->m_spriteIndex>=6)
-			{
-				m_object->m_spriteIndex=0;
-			}
-			delay = 0;
-		}
-	}*/
 	switch(m_prinny->Update(m_keys,m_lastKeys))
 	{
 	case 1:
 		break;
 	}
+	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH,m_prinny->y - WINDOW_HEIGHT,3000,2000);
 }
 /************************************************************************/
 /*                             Load Map                                 */

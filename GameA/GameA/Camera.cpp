@@ -44,7 +44,7 @@ void CCamera::SetViewPort(float fX, float fY,int width, int height)
 	}
 	if(fX > width - WINDOW_WIDTH)
 	{
-		fX = width - WINDOW_WIDTH;
+		fX = (float)width - WINDOW_WIDTH;
 	}
 	if(fY < 0)
 	{
@@ -52,7 +52,7 @@ void CCamera::SetViewPort(float fX, float fY,int width, int height)
 	}
 	if(fY > height - WINDOW_HEIGHT)
 	{
-		fY = height - WINDOW_HEIGHT;
+		fY = (float)height - WINDOW_HEIGHT;
 	}
 	m_fX += fX - width;
 	m_fY += fY - height;
