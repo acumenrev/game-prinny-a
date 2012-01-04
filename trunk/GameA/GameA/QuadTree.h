@@ -4,6 +4,8 @@
 #include "Information.h"
 #include "Collision.h"
 
+#define MAXNODE 5
+
 class QuadNode
 {
 public:
@@ -67,10 +69,12 @@ public:
 	/************************************************************************/
 	/*							Methods                                     */
 	/************************************************************************/
-	void AddObject(QuadNode* root, CCObject* object);
+	void AddObject(QuadNode* node, CCObject* object);
 	void AddObject(CCObject* object);
-	void Free(QuadNode* root);
+	void Free(QuadNode* node);
 	void Free();
+	void SetHealth(QuadNode* node);
+	void SetHealth();
 	void SetObjectsList(ListNodes* objectsList, RECT rect);
 };
 

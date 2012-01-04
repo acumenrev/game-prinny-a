@@ -138,6 +138,9 @@ void CGame::InitObject()
 	m_menuInGame = new CMenuInGame(m_allSprite);
 	m_menu = new CCMenu(m_allSprite);
 	m_object = new CCObject(100,100,NULL);
+	// set m_currentMap
+	m_currentMap = 1;
+	// Init camera
 	m_camera = new CCamera();
 	m_prinny = new CPrinny(350,260,56,56,m_allSprite,m_camera);
 }
@@ -310,5 +313,29 @@ void CGame::UpdateGamePlay(/*char keys[256]/ *, char lastKeys[256]* /*/)
 		break;
 	}
 }
-
+/************************************************************************/
+/*                             Load Map                                 */
+/************************************************************************/
+void CGame::Loadmap()
+{
+	switch (m_currentMap)
+	{
+	case 1:
+		m_quadTree = m_quadTreeMap1;
+		break;
+	case 2:
+		m_quadTree = m_quadTreeeMap2;
+		break;
+	default:
+		break;
+	}
+	m_camera->m_fX = m_quadTree->m_fX;
+	m_camera->m_fY = m_quadTree->m_fY;
+	// load main character in here
+	// .....
+	// ,,,,,
+	// .....
+	// Set health for enemies
+	m_quadTree->SetHealth(m_quadTree->m_root);
+}
 #pragma endregion

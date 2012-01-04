@@ -22,6 +22,7 @@ public:
 	int m_spriteIndex;
 	bool m_checkedItem;
 	int m_scale;
+	int m_health;
 	RECT m_rect;
 	/************************************************************************/
 	/*                    Constructor & Destructor                          */

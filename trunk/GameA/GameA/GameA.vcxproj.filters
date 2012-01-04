@@ -66,9 +66,15 @@
     <ClInclude Include="CObjectsList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< .mine
+    <ClInclude Include="QuadTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+=======
     <ClInclude Include="CPrinny.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+>>>>>>> .r27
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Input.cpp">
@@ -111,6 +117,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QuadTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

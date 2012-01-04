@@ -32,13 +32,16 @@ CCObject::CCObject(float fX, float fY, char style)
 	m_canBeDestroyed = false;
 	m_checkedItem = false;
 	m_spriteIndex = 0;
-	m_style = style;
 	switch(style)
 	{
 		// set m_rect in here due to Unit
 	default:
 		break;
 	}
+	m_health = 1;
+	m_style = style;
+	m_iHeight = (int)(m_rect.bottom  - m_rect.top);
+	m_iWidth = (int)(m_rect.right - m_rect.left);
 }
 /************************************************************************/
 /*                             Free                                     */
