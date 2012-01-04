@@ -9,7 +9,6 @@ CCObject::CCObject(void)
 	m_pos.m_fY = 0;
 	m_iHeight = 0;
 	m_iWidth = 0;
-	m_colision = new CCollision();
 }
 /************************************************************************/
 /*                           Destructor                                 */
@@ -32,10 +31,7 @@ CCObject::CCObject(float fX, float fY, char style)
 	m_canBeDestroyed = false;
 	m_checkedItem = false;
 	m_spriteIndex = 0;
-	switch(style)
-	{
-
-	}
+	m_style = style;
 }
 /************************************************************************/
 /*                             Free                                     */

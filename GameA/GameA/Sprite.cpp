@@ -83,8 +83,8 @@ void CSprite::Render(float fX, float fY, D3DCOLOR color)
 /************************************************************************/
 void CSprite::Render(float fX, float fY, RECT rect, D3DCOLOR color)
 {
-	//rect.right++;
-	//rect.bottom++;
+	rect.right++;
+	rect.bottom++;
 	D3DXVECTOR3 local(fX,fY,0);
 	m_spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 	m_spriteHandler->Draw(m_texture,

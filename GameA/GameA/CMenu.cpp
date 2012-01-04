@@ -15,6 +15,7 @@ CCMenu::CCMenu(AllSprite* allSprite)
 	m_choice = 1;
 	m_jumpMenu = 60; // need to set later //60
 	m_menuY = 0;
+	m_object = new CCObject(100,100,NULL);
 }
 /************************************************************************/
 /*                          Destructor                                  */
@@ -62,7 +63,7 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 		switch(m_choice)
 		{
 		case 1: // New Game
-			return 1; // ???
+			currentState = GamePlay;
 			break;
 		case 2: // Continue
 			return 2; // ???
@@ -85,33 +86,29 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 /************************************************************************/
 void CCMenu::Render()
 {
-	/*as->_BackMenu->Render(0,0,D3DCOLOR_ARGB(back_alpha,255,255,255));
-	as->_zero_pic->Render(830+zero_X,0);
-	as->_sword->Render(830+zero_X,1,D3DCOLOR_ARGB(back_alpha,r1,r2,r3));
-	as->_borderTextMenu->Render(-10+bx1-delta_border+dx1,142,D3DCOLOR_ARGB(alpha_border,255,255,c1));
-	as->_borderTextMenu->Render(-10+bx2-delta_border+dx2,253,D3DCOLOR_ARGB(alpha_border,255,255,c2));
-	as->_borderTextMenu->Render(-10+bx3-delta_border+dx3,363,D3DCOLOR_ARGB(alpha_border,255,255,c3));
-
-	as->_Text_menu->Render(0,142+text_y);*/
 	// render background
 	m_allSprites->m_backgroundMenu->Render(0,0);
 	// render menu
 	m_allSprites->m_border->Render(270,(float)(m_menuY+260));
 	m_allSprites->m_menu->Render(275,235);
 	// render selected region
-
 }
 /************************************************************************/
 /*                          Render About                                */
 /************************************************************************/
 void CCMenu::RenderAbout()
 {
-	CCollision* m_rect = new CCollision();
+	
 	// render background
 	m_allSprites->m_backgroundMenu->Render(0,0);
 	// sprite
-	m_allSprites->m_prinny->Render(350,250,m_rect->_Rectangle(0,0,41,46),D3DCOLOR_ARGB(255,255,255,255));
-
+	int index_sprite = m_object->m_spriteIndex/2;
+	m_allSprites->m_prinny->Render(350,250,m_rect->_Rectangle((float)(index_sprite%5*41),0,41,46),D3DCOLOR_ARGB(255,255,255,255));
+	m_object->m_spriteIndex++;
+	if(m_object->m_spriteIndex>=5)
+	{
+		m_object->m_spriteIndex=0;
+	}
 }
 /************************************************************************/
 /*                           Update About                               */

@@ -137,6 +137,7 @@ void CGame::InitObject()
 	m_currentState = GameMenu;
 	m_menuInGame = new CMenuInGame(m_allSprite);
 	m_menu = new CCMenu(m_allSprite);
+	ob = new CCObject(100,100,NULL);
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -162,7 +163,7 @@ void CGame::Run()
 				m_dxManager->BeginDraw();
 				Render();
 				//itoa(1000/(a-b), fps, 10);
-				if(m_frame == 10)
+				if(m_frame == 5)
 				{
 					//float temp = (float)(1000/(m_currentTime - m_lastTime));
 					sprintf_s(m_fps, "%s%d", "Fps: ", 1000/(m_currentTime - m_lastTime));
@@ -213,7 +214,14 @@ void CGame::RenderDeath()
 /************************************************************************/
 void CGame::RenderGamePlay()
 {
-	
+		CCObject* a = ob;
+		int index_sprite = ob->m_spriteIndex/2;
+		m_allSprite->m_prinny->Render(350,250,m_rect->_Rectangle(index_sprite%6*41,0,41,46),D3DCOLOR_ARGB(255,255,255,255));
+		ob->m_spriteIndex++;
+		if(ob->m_spriteIndex>=6)
+		{
+			ob->m_spriteIndex=0;
+		}
 }
 
 /************************************************************************/
