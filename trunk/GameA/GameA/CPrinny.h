@@ -17,10 +17,10 @@ enum State_Prinny
 	Stop_Left = 10,
 	Stand_Right = 7,
 	Stand_Left = 6,
-	Jump_Up_Right,
-	Jump_Up_Left,
-	Jump_Down_Right,
-	Jump_Down_Left
+	Jump_Up_Right = 2,
+	Jump_Up_Left = 0,
+	Jump_Down_Right = 3,
+	Jump_Down_Left = 1
 };
 enum State_Prinny_2
 {
@@ -81,10 +81,10 @@ public:
 		m_max_spriteIndex_X[Stop_Right] = 2;
 		m_max_spriteIndex_X[Stand_Right] = 9;
 		m_max_spriteIndex_X[Stand_Left] = 9;
-		m_max_spriteIndex_X[Jump_Down_Left] = 6;
-		m_max_spriteIndex_X[Jump_Down_Right] = 6;
-		m_max_spriteIndex_X[Jump_Up_Left] = 6;
-		m_max_spriteIndex_X[Jump_Up_Right] = 6;
+		m_max_spriteIndex_X[Jump_Down_Left] = 4;
+		m_max_spriteIndex_X[Jump_Down_Right] = 4;
+		m_max_spriteIndex_X[Jump_Up_Left] = 2;
+		m_max_spriteIndex_X[Jump_Up_Right] = 2;
 
 		m_spriteIndex_X = 0;
 		m_spriteIndex_Y = 0;
@@ -101,6 +101,8 @@ public:
 			UpdateSpiteStand(keys);
 			break;
 		case Jump:
+			m_spriteDelay_max = 15;
+			UpdateSpriteJump(keys);
 			break;
 		}
 
@@ -175,6 +177,47 @@ public:
 			}
 		}
 	}
+	void UpdateSpriteJump(char keys[256])
+	{
+		if(IsRight == true)
+		{
+			if (m_vY < 0)
+			{
+				if(m_spriteIndex_Y != Jump_Up_Right)
+				{
+					m_spriteIndex_Y = Jump_Up_Right;
+					m_spriteIndex_X = 0;
+				}
+			} 
+			else
+			{
+				if(m_spriteIndex_Y != Jump_Down_Right)
+				{
+					m_spriteIndex_Y = Jump_Down_Right;
+					m_spriteIndex_X = 0;
+				}
+			}
+		}
+		else
+		{
+			if (m_vY < 0)
+			{
+				if(m_spriteIndex_Y != Jump_Up_Left)
+				{
+					m_spriteIndex_Y = Jump_Up_Left;
+					m_spriteIndex_X = 0;
+				}
+			} 
+			else
+			{
+				if(m_spriteIndex_Y != Jump_Down_Left)
+				{
+					m_spriteIndex_Y = Jump_Down_Left;
+					m_spriteIndex_X = 0;
+				}
+			}
+		}
+	}
 	//  move
 	void Move(char keys[256])
 	{
@@ -215,11 +258,23 @@ public:
 		else
 			m_vX = -VxMax;
 	}
+	// Jump
+	void jump(char keys[256],char last_keys[256])
+	{
+		m_statePrinny = Jump;
+		if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP) && IsJump == true)
+		{
+			m_vY -= VJump;
+			IsJump = false;
+		}
+		
+	}
 	// update
 	int Update(char keys[256],char last_keys[256])
 	{
 		UpdateSprite(keys);
 		Move(keys);
+		jump(keys,last_keys);
 		x += m_vX;
 		if (m_vX < GiatocX && m_vX > -GiatocX)
 		{

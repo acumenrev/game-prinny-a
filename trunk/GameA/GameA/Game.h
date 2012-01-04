@@ -62,7 +62,7 @@ public:
 	void Loadmap();
 	void Render();
 	void Update();
-	void UpdateGamePlay(/*char keys[256]/ *, char lastKeys[256]* /*/);
+	void UpdateGamePlay();
 	void RenderGamePlay();
 	void RenderDeath();
 };
