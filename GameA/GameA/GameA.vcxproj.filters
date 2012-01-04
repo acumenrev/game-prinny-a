@@ -66,6 +66,9 @@
     <ClInclude Include="CObjectsList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPrinny.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Input.cpp">

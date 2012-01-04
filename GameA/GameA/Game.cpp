@@ -218,7 +218,7 @@ void CGame::RenderDeath()
 void CGame::RenderGamePlay()
 {
 		int index_sprite = m_object->m_spriteIndex;
-		m_allSprite->m_prinny->Render(350+m_object->m_vX,250,m_rect->_Rectangle((float)(index_sprite%6*41),0,41,46),D3DCOLOR_ARGB(255,255,255,255),0,m_object->m_scale,1);
+		m_allSprite->m_prinny->Render(350+m_object->m_vX,250,_Rectangle((float)(index_sprite%6*41),0,41,46),D3DCOLOR_ARGB(255,255,255,255),0,m_object->m_scale,1);
 }
 
 /************************************************************************/
@@ -280,8 +280,7 @@ void CGame::UpdateGamePlay(char keys[256]/*, char lastKeys[256]*/)
 				m_object->m_spriteIndex=0;
 			}
 			delay = 0;
-		}
-		
+		}	
 	}	
 	if(KEYDOWN(keys,DIK_RIGHT)/* && KEYUP(lastKeys,DIK_LEFT)*/)
 	{
