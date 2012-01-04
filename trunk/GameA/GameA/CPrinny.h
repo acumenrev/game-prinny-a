@@ -5,7 +5,7 @@
 #include "CObjectsList.h"
 #define GiatocX 0.5
 #define GiatocY 0.5
-#define VxMax 6
+#define VxMax 3
 #define VJump 10
 #define Masat 0.9
 
@@ -13,8 +13,8 @@ enum State_Prinny
 {
 	Move_Right = 5,
 	Move_Left = 4,
-	Stop_Right = 5,
-	Stop_Left = 4,
+	Stop_Right = 11,
+	Stop_Left = 10,
 	Stand_Right = 7,
 	Stand_Left = 6,
 	Jump_Up_Right,
@@ -77,8 +77,8 @@ public:
 	{
 		m_max_spriteIndex_X[Move_Left] = 6;
 		m_max_spriteIndex_X[Move_Right] = 6;
-		m_max_spriteIndex_X[Stop_Left] = 1;
-		m_max_spriteIndex_X[Stop_Right] = 1;
+		m_max_spriteIndex_X[Stop_Left] = 2;
+		m_max_spriteIndex_X[Stop_Right] = 2;
 		m_max_spriteIndex_X[Stand_Right] = 9;
 		m_max_spriteIndex_X[Stand_Left] = 9;
 		m_max_spriteIndex_X[Jump_Down_Left] = 6;
@@ -97,7 +97,7 @@ public:
 		switch(m_statePrinny)
 		{
 		case Stand:
-			m_spriteDelay_max = 7;
+			m_spriteDelay_max = 15;
 			UpdateSpiteStand(keys);
 			break;
 		case Jump:
@@ -125,11 +125,13 @@ public:
 			{
 				m_spriteIndex_Y = Stand_Right;
 				m_spriteIndex_X = 0;
+				m_spriteDelay_max = 20;
 			}
 			if (IsRight ==false && m_spriteIndex_Y != Stand_Left)
 			{
 				m_spriteIndex_Y = Stand_Left;
 				m_spriteIndex_X = 0;
+				m_spriteDelay_max = 25;
 			}
 		}
 		if(m_vX >0)
@@ -148,6 +150,7 @@ public:
 				{
 					m_spriteIndex_Y = Stop_Right;
 					m_spriteIndex_X = 0;
+					m_spriteDelay_max = 20;
 				}
 			}
 		}
@@ -167,6 +170,7 @@ public:
 				{
 					m_spriteIndex_Y = Stop_Left;
 					m_spriteIndex_X = 0;
+					m_spriteDelay_max = 20;
 				}
 			}
 		}
@@ -214,8 +218,9 @@ public:
 	// update
 	int Update(char keys[256],char last_keys[256])
 	{
-		Move(keys);
 		UpdateSprite(keys);
+		Move(keys);
+		x += m_vX;
 		if (m_vX < GiatocX && m_vX > -GiatocX)
 		{
 			m_vX = 0;
@@ -224,6 +229,7 @@ public:
 		{
 			m_vY = 0;
 		}
+		
 		return 0;
 	}
 };
