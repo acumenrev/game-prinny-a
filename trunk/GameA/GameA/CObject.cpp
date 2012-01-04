@@ -33,6 +33,12 @@ CCObject::CCObject(float fX, float fY, char style)
 	m_checkedItem = false;
 	m_spriteIndex = 0;
 	m_style = style;
+	switch(style)
+	{
+		// set m_rect in here due to Unit
+	default:
+		break;
+	}
 }
 /************************************************************************/
 /*                             Free                                     */
