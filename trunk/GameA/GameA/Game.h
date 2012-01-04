@@ -15,6 +15,7 @@
 #include "CMenu.h"
 #include "MenuInGame.h"
 #include "Collision.h"
+#include "CPrinny.h"
 class CGame
 {
 public:
@@ -36,6 +37,8 @@ public:
 	CCMenu* m_menu;
 	CMenuInGame* m_menuInGame;
 	CCObject* m_object;
+	CPrinny* m_prinny;
+	CCamera* m_camera;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */
 	/************************************************************************/
@@ -53,7 +56,7 @@ public:
 	//void Loadmap();
 	void Render();
 	void Update();
-	void UpdateGamePlay(char keys[256]/*, char lastKeys[256]*/);
+	void UpdateGamePlay(/*char keys[256]/ *, char lastKeys[256]* /*/);
 	void RenderGamePlay();
 	void RenderDeath();
 };

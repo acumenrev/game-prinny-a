@@ -138,6 +138,8 @@ void CGame::InitObject()
 	m_menuInGame = new CMenuInGame(m_allSprite);
 	m_menu = new CCMenu(m_allSprite);
 	m_object = new CCObject(100,100,NULL);
+	m_camera = new CCamera();
+	m_prinny = new CPrinny(350,260,56,56,m_allSprite,m_camera);
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -218,7 +220,7 @@ void CGame::RenderDeath()
 void CGame::RenderGamePlay()
 {
 		int index_sprite = m_object->m_spriteIndex;
-		m_allSprite->m_prinny->Render(350+m_object->m_vX,250,_Rectangle((float)(index_sprite%6*41),0,41,46),D3DCOLOR_ARGB(255,255,255,255),0,m_object->m_scale,1);
+		m_allSprite->m_prinny->Render(350+m_prinny->m_vX,250,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
 }
 
 /************************************************************************/
@@ -230,7 +232,7 @@ void CGame::Update()
 	switch(m_currentState)
 	{
 	case GamePlay:
-		UpdateGamePlay(m_keys/*,m_lastKeys*/);
+		UpdateGamePlay(/*m_keys/ *,m_lastKeys* /*/);
 		break;
 	case GameDeath:
 		break;
@@ -258,12 +260,12 @@ void CGame::Update()
 /************************************************************************/
 /*                                Update Game play                      */
 /************************************************************************/
-void CGame::UpdateGamePlay(char keys[256]/*, char lastKeys[256]*/)
+void CGame::UpdateGamePlay(/*char keys[256]/ *, char lastKeys[256]* /*/)
 {
-	int delayMax = 7;
+	/*int delayMax = 7;
 	static int delay = 0 ;
 	
-	if(KEYDOWN(keys,DIK_LEFT)/* && KEYUP(lastKeys,DIK_LEFT)*/)
+	if(KEYDOWN(keys,DIK_LEFT)/ * && KEYUP(lastKeys,DIK_LEFT)* /)
 	{
 		m_object->m_scale = 1;
 		delay++;
@@ -282,7 +284,7 @@ void CGame::UpdateGamePlay(char keys[256]/*, char lastKeys[256]*/)
 			delay = 0;
 		}	
 	}	
-	if(KEYDOWN(keys,DIK_RIGHT)/* && KEYUP(lastKeys,DIK_LEFT)*/)
+	if(KEYDOWN(keys,DIK_RIGHT)/ * && KEYUP(lastKeys,DIK_LEFT)* /)
 	{
 		m_object->m_scale = -1;
 		delay++;
@@ -301,6 +303,11 @@ void CGame::UpdateGamePlay(char keys[256]/*, char lastKeys[256]*/)
 			}
 			delay = 0;
 		}
+	}*/
+	switch(m_prinny->Update(m_keys,m_lastKeys))
+	{
+	case 1:
+		break;
 	}
 }
 

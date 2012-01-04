@@ -39,8 +39,8 @@ RECT _Rectangle(float fX, float fY, int width, int height)
 	RECT r;
 	r.top = (long)fY;
 	r.left = (long)fX;
-	r.bottom = (long)fY + (long)height;
-	r.right = (long)fX + (long)width;
+	r.bottom = (long)fY + (long)height -1;
+	r.right = (long)fX + (long)width -1;
 	return r;
 }
 #pragma endregion 
