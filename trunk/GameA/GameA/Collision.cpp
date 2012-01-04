@@ -1,26 +1,12 @@
 #include "Collision.h"
 
-#pragma region Constructor & Destructor
-/************************************************************************/
-/*                          Constructor					                */
-/************************************************************************/
-CCollision::CCollision(void)
-{
-}
-/************************************************************************/
-/*                          Destructor                                  */
-/************************************************************************/
-CCollision::~CCollision(void)
-{
-}
 
-#pragma endregion 
 
 #pragma region Methods
 /************************************************************************/
 /*        Check RECT a collides with RECT b                             */
 /************************************************************************/
-bool CCollision::CheckCollisionBetween2Rect(RECT a, RECT b)
+bool CheckCollisionBetween2Rect(RECT a, RECT b)
 {
 	if(a.bottom < b.bottom &&
 		a.left > b.left &&
@@ -34,7 +20,7 @@ bool CCollision::CheckCollisionBetween2Rect(RECT a, RECT b)
 /************************************************************************/
 /*        Check RECT a stays inside RECT b                              */
 /************************************************************************/
-bool CCollision::CheckStayInAnotherRect(RECT a, RECT b)
+bool CheckStayInAnotherRect(RECT a, RECT b)
 {
 	if(a.bottom <= b.bottom &&
 		a.left >= b.left &&
@@ -48,7 +34,7 @@ bool CCollision::CheckStayInAnotherRect(RECT a, RECT b)
 /************************************************************************/
 /*                          RECTANGLE                                   */
 /************************************************************************/
-RECT CCollision::_Rectangle(float fX, float fY, int width, int height)
+RECT _Rectangle(float fX, float fY, int width, int height)
 {
 	RECT r;
 	r.top = (long)fY;

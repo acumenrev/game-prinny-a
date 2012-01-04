@@ -27,7 +27,7 @@ CCObject::CCObject(float fX, float fY, char style)
 	m_scale = 1;
 	m_vX = 0;
 	m_vY = 0;
-	m_workingArea = m_collision->_Rectangle(fX,fY,SizeTile,SizeTile);
+	m_workingArea = _Rectangle(fX,fY,SizeTile,SizeTile);
 	m_canCollide = false;
 	m_canBeDestroyed = false;
 	m_checkedItem = false;
