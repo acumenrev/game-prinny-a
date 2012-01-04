@@ -40,10 +40,10 @@ public:
 	}
 	QuadNode(float fX, float fY, int width, int height)
 	{
-		m_rect.left = fX;
-		m_rect.top = fY;
-		m_rect.bottom = fY + height;
-		m_rect.right = fX + width;
+		m_rect.left = (long)fX;
+		m_rect.top = (long)fY;
+		m_rect.bottom = (long)(fY + height);
+		m_rect.right = (long)(fX + width);
 	}
 	~QuadNode(void);
 };

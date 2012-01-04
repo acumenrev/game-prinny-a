@@ -223,7 +223,7 @@ void CGame::RenderDeath()
 void CGame::RenderGamePlay()
 {
 		int index_sprite = m_object->m_spriteIndex;
-		m_allSprite->m_prinny->Render(350+m_prinny->m_vX,250,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
+		m_allSprite->m_prinny->Render(350+m_prinny->x,250,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
 }
 
 /************************************************************************/
