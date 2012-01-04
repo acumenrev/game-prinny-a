@@ -83,6 +83,7 @@
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CObjectsList.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="CPrinny.h" />
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="DXManager.h" />
     <ClInclude Include="Game.h" />

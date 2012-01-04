@@ -103,7 +103,7 @@ void CCMenu::RenderAbout()
 	m_allSprites->m_backgroundMenu->Render(0,0);
 	// sprite
 	int index_sprite = m_object->m_spriteIndex/2;
-	m_allSprites->m_prinny->Render(350,250,m_rect->_Rectangle((float)(index_sprite%5*41),0,41,46),D3DCOLOR_ARGB(255,255,255,255));
+	m_allSprites->m_prinny->Render(350,250,_Rectangle((float)(index_sprite%5*41),0,41,46),D3DCOLOR_ARGB(255,255,255,255));
 	m_object->m_spriteIndex++;
 	if(m_object->m_spriteIndex>=5)
 	{
