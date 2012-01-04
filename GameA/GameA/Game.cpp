@@ -260,33 +260,45 @@ void CGame::Update()
 /************************************************************************/
 void CGame::UpdateGamePlay(char keys[256]/*, char lastKeys[256]*/)
 {
+	int delayMax = 4;
+	static int delay = 0 ;
 	
 	if(KEYDOWN(keys,DIK_LEFT)/* && KEYUP(lastKeys,DIK_LEFT)*/)
 	{
+		delay++;
 		m_object->m_vX -= 3;
 		if(m_object->m_vX+350 < 0)
 		{
 			m_object->m_vX = WINDOW_WIDTH - 41 -350;
 		}
-		
-		m_object->m_spriteIndex++;
-		if(m_object->m_spriteIndex>=6)
+		if (delay>=delayMax)
 		{
-			m_object->m_spriteIndex=0;
+			m_object->m_spriteIndex++;
+			if(m_object->m_spriteIndex>=6)
+			{
+				m_object->m_spriteIndex=0;
+			}
+			delay = 0;
 		}
+		
 	}	
 	if(KEYDOWN(keys,DIK_RIGHT)/* && KEYUP(lastKeys,DIK_LEFT)*/)
 	{
+		delay++;
 		m_object->m_vX += 3;
 		if(m_object->m_vX+350 < 0)
 		{
 			m_object->m_vX = WINDOW_WIDTH - 41 -350;
 		}
 
-		m_object->m_spriteIndex++;
-		if(m_object->m_spriteIndex>=6)
+		if (delay>=delayMax)
 		{
-			m_object->m_spriteIndex=0;
+			m_object->m_spriteIndex++;
+			if(m_object->m_spriteIndex>=6)
+			{
+				m_object->m_spriteIndex=0;
+			}
+			delay = 0;
 		}
 	}
 }
