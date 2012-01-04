@@ -137,7 +137,7 @@ void CGame::InitObject()
 	m_currentState = GameMenu;
 	m_menuInGame = new CMenuInGame(m_allSprite);
 	m_menu = new CCMenu(m_allSprite);
-	ob = new CCObject(100,100,NULL);
+	m_object = new CCObject(100,100,NULL);
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -146,6 +146,9 @@ void CGame::Run()
 {
 	MSG msg;
 	ZeroMemory(&msg,sizeof(msg));
+	UINT64 countPerSecond = 0;
+	QueryPerformanceFrequency((LARGE_INTEGER*)&countPerSecond);
+	float secondPerCount = 1.0f/ (float)countPerSecond;
 	while(msg.message!=WM_QUIT)
 	{
 		if(PeekMessage(&msg,NULL,0,0,PM_REMOVE))
@@ -156,7 +159,7 @@ void CGame::Run()
 		else
 		{
 			m_currentTime = GetTickCount();
-			if(m_currentTime - m_lastTime > 14)
+			if((m_currentTime - m_lastTime) > 14)
 			{
 				Update();
 				m_dxManager->ClearScreen();
@@ -165,8 +168,8 @@ void CGame::Run()
 				//itoa(1000/(a-b), fps, 10);
 				if(m_frame == 5)
 				{
-					//float temp = (float)(1000/(m_currentTime - m_lastTime));
-					sprintf_s(m_fps, "%s%d", "Fps: ", 1000/(m_currentTime - m_lastTime));
+					//sprintf_s(m_fps, "%s%d", "Fps: ", 1000/(m_currentTime - m_lastTime));
+					sprintf_s(m_fps, "%s%d", "Fps: ",1000/(m_currentTime - m_lastTime));
 					m_frame = 0;
 				}
 				SetWindowText(m_hWnd,m_fps);
@@ -214,14 +217,8 @@ void CGame::RenderDeath()
 /************************************************************************/
 void CGame::RenderGamePlay()
 {
-		CCObject* a = ob;
-		int index_sprite = ob->m_spriteIndex/2;
-		m_allSprite->m_prinny->Render(350,250,m_rect->_Rectangle(index_sprite%6*41,0,41,46),D3DCOLOR_ARGB(255,255,255,255));
-		ob->m_spriteIndex++;
-		if(ob->m_spriteIndex>=6)
-		{
-			ob->m_spriteIndex=0;
-		}
+		int index_sprite = m_object->m_spriteIndex;
+		m_allSprite->m_prinny->Render(350+m_object->m_vX,250,m_rect->_Rectangle(index_sprite%6*41,0,41,46),D3DCOLOR_ARGB(255,255,255,255));
 }
 
 /************************************************************************/
@@ -233,25 +230,12 @@ void CGame::Update()
 	switch(m_currentState)
 	{
 	case GamePlay:
-		UpdateGamePlay();
+		UpdateGamePlay(m_keys/*,m_lastKeys*/);
 		break;
 	case GameDeath:
 		break;
 	case GameMenu:
 		m_menu->Update(m_keys,m_lastKeys,m_currentState);
-		//int mainMenuChoice;
-		//mainMenuChoice = m_menu->Update(m_keys,m_lastKeys,m_currentState);
-		//if(mainMenuChoice == 1) // New Game
-		//{
-		//	m_currentState = GamePlay;
-		//	// Load map
-		//}
-		//if(mainMenuChoice == 2) // Continue
-		//{
-		//	// Read saved file
-		//	m_currentState = GamePlay;
-		//	// Load map
-		//}
 		break;
 	case GameAbout:
 		m_menu->UpdateAbout(m_keys,m_lastKeys,m_currentState);
@@ -274,9 +258,37 @@ void CGame::Update()
 /************************************************************************/
 /*                                Update Game play                      */
 /************************************************************************/
-void CGame::UpdateGamePlay()
+void CGame::UpdateGamePlay(char keys[256]/*, char lastKeys[256]*/)
 {
+	
+	if(KEYDOWN(keys,DIK_LEFT)/* && KEYUP(lastKeys,DIK_LEFT)*/)
+	{
+		m_object->m_vX -= 3;
+		if(m_object->m_vX+350 < 0)
+		{
+			m_object->m_vX = WINDOW_WIDTH - 41 -350;
+		}
+		
+		m_object->m_spriteIndex++;
+		if(m_object->m_spriteIndex>=6)
+		{
+			m_object->m_spriteIndex=0;
+		}
+	}	
+	if(KEYDOWN(keys,DIK_RIGHT)/* && KEYUP(lastKeys,DIK_LEFT)*/)
+	{
+		m_object->m_vX += 3;
+		if(m_object->m_vX+350 < 0)
+		{
+			m_object->m_vX = WINDOW_WIDTH - 41 -350;
+		}
 
+		m_object->m_spriteIndex++;
+		if(m_object->m_spriteIndex>=6)
+		{
+			m_object->m_spriteIndex=0;
+		}
+	}
 }
 
 #pragma endregion
