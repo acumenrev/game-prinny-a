@@ -24,6 +24,7 @@ CCObject::CCObject(float fX, float fY, char style)
 	m_pos.m_fX = fX;
 	m_pos.m_fY = fY;
 	m_rotate = 0;
+	m_scale = 1;
 	m_vX = 0;
 	m_vY = 0;
 	m_workingArea = m_collision->_Rectangle(fX,fY,SizeTile,SizeTile);

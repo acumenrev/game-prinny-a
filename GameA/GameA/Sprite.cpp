@@ -99,8 +99,8 @@ void CSprite::Render(float fX, float fY, RECT rect, D3DCOLOR color)
 /************************************************************************/
 void CSprite::Render(float fX, float fY, RECT rect, D3DCOLOR color, float rotate)
 {
-	/*rect.right++;
-	rect.bottom++;*/
+	rect.right++;
+	rect.bottom++;
 	D3DXVECTOR2 pos(fX,fY);
 	m_spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 	float Rotate = rotate*D3DX_PI/180;
