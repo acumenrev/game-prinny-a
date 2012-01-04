@@ -36,7 +36,7 @@ public:
 	CCMenu* m_menu;
 	CMenuInGame* m_menuInGame;
 	CCollision* m_rect;
-	CCObject* ob;
+	CCObject* m_object;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */
 	/************************************************************************/
@@ -54,7 +54,7 @@ public:
 	//void Loadmap();
 	void Render();
 	void Update();
-	void UpdateGamePlay();
+	void UpdateGamePlay(char keys[256]/*, char lastKeys[256]*/);
 	void RenderGamePlay();
 	void RenderDeath();
 };
