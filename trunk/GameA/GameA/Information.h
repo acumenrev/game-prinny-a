@@ -22,3 +22,23 @@ enum GameState
 	GameDeath
 };
 //////////////////////////////////////////////////////////////////////////
+/************************************************************************/
+/*                     Define units in game                             */
+/************************************************************************/
+#define UNIT_BLANK '0' // units that do not contain anything
+#define UNIT_STATIC '1' // units that do not move or active
+#define UNIT_SAVE '2' // unit that used to save game
+#define UNIT_BEGIN '3' // unit that used to begin the game
+#define UNIT_DESTRUCTION '4' // Can be destroyed
+#define UNIT_END '5' // unit that used to end a map
+#define UNIT_LEFTRIGHT '6' // unit that can move left or right in game
+#define UNIT_TOPBOTTOM '7' // unit that can move up or down
+// Grasses
+#define UNIT_GRASS1 'Q' // Grass type 1
+#define UNIT_GRASS2 'W' // Grass type 2
+// Grounds
+#define UNIT_GROUND1 'E' // Ground type 1
+#define UNIT_GROUND2 'R' // Ground type 2
+// Backgrounds
+#define UNIT_BACKGROUND1 'T' // Background type 1
+#define UNIT_BACKGROUND2 'Y' // Background type 2
