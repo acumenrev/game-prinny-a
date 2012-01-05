@@ -135,7 +135,7 @@ public:
 			UpdateSpriteJump(keys);
 			break;
 		case Shoot:
-			m_spriteDelay_max = 3;
+			m_spriteDelay_max = 1;
 			UpdateSpriteShoot(keys);
 			break;
 		}
@@ -150,6 +150,10 @@ public:
 				m_spriteIndex_X = m_srpiteIndexStar_X;
 			}
 			m_spriteDelay = 0;
+			if (m_statePrinny == Shoot)
+			{
+				x_shoot = m_spriteIndex_X;
+			}
 		}
 	}
 	/************************************************************************/
@@ -352,19 +356,26 @@ public:
 	/************************************************************************/
 	/*                              Shoot                                   */
 	/************************************************************************/
-	void PrinnyShoot(char keys[256])
+	int x_shoot;
+	int delayShoot;
+	void PrinnyShoot(char keys[256],char last_keys[256])
 	{
-
 		if (KEYDOWN(keys,DIK_SPACE))
 		{
-			//m_soundPlayer->PlaySoundA(1,false);
 			m_bassSound->Play("Cut",false);
 			m_statePrinny = Shoot;
+			/*if(x_shoot > m_max_spriteIndex_X[Shoot_Left])
+			{
+				m_statePrinny = Shoot;
+				m_soundPlayer->PlaySoundA(1,false);
+			}
+			else
+				m_statePrinny = Stand;*/
 		}
 		else
 		{
-			m_statePrinny = Stand;
-		}
+				m_statePrinny = Stand;
+		}	
 	}
 	/************************************************************************/
 	/*                                Update                                */
@@ -380,14 +391,97 @@ public:
 			return 2;
 		}
 		Move(keys);
-		PrinnyShoot(keys);
+		PrinnyShoot(keys,last_keys);
 		//
 		//m_listObject->Free();
 		//m_quadtree->SetObjectsList(m_listObject,_Rectangle(x,y,m_wight,m_height));
 		//
 		/*if(CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
 		{
+			IsJump = true;
+			if (!CheckRectCollideWithList(_Rectangle(x,y+m_vY,m_wight,m_height),m_listObject)) // va cham trai' phai?
+			{
+				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
+				{
+					jump();
+				}
+			}
+			else
+			{
+				if (!CheckRectCollideWithList(_Rectangle(x+m_vX,y,m_wight,m_height),m_listObject)) // va cham tren duoi'
+				{
+					if(m_vY > 0) // va cham tren
+					{
+						if(KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
+						{
+							m_vY = -VJump;
+							m_statePrinny = Jump;
+						}
+						else
+						{
+							m_vY = 0;
+							m_statePrinny = Stand;
+						}
+					}
+					else  // va cham duoi
+					{
+						m_vY = 0;
+						IsJump = false;
+					}
+				}
+				else
+				{
+					if(KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
+					{
+						jump();
+					}
+					else
+					{
+						m_vX = 0;
+						m_vY = 0;
+					}
+				}
+			}
+		}
+		else
+		{
+			m_statePrinny = Jump;
+			if(KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP) && IsJump == true)
+			{
+				m_vY = -VJump;
+				IsJump = false;
+			}
+		}
+		///////////////////////
+		
+		/////////////////
+		if(!CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
+		{
+			if(CheckCollisionBetween2Rect(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_quadtree->m_root->m_rect))
+			{
+				y += m_vY;
+				x += m_vX;
+			}
+			else
+			{
+				if (!CheckCollisionBetween2Rect(_Rectangle((x+m_vX),y,m_wight,m_height),m_quadtree->m_root->m_rect))
+				{
+					m_vX = 0;
+				}
+				if (!CheckCollisionBetween2Rect(_Rectangle(x,y+m_vY,m_wight,m_height),m_quadtree->m_root->m_rect))
+				{
+					m_vY = 0;
+				}
+				y += m_vY;
+				x += m_vX;
+			}
+		}
+		else
+		{
+			if(CheckRectCollideWithList(_Rectangle(x,y,m_wight,m_height),m_listObject))
+			{
 
+			}
 		}*/
 
 		UpdateSprite(keys);
