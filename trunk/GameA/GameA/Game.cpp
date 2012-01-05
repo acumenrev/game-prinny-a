@@ -254,7 +254,6 @@ void CGame::Update()
 	{
 	case GamePlay:
 		UpdateGamePlay();
-		m_soundPlayer->PlaySound(0,false);
 		break;
 	case GameDeath:
 		break;
