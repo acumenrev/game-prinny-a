@@ -124,6 +124,7 @@
     <None Include="Pics\MenuInGame.png" />
     <None Include="Pics\Prinny\Prinny.png" />
     <None Include="Pics\Prinny\walking.png" />
+    <None Include="Sounds\Boom.ogg" />
     <None Include="Sounds\Cut.wav" />
     <None Include="Sounds\MainBackground.wav" />
     <None Include="Sounds\startgame.wav" />

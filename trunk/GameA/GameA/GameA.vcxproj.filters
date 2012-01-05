@@ -50,6 +50,7 @@
     <None Include="Sounds\Cut.wav" />
     <None Include="Sounds\MainBackground.wav" />
     <None Include="bass.dll" />
+    <None Include="Sounds\Boom.ogg" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
