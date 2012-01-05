@@ -34,7 +34,73 @@ CCObject::CCObject(float fX, float fY, char style)
 	m_spriteIndex = 0;
 	switch(style)
 	{
-		// set m_rect in here due to Unit
+	// set m_rect in here due to Unit
+	case UNIT_STATIC:
+		m_canCollide = true;
+		m_rect = _Rectangle(fX, fY, SizeTile*2, SizeTile *2);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	// Grass
+	case UNIT_GRASS1:
+		m_rect = _Rectangle(fX, fY, SizeTile/*13*/, SizeTile/*1*/);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	case UNIT_GRASS2:
+		m_rect = _Rectangle(fX, fY, SizeTile/*13*/, SizeTile/*1*/);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	// Ground
+	case UNIT_GROUND1:
+		m_canCollide = true;
+		m_rect = _Rectangle(fX, fY, SizeTile/*14*/, SizeTile/*3*/);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	case UNIT_GROUND2:
+		m_canCollide = true;
+		m_rect = _Rectangle(fX, fY, SizeTile/*14*/, SizeTile/*3*/);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	// Background
+	case UNIT_BACKGROUND1:
+		m_rect = _Rectangle(fX, fY, SizeTile/*13*/, SizeTile/*1*/);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	case UNIT_BACKGROUND2:
+		m_rect = _Rectangle(fX, fY, SizeTile/*13*/, SizeTile/*1*/);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	// others
+	case UNIT_SAVE:
+		m_canCollide = false;
+		m_checkedItem = true;
+		m_rect = _Rectangle(fX, fY, SizeTile*2, SizeTile*2);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	case UNIT_BEGIN:
+		m_canCollide = false;
+		break;
+	case UNIT_END:
+		m_canCollide = false;
+		m_checkedItem = true;
+		m_rect = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	case UNIT_DESTRUCTION:
+		m_canCollide = false;
+		m_checkedItem = true;
+		m_rect = _Rectangle(fX, fY, SizeTile*2, SizeTile*2);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	case UNIT_LEFTRIGHT:
+		m_canCollide = true;
+		m_rect = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
+	case UNIT_TOPBOTTOM:
+		m_canCollide = true;
+		m_rect = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile);
+		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		break;
 	default:
 		break;
 	}
