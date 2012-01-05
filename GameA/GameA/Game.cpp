@@ -159,6 +159,7 @@ void CGame::InitObject()
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"MainBackground","Sounds\\MainBackground.wav",BASS_MUSIC_RAMPS | BASS_MUSIC_LOOP);
 	m_bassSound->SetItemVolume("MainBackground",100);
 	m_bassSound->Play("startgame",false);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
 	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_bassSound);
 	
 }
@@ -233,6 +234,7 @@ void CGame::Render()
 /************************************************************************/
 void CGame::RenderDeath()
 {
+	m_bassSound->Play("Boom",false);
 	//RenderGamePlay();
 	int hang = 0;
 	if (m_prinny->IsRight == true)
@@ -245,7 +247,7 @@ void CGame::RenderDeath()
 	}
 	m_allSprite->m_prinnyDeath->Render(m_prinny->x,250+m_prinny->y,_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
 	PrinnyDeathIndex++;
-	Sleep(200);
+	Sleep(50);
 	if (PrinnyDeathIndex > 7)
 	{
 		m_prinny->m_heal = 1;
