@@ -5,6 +5,7 @@
 #include "Information.h"
 #include "Input.h"
 #include "Sprite.h"
+#include "CObject.h"
 class CMenuInGame
 {
 public:

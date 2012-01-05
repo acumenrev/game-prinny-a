@@ -142,7 +142,7 @@ void CGame::InitObject()
 	m_currentMap = 1;
 	// Init camera
 	m_camera = new CCamera();
-	m_prinny = new CPrinny(350,260,56,56,m_allSprite,m_camera);
+	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera);
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -215,6 +215,7 @@ void CGame::Render()
 /************************************************************************/
 void CGame::RenderDeath()
 {
+	RenderGamePlay();
 
 }
 /************************************************************************/
@@ -235,7 +236,7 @@ void CGame::Update()
 	switch(m_currentState)
 	{
 	case GamePlay:
-		UpdateGamePlay(/*m_keys/ *,m_lastKeys* /*/);
+		UpdateGamePlay();
 		break;
 	case GameDeath:
 		break;
@@ -247,7 +248,7 @@ void CGame::Update()
 		break;
 	case MenuIn:
 		int menuInGameChoice;
-		menuInGameChoice = m_menuInGame->Update(m_keys,m_lastKeys,m_currentState);
+		m_menuInGame->Update(m_keys,m_lastKeys,m_currentState);
 		if(menuInGameChoice == 1)
 		{
 			// Save file
@@ -265,9 +266,15 @@ void CGame::Update()
 /************************************************************************/
 void CGame::UpdateGamePlay()
 {
-	switch(m_prinny->Update(m_keys,m_lastKeys))
+	switch(m_prinny->Update(m_keys,m_lastKeys,m_quadTree))
 	{
 	case 1:
+		break;
+	case 2:
+		RenderDeath();
+		break;
+	case 3:
+		m_currentState = MenuIn;
 		break;
 	}
 	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH,m_prinny->y - WINDOW_HEIGHT,3000,2000);
