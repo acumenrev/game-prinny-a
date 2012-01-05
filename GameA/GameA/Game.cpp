@@ -148,14 +148,11 @@ void CGame::InitObject()
 	// Init sound player
 	m_soundPlayer = CSoundPlayer::GetInstance(m_hWnd);
 	// Add sound file
-	if(m_soundPlayer->AddWav("Sounds\\startgame.wav",&m_id) == false)
-	{
-		MessageBox(NULL,"Cannot find startgame.wav file","ERROR",MB_OK | MB_ICONERROR);
-		return;
-	}
+	m_soundPlayer->AddWav("Sounds\\startgame.wav",&m_id);
 	m_soundPlayer->PlaySound(0,false);
 	m_soundPlayer->AddWav("Sounds\\Cut.wav",&m_id);
 	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_soundPlayer);
+	m_soundPlayer->AddWav("Sounds\\MainBackground.wav",&m_id);
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -266,6 +263,7 @@ void CGame::Update()
 	switch(m_currentState)
 	{
 	case GamePlay:
+		m_soundPlayer->PlaySoundA(2,true);
 		UpdateGamePlay();
 		break;
 	case GameMenu:
