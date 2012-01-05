@@ -47,5 +47,6 @@
     <None Include="Pics\Prinny\walking.png" />
     <None Include="Sounds\startgame.wav" />
     <None Include="Sounds\Cut.wav" />
+    <None Include="Sounds\MainBackground.wav" />
   </ItemGroup>
 </Project>
