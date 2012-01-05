@@ -49,5 +49,9 @@
     <None Include="Sounds\startgame.wav" />
     <None Include="Sounds\Cut.wav" />
     <None Include="Sounds\MainBackground.wav" />
+    <None Include="bass.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="bass.lib" />
   </ItemGroup>
 </Project>

@@ -117,6 +117,7 @@
     <ClCompile Include="StdAfx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bass.dll" />
     <None Include="Pics\Border.png" />
     <None Include="Pics\Menu.png" />
     <None Include="Pics\MenuBG.png" />
@@ -126,6 +127,9 @@
     <None Include="Sounds\Cut.wav" />
     <None Include="Sounds\MainBackground.wav" />
     <None Include="Sounds\startgame.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="bass.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
