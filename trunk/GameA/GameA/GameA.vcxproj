@@ -57,7 +57,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;winmm.lib;dinput8.lib;dxguid.lib;dsound.lib;dxerr.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;winmm.lib;dinput8.lib;dxguid.lib;dsound.lib;dxerr.lib;BASS.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,6 +78,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bass.h" />
+    <ClInclude Include="Bass_Sound.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CFile.h" />
     <ClInclude Include="CMenu.h" />
@@ -93,11 +95,11 @@
     <ClInclude Include="MenuInGame.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="QuadTree.h" />
-    <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bass_Sound.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CFile.cpp" />
     <ClCompile Include="CMenu.cpp" />
@@ -111,7 +113,6 @@
     <ClCompile Include="MenuInGame.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="QuadTree.cpp" />
-    <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StdAfx.cpp" />
   </ItemGroup>

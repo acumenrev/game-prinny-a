@@ -13,10 +13,10 @@
     <ClCompile Include="MenuInGame.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="QuadTree.cpp" />
-    <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StdAfx.cpp" />
     <ClCompile Include="CFile.cpp" />
+    <ClCompile Include="Bass_Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -33,10 +33,11 @@
     <ClInclude Include="MenuInGame.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="QuadTree.h" />
-    <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="CFile.h" />
+    <ClInclude Include="bass.h" />
+    <ClInclude Include="Bass_Sound.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Pics\Border.png" />
