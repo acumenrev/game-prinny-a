@@ -85,18 +85,18 @@ LRESULT CALLBACK CGame::WndProc(HWND hWnd,UINT msg,WPARAM wParam ,LPARAM lParam)
 	{
 	case WM_CREATE:
 		break;
-	case WM_KEYDOWN:
+		/*case WM_KEYDOWN:
 		switch(wParam)
 		{
 		case VK_ESCAPE:
-			int e = MessageBox(NULL,"Quit program ?","",MB_YESNO | MB_ICONQUESTION);
-			if(e==IDYES)
-			{
-				DestroyWindow(hWnd);
-			}
-			break;
+		int e = MessageBox(NULL,"Quit program ?","",MB_YESNO | MB_ICONQUESTION);
+		if(e==IDYES)
+		{
+		DestroyWindow(hWnd);
 		}
-		return 0;
+		break;
+		}
+		return 0;*/
 	case WM_QUIT:
 		DestroyWindow(hWnd);
 		return 0;

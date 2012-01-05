@@ -326,7 +326,7 @@ public:
 	// update
 	int Update(char keys[256],char last_keys[256],CQuadTree * _m_quadtree)
 	{
-		if (KEYDOWN(keys,DIK_BACK) && KEYUP(last_keys,DIK_BACK))
+		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))
 		{
 			return 3;
 		}
