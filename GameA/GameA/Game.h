@@ -18,6 +18,7 @@
 #include "QuadTree.h"
 #include "CPrinny.h"
 #include "Camera.h"
+#include "SoundPlayer.h"
 class CGame
 {
 public:
@@ -45,6 +46,8 @@ public:
 	CQuadTree* m_quadTreeeMap2;
 	CCamera* m_camera;
 	CPrinny* m_prinny;
+	CSoundPlayer* m_soundPlayer;
+	int m_id;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */
 	/************************************************************************/

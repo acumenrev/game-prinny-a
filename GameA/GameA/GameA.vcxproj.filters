@@ -45,5 +45,6 @@
     <None Include="Pics\MenuInGame.png" />
     <None Include="Pics\Prinny\Prinny.png" />
     <None Include="Pics\Prinny\walking.png" />
+    <None Include="Sounds\startgame.wav" />
   </ItemGroup>
 </Project>
