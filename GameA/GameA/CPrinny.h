@@ -73,7 +73,7 @@ public:
 	/************************************************************************/
 	/*                             Methods                                  */
 	/************************************************************************/
-	CPrinny(float _x , float _y , float _m_height , float _m_wight , AllSprite * _m_allSprites , CCamera * _m_camera, HWND hWnd)
+	CPrinny(float _x , float _y , float _m_height , float _m_wight , AllSprite * _m_allSprites , CCamera * _m_camera, CSoundPlayer * _m_soundPlayer)
 	{
 		m_allSprites = _m_allSprites;
 
@@ -92,10 +92,7 @@ public:
 		m_quadtree = new CQuadTree();
 		InitSprite();
 		m_heal = 1;
-		// Init Sound Player
-		m_soundPlayer = CSoundPlayer::GetInstance(hWnd);
-		// Add sound file
-		m_soundPlayer->AddWav("Sounds\\Cut.wav",&m_id);
+		m_soundPlayer = _m_soundPlayer;	
 	}
 	/************************************************************************/
 	/*                            Init Sprite                               */
@@ -359,7 +356,7 @@ public:
 
 		if (KEYDOWN(keys,DIK_SPACE))
 		{
-			m_soundPlayer->PlaySoundA(0,false);
+			m_soundPlayer->PlaySoundA(1,false);
 			m_statePrinny = Shoot;
 		}
 		else

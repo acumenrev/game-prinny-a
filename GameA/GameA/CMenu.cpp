@@ -66,7 +66,7 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 			currentState = GamePlay;
 			break;
 		case 2: // Continue
-			return 2; // ???
+			currentState = GameDeath;
 			break;
 		case 3: // About
 			currentState = GameAbout;
