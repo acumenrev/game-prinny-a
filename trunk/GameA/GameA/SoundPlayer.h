@@ -26,14 +26,17 @@ class CSound;
 class CSoundPlayer  
 {
 private:
+	static CSoundPlayer* m_instance;
 	CSoundManager* m_soundManager;
 	std::vector <CSound*> m_soundVector;
+	HRESULT Initialise(HWND hWnd);
+	CSoundPlayer();
 public:
 	void StopSound(int id);
 	bool PlaySound(int id,bool loop);
 	bool AddWav(char* filename,int *id);
-	HRESULT Initialise(HWND hWnd);
-	CSoundPlayer();
+	static CSoundPlayer* GetInstance(HWND hWnd);
+	static CSoundPlayer* GetInstance();
 	virtual ~CSoundPlayer();
 };
 
