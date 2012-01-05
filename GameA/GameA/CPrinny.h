@@ -5,6 +5,7 @@
 #include "CObjectsList.h"
 #include "Collision.h"
 #include "QuadTree.h"
+#include "SoundPlayer.h"
 #define GiatocX 0.5
 #define GiatocY 0.5
 #define VxMax 3
@@ -36,6 +37,9 @@ enum State_Prinny_2
 class CPrinny
 {
 public:
+	/************************************************************************/
+	/*                         Variables                                    */
+	/************************************************************************/
 	AllSprite * m_allSprites;
 
 	float x;
@@ -52,8 +56,24 @@ public:
 	CCamera * m_camera;
 	ListNodes * m_listObject;
 	CQuadTree * m_quadtree;
-	
-	CPrinny(float _x , float _y , float _m_height , float _m_wight , AllSprite * _m_allSprites , CCamera * _m_camera)
+	CSoundPlayer* m_soundPlayer;
+	int m_id;
+	//////////////////////////////////////////////////////////////////////////
+	// Sprite
+	//////////////////////////////////////////////////////////////////////////
+	RECT m_rectSprite;
+	bool IsRight;
+	int m_spriteIndex_X;
+	int m_spriteIndex_Y;
+	int m_srpiteIndexStar_X;
+	int m_max_spriteIndex_X[20];
+	long m_spriteDelay;
+	long m_spriteDelay_max;
+	int m_statePrinny;
+	/************************************************************************/
+	/*                             Methods                                  */
+	/************************************************************************/
+	CPrinny(float _x , float _y , float _m_height , float _m_wight , AllSprite * _m_allSprites , CCamera * _m_camera, HWND hWnd)
 	{
 		m_allSprites = _m_allSprites;
 
@@ -72,17 +92,14 @@ public:
 		m_quadtree = new CQuadTree();
 		InitSprite();
 		m_heal = 1;
+		// Init Sound Player
+		m_soundPlayer = CSoundPlayer::GetInstance(hWnd);
+		// Add sound file
+		m_soundPlayer->AddWav("Sounds\\Cut.wav",&m_id);
 	}
-
-	RECT m_rectSprite;
-	bool IsRight;
-	int m_spriteIndex_X;
-	int m_spriteIndex_Y;
-	int m_srpiteIndexStar_X;
-	int m_max_spriteIndex_X[20];
-	long m_spriteDelay;
-	long m_spriteDelay_max;
-	int m_statePrinny;
+	/************************************************************************/
+	/*                            Init Sprite                               */
+	/************************************************************************/
 	void InitSprite()
 	{
 		m_max_spriteIndex_X[Move_Left] = 6;
@@ -104,6 +121,9 @@ public:
 		IsRight = true;
 		m_statePrinny = Stand;
 	}
+	/************************************************************************/
+	/*                            Update Sprite                             */
+	/************************************************************************/
 	void UpdateSprite(char keys[256])
 	{
 		switch(m_statePrinny)
@@ -134,7 +154,9 @@ public:
 			m_spriteDelay = 0;
 		}
 	}
-
+	/************************************************************************/
+	/*                      Update Sprite Stand			                    */
+	/************************************************************************/
 	void UpdateSpiteStand(char keys[256])
 	{
 		if (m_vX == 0)
@@ -199,6 +221,9 @@ public:
 			}
 		}
 	}
+	/************************************************************************/
+	/*                       Update sprite jump                             */
+	/************************************************************************/
 	void UpdateSpriteJump(char keys[256])
 	{
 		if(IsRight == true)
@@ -244,6 +269,9 @@ public:
 			}
 		}
 	}
+	/************************************************************************/
+	/*                        Update sprite shoot                           */
+	/************************************************************************/
 	void UpdateSpriteShoot(char keys[256])
 	{
 		if(IsRight == true)
@@ -265,7 +293,9 @@ public:
 			}
 		}
 	}
-	//  move
+	/************************************************************************/
+	/*                            Move                                          */
+	/************************************************************************/
 	void Move(char keys[256])
 	{
 		m_vY += GiatocX;
@@ -287,6 +317,9 @@ public:
 			m_vX = m_vX*(float)Masat;
 		}
 	}
+	/************************************************************************/
+	/*                             Move Right                               */
+	/************************************************************************/
 	void MoveRight()
 	{
 		if(m_vX < VxMax)
@@ -305,7 +338,9 @@ public:
 		else
 			m_vX = -VxMax;
 	}
-	// Jump
+	/************************************************************************/
+	/*                           Jump                                       */
+	/************************************************************************/
 	void jump()
 	{
 		IsJump = true;
@@ -316,12 +351,15 @@ public:
 		m_statePrinny = Stand;
 		
 	}
-	// shoot
+	/************************************************************************/
+	/*                              Shoot                                   */
+	/************************************************************************/
 	void PrinnyShoot(char keys[256])
 	{
 
 		if (KEYDOWN(keys,DIK_SPACE))
 		{
+			m_soundPlayer->PlaySoundA(0,false);
 			m_statePrinny = Shoot;
 		}
 		else
@@ -329,7 +367,9 @@ public:
 			m_statePrinny = Stand;
 		}
 	}
-	// update
+	/************************************************************************/
+	/*                                Update                                */
+	/************************************************************************/
 	int Update(char keys[256],char last_keys[256],CQuadTree * _m_quadtree)
 	{
 		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))

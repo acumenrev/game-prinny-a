@@ -24,8 +24,6 @@ CGame::CGame(HINSTANCE hInstance)
 	m_currentTime = 0;
 	m_lastTime = 0;
 	m_frame = 0;
-	m_soundPlayer = NULL;
-	m_soundPlayer = new CSoundPlayer();
 }
 
 #pragma endregion 
@@ -146,13 +144,9 @@ void CGame::InitObject()
 	m_currentMap = 1;
 	// Init camera
 	m_camera = new CCamera();
-	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera);
+	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_hWnd);
 	// Init sound player
-	if(FAILED(m_soundPlayer->Initialise(m_hWnd)))
-	{
-		MessageBox(NULL,"Cannot initialize sound","ERROR",MB_ICONERROR | MB_OK);
-		return;
-	}
+	m_soundPlayer = CSoundPlayer::GetInstance(m_hWnd);
 	// Add sound file
 	if(m_soundPlayer->AddWav("Sounds\\startgame.wav",&m_id) == false)
 	{

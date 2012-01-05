@@ -15,6 +15,7 @@
 #include <assert.h>
 #include "dsutil.h"
 
+CSoundPlayer* CSoundPlayer::m_instance = NULL;
 /**************************************************************************************************
 **************************************************************************************************/
 CSoundPlayer::CSoundPlayer()
@@ -114,4 +115,23 @@ void CSoundPlayer::StopSound(int id)
 	assert(id>=0 && id<m_soundVector.size());
 
 	m_soundVector[id]->Stop();
+}
+/************************************************************************/
+/*                    Get instance of this class                        */
+/************************************************************************/
+CSoundPlayer* CSoundPlayer::GetInstance(HWND hWnd)
+{
+	if(m_instance == NULL)
+	{
+		m_instance = new CSoundPlayer();
+		m_instance->Initialise(hWnd);
+	}
+	return m_instance;
+}
+/************************************************************************/
+/*                    Get instance of this class                        */
+/************************************************************************/
+CSoundPlayer* CSoundPlayer::GetInstance()
+{
+	return m_instance;
 }
