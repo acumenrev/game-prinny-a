@@ -36,6 +36,7 @@ public:
 	UINT64 m_currentTime;
 	UINT64 m_lastTime;
 	AllSprite* m_allSprite;
+	int PrinnyDeathIndex;
 	int m_currentState;
 	int m_currentMap;
 	CCMenu* m_menu;

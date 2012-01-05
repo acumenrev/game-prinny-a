@@ -377,7 +377,6 @@ public:
 		{
 			return 2;
 		}
-
 		Move(keys);
 		PrinnyShoot(keys);
 		//
@@ -400,7 +399,10 @@ public:
 		{
 			m_vY = 0;
 		}
-		
+		if(x>200 && x<250)
+		{
+			m_heal = 0;
+		}
 		return 0;
 	}
 };
