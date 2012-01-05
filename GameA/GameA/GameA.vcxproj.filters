@@ -1,146 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Pics">
-      <UniqueIdentifier>{808fc4e8-1663-4535-9e39-6d8b953fe5aa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Pics\Prinny">
-      <UniqueIdentifier>{cbcb852b-0676-4f54-86c8-20bec38fef05}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CMenu.cpp" />
+    <ClCompile Include="CObject.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="dsutil.cpp" />
+    <ClCompile Include="DXManager.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuInGame.cpp" />
+    <ClCompile Include="Position.cpp" />
+    <ClCompile Include="QuadTree.cpp" />
+    <ClCompile Include="SoundPlayer.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="StdAfx.cpp" />
+    <ClCompile Include="CFile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Information.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DXManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dsutil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundPlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuInGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CObjectsList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< .mine
-    <ClInclude Include="QuadTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-=======
-    <ClInclude Include="CPrinny.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
->>>>>>> .r27
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CMenu.h" />
+    <ClInclude Include="CObject.h" />
+    <ClInclude Include="CObjectsList.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="CPrinny.h" />
+    <ClInclude Include="dsutil.h" />
+    <ClInclude Include="DXManager.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Information.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="MenuInGame.h" />
+    <ClInclude Include="Position.h" />
+    <ClInclude Include="QuadTree.h" />
+    <ClInclude Include="SoundPlayer.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="CFile.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Position.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DXManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dsutil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuInGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QuadTree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Pics\MenuInGame.png">
-      <Filter>Header Files\Pics</Filter>
-    </None>
-    <None Include="Pics\MenuBG.png">
-      <Filter>Header Files\Pics</Filter>
-    </None>
-    <None Include="Pics\Menu.png">
-      <Filter>Header Files\Pics</Filter>
-    </None>
-    <None Include="Pics\Prinny\walking.png">
-      <Filter>Header Files\Pics\Prinny</Filter>
-    </None>
-    <None Include="Pics\Border.png">
-      <Filter>Header Files\Pics</Filter>
-    </None>
-    <None Include="Pics\Prinny\Prinny.png">
-      <Filter>Header Files\Pics\Prinny</Filter>
-    </None>
+    <None Include="Pics\Border.png" />
+    <None Include="Pics\Menu.png" />
+    <None Include="Pics\MenuBG.png" />
+    <None Include="Pics\MenuInGame.png" />
+    <None Include="Pics\Prinny\Prinny.png" />
+    <None Include="Pics\Prinny\walking.png" />
   </ItemGroup>
 </Project>
