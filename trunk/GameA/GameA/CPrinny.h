@@ -22,12 +22,15 @@ enum State_Prinny
 	Jump_Up_Right = 2,
 	Jump_Up_Left = 0,
 	Jump_Down_Right = 3,
-	Jump_Down_Left = 1
+	Jump_Down_Left = 1,
+	Shoot_Right = 9,
+	Shoot_Left = 8
 };
 enum State_Prinny_2
 {
 	Stand = 0,
-	Jump
+	Jump,
+	Shoot
 };
 
 class CPrinny
@@ -65,6 +68,7 @@ public:
 		IsJump = false;
 		
 		m_camera = _m_camera;
+		m_listObject = new ListNodes();
 		InitSprite();
 		m_heal = 1;
 	}
@@ -73,6 +77,7 @@ public:
 	bool IsRight;
 	int m_spriteIndex_X;
 	int m_spriteIndex_Y;
+	int m_srpiteIndexStar_X;
 	int m_max_spriteIndex_X[20];
 	long m_spriteDelay;
 	long m_spriteDelay_max;
@@ -83,13 +88,16 @@ public:
 		m_max_spriteIndex_X[Move_Right] = 6;
 		m_max_spriteIndex_X[Stop_Left] = 2;
 		m_max_spriteIndex_X[Stop_Right] = 2;
-		m_max_spriteIndex_X[Stand_Right] = 9;
-		m_max_spriteIndex_X[Stand_Left] = 9;
+		m_max_spriteIndex_X[Stand_Right] = 1;
+		m_max_spriteIndex_X[Stand_Left] = 1;
 		m_max_spriteIndex_X[Jump_Down_Left] = 4;
 		m_max_spriteIndex_X[Jump_Down_Right] = 4;
 		m_max_spriteIndex_X[Jump_Up_Left] = 2;
 		m_max_spriteIndex_X[Jump_Up_Right] = 2;
+		m_max_spriteIndex_X[Shoot_Right] = 7;
+		m_max_spriteIndex_X[Shoot_Left] = 7;
 
+		m_srpiteIndexStar_X = 0;
 		m_spriteIndex_X = 0;
 		m_spriteIndex_Y = 0;
 		m_spriteDelay = 0;
@@ -108,6 +116,10 @@ public:
 			m_spriteDelay_max = 15;
 			UpdateSpriteJump(keys);
 			break;
+		case Shoot:
+			m_spriteDelay_max = 3;
+			UpdateSpriteShoot(keys);
+			break;
 		}
 
 		m_spriteDelay++;
@@ -117,7 +129,7 @@ public:
 			m_spriteIndex_X++;
 			if(m_spriteIndex_X >= m_max_spriteIndex_X[m_spriteIndex_Y])
 			{
-				m_spriteIndex_X = 0;
+				m_spriteIndex_X = m_srpiteIndexStar_X;
 			}
 			m_spriteDelay = 0;
 		}
@@ -130,13 +142,15 @@ public:
 			if(IsRight == true && m_spriteIndex_Y != Stand_Right)
 			{
 				m_spriteIndex_Y = Stand_Right;
-				m_spriteIndex_X = 0;
+				m_spriteIndex_X = 7;
+				m_srpiteIndexStar_X = 7;
 				m_spriteDelay_max = 20;
 			}
 			if (IsRight ==false && m_spriteIndex_Y != Stand_Left)
 			{
 				m_spriteIndex_Y = Stand_Left;
-				m_spriteIndex_X = 0;
+				m_spriteIndex_X = 7;
+				m_srpiteIndexStar_X = 7;
 				m_spriteDelay_max = 25;
 			}
 		}
@@ -222,6 +236,27 @@ public:
 			}
 		}
 	}
+	void UpdateSpriteShoot(char keys[256])
+	{
+		if(IsRight == true)
+		{
+			if(m_spriteIndex_Y != Shoot_Right)
+			{
+				m_spriteIndex_Y = Shoot_Right;
+				m_spriteIndex_X = 0;
+				m_srpiteIndexStar_X = 0;
+			}
+		}
+		else
+		{
+			if (m_spriteIndex_Y != Shoot_Left)
+			{
+				m_spriteIndex_Y = Shoot_Left;
+				m_spriteIndex_X = 0;
+				m_srpiteIndexStar_X = 0;
+			}
+		}
+	}
 	//  move
 	void Move(char keys[256])
 	{
@@ -273,10 +308,25 @@ public:
 		m_statePrinny = Stand;
 		
 	}
+	// shoot
+	void PrinnyShoot(char keys[256])
+	{
+
+		if (KEYDOWN(keys,DIK_SPACE))
+		{
+			m_statePrinny = Shoot;
+		}
+		else
+		{
+			m_statePrinny = Stand;
+		}
+		
+		
+	}
 	// update
 	int Update(char keys[256],char last_keys[256],CQuadTree * _m_quadtree)
 	{
-		if (KEYDOWN(keys,DIK_SPACE) && KEYUP(last_keys,DIK_SPACE))
+		if (KEYDOWN(keys,DIK_BACK) && KEYUP(last_keys,DIK_BACK))
 		{
 			return 3;
 		}
@@ -285,8 +335,18 @@ public:
 			return 2;
 		}
 
-		UpdateSprite(keys);
 		Move(keys);
+		PrinnyShoot(keys);
+		//
+		m_listObject->Free();
+		//m_quadtree->SetObjectsList(m_listObject,_Rectangle(x,y,m_wight,m_height));
+		//
+		/*if(CheckRectCollideWithList(_Rectangle(x+m_vX,y+m_vY,m_wight,m_height),m_listObject))
+		{
+
+		}*/
+
+		UpdateSprite(keys);
 		x += m_vX;
 
 		if (m_vX < GiatocX && m_vX > -GiatocX)

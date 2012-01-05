@@ -248,7 +248,7 @@ void CGame::Update()
 		break;
 	case MenuIn:
 		int menuInGameChoice;
-		m_menuInGame->Update(m_keys,m_lastKeys,m_currentState);
+		menuInGameChoice = m_menuInGame->Update(m_keys,m_lastKeys,m_currentState);
 		if(menuInGameChoice == 1)
 		{
 			// Save file

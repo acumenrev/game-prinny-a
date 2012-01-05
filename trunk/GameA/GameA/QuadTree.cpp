@@ -147,6 +147,13 @@ void CQuadTree::SetHealth()
 /************************************************************************/
 /*                                                                      */
 /************************************************************************/
+void CQuadTree::SetObjectsList(ListNodes* objectsList, RECT rect)
+{
+	AddObjectInRect(objectsList,m_root,rect);
+}
+/************************************************************************/
+/*                                                                      */
+/************************************************************************/
 void AddObjectInRect(ListNodes* objectsList,QuadNode* node, RECT rect)
 {
 	if(node)
