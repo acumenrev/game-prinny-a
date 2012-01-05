@@ -78,7 +78,7 @@ public:
 	void SetObjectsList(ListNodes* objectsList, RECT rect);
 };
 
-void AddObjectInRect(ListNodes			* objectsList,QuadNode* node, RECT rect);
+void AddObjectInRect(ListNodes	* objectsList,QuadNode* node, RECT rect);
 bool CheckNodeCollideWithList(Node* node,ListNodes* objectsList);
 bool CheckRectCollideWithList(RECT rect, ListNodes* objectsList);
 bool CheckRectCollideWithList(RECT rect, ListNodes* objectsList, char style);
