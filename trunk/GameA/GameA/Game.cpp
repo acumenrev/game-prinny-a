@@ -24,6 +24,8 @@ CGame::CGame(HINSTANCE hInstance)
 	m_currentTime = 0;
 	m_lastTime = 0;
 	m_frame = 0;
+	m_soundPlayer = NULL;
+	m_soundPlayer = new CSoundPlayer();
 }
 
 #pragma endregion 
@@ -123,7 +125,9 @@ bool CGame::GameInit()
 	}
 	// keyboard
 	m_input = new CInput(m_hInstance,m_hWnd);
+	
 	InitObject();
+	
 	return true;
 }
 /************************************************************************/
@@ -143,6 +147,19 @@ void CGame::InitObject()
 	// Init camera
 	m_camera = new CCamera();
 	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera);
+	// Init sound player
+	if(FAILED(m_soundPlayer->Initialise(m_hWnd)))
+	{
+		MessageBox(NULL,"Cannot initialize sound","ERROR",MB_ICONERROR | MB_OK);
+		return;
+	}
+	// Add sound file
+	if(m_soundPlayer->AddWav("Sounds\\startgame.wav",&m_id) == false)
+	{
+		MessageBox(NULL,"Cannot find startgame.wav file","ERROR",MB_OK | MB_ICONERROR);
+		return;
+	}
+	m_soundPlayer->PlaySound(0,false);
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -237,6 +254,7 @@ void CGame::Update()
 	{
 	case GamePlay:
 		UpdateGamePlay();
+		m_soundPlayer->PlaySound(0,false);
 		break;
 	case GameDeath:
 		break;
