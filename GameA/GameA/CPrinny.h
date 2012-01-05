@@ -69,6 +69,7 @@ public:
 		
 		m_camera = _m_camera;
 		m_listObject = new ListNodes();
+		m_quadtree = new CQuadTree();
 		InitSprite();
 		m_heal = 1;
 	}
@@ -97,7 +98,6 @@ public:
 		m_max_spriteIndex_X[Shoot_Right] = 7;
 		m_max_spriteIndex_X[Shoot_Left] = 7;
 
-		m_srpiteIndexStar_X = 0;
 		m_spriteIndex_X = 0;
 		m_spriteIndex_Y = 0;
 		m_spriteDelay = 0;
@@ -146,7 +146,7 @@ public:
 				m_srpiteIndexStar_X = 7;
 				m_spriteDelay_max = 20;
 			}
-			if (IsRight ==false && m_spriteIndex_Y != Stand_Left)
+			if (IsRight == false && m_spriteIndex_Y != Stand_Left)
 			{
 				m_spriteIndex_Y = Stand_Left;
 				m_spriteIndex_X = 7;
@@ -162,6 +162,7 @@ public:
 				{
 					m_spriteIndex_Y = Move_Right;
 					m_spriteIndex_X = 0;
+					m_srpiteIndexStar_X = 0;
 				}
 			}
 			else
@@ -170,6 +171,7 @@ public:
 				{
 					m_spriteIndex_Y = Stop_Right;
 					m_spriteIndex_X = 0;
+					m_srpiteIndexStar_X = 0;
 					m_spriteDelay_max = 20;
 				}
 			}
@@ -182,6 +184,7 @@ public:
 				{
 					m_spriteIndex_Y = Move_Left;
 					m_spriteIndex_X = 0;
+					m_srpiteIndexStar_X = 0;
 				}
 			}
 			else
@@ -190,6 +193,7 @@ public:
 				{
 					m_spriteIndex_Y = Stop_Left;
 					m_spriteIndex_X = 0;
+					m_srpiteIndexStar_X = 0;
 					m_spriteDelay_max = 20;
 				}
 			}
@@ -205,6 +209,7 @@ public:
 				{
 					m_spriteIndex_Y = Jump_Up_Right;
 					m_spriteIndex_X = 0;
+					m_srpiteIndexStar_X = 0;
 				}
 			} 
 			else
@@ -213,6 +218,7 @@ public:
 				{
 					m_spriteIndex_Y = Jump_Down_Right;
 					m_spriteIndex_X = 0;
+					m_srpiteIndexStar_X = 0;
 				}
 			}
 		}
@@ -224,6 +230,7 @@ public:
 				{
 					m_spriteIndex_Y = Jump_Up_Left;
 					m_spriteIndex_X = 0;
+					m_srpiteIndexStar_X = 0;
 				}
 			} 
 			else
@@ -232,6 +239,7 @@ public:
 				{
 					m_spriteIndex_Y = Jump_Down_Left;
 					m_spriteIndex_X = 0;
+					m_srpiteIndexStar_X = 0;
 				}
 			}
 		}
@@ -320,8 +328,6 @@ public:
 		{
 			m_statePrinny = Stand;
 		}
-		
-		
 	}
 	// update
 	int Update(char keys[256],char last_keys[256],CQuadTree * _m_quadtree)
@@ -338,10 +344,10 @@ public:
 		Move(keys);
 		PrinnyShoot(keys);
 		//
-		m_listObject->Free();
+		//m_listObject->Free();
 		//m_quadtree->SetObjectsList(m_listObject,_Rectangle(x,y,m_wight,m_height));
 		//
-		/*if(CheckRectCollideWithList(_Rectangle(x+m_vX,y+m_vY,m_wight,m_height),m_listObject))
+		/*if(CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
 		{
 
 		}*/

@@ -76,6 +76,13 @@ public:
 			m_count += list->m_count;
 		}
 	}
+	// Reset list object
+	void ResetListObject()
+	{
+		m_head = NULL;
+		m_tail = NULL;
+		m_count = 0;
+	}
 	// Free a nodes list
 	void Free()
 	{
