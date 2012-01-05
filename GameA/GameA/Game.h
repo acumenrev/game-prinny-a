@@ -1,4 +1,5 @@
 #pragma once
+#pragma comment(lib,"bass.lib")
 #include<windows.h>
 #include<d3d9.h>
 #include<d3dx9.h>
@@ -18,7 +19,8 @@
 #include "QuadTree.h"
 #include "CPrinny.h"
 #include "Camera.h"
-#include "SoundPlayer.h"
+#include "Bass_Sound.h"
+using namespace WaZ_Game_App;
 class CGame
 {
 public:
@@ -47,7 +49,7 @@ public:
 	CQuadTree* m_quadTreeeMap2;
 	CCamera* m_camera;
 	CPrinny* m_prinny;
-	CSoundPlayer* m_soundPlayer;
+	Bass_Sound* m_bassSound;
 	int m_id;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */

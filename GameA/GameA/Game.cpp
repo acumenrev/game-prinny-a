@@ -144,15 +144,23 @@ void CGame::InitObject()
 	m_currentMap = 1;
 	// Init camera
 	m_camera = new CCamera();
-	
 	// Init sound player
-	m_soundPlayer = CSoundPlayer::GetInstance(m_hWnd);
-	// Add sound file
-	m_soundPlayer->AddWav("Sounds\\startgame.wav",&m_id);
-	m_soundPlayer->PlaySound(0,false);
-	m_soundPlayer->AddWav("Sounds\\Cut.wav",&m_id);
-	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_soundPlayer);
-	m_soundPlayer->AddWav("Sounds\\MainBackground.wav",&m_id);
+	m_bassSound = new Bass_Sound(m_hWnd);
+	if(!m_bassSound)
+	{
+		MessageBox(NULL,"Cannot initialize Bass Sound","ERROR",MB_ICONERROR | MB_OK);
+		return;
+	}
+	m_bassSound->Init(-1,44100,0);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"startgame","Sounds\\startgame.wav", BASS_MUSIC_RAMPS);
+	m_bassSound->SetItemVolume("startgame",70);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Cut","Sounds\\Cut.wav",BASS_MUSIC_RAMPS);
+	m_bassSound->SetItemVolume("Cut",60);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"MainBackground","Sounds\\MainBackground.wav",BASS_MUSIC_RAMPS | BASS_MUSIC_LOOP);
+	m_bassSound->SetItemVolume("MainBackground",100);
+	m_bassSound->Play("startgame",false);
+	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_bassSound);
+	
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -263,10 +271,11 @@ void CGame::Update()
 	switch(m_currentState)
 	{
 	case GamePlay:
-		m_soundPlayer->PlaySoundA(2,true);
+		m_bassSound->Play("MainBackground",false);
 		UpdateGamePlay();
 		break;
 	case GameMenu:
+		m_bassSound->Stop("MainBackground");
 		m_menu->Update(m_keys,m_lastKeys,m_currentState);
 		break;
 	case GameAbout:
