@@ -3,6 +3,8 @@
 #include "Position.h"
 #include "Camera.h"
 #include "CObjectsList.h"
+#include "Collision.h"
+#include "QuadTree.h"
 #define GiatocX 0.5
 #define GiatocY 0.5
 #define VxMax 3
@@ -43,8 +45,10 @@ public:
 
 	bool IsJump;
 
+	int m_heal;
 	CCamera * m_camera;
 	ListNodes * m_listObject;
+	CQuadTree * m_quadtree;
 	
 	CPrinny(float _x , float _y , float _m_height , float _m_wight , AllSprite * _m_allSprites , CCamera * _m_camera)
 	{
@@ -61,8 +65,8 @@ public:
 		IsJump = false;
 		
 		m_camera = _m_camera;
-
 		InitSprite();
+		m_heal = 1;
 	}
 
 	RECT m_rectSprite;
@@ -97,7 +101,7 @@ public:
 		switch(m_statePrinny)
 		{
 		case Stand:
-			m_spriteDelay_max = 15;
+			m_spriteDelay_max =10;
 			UpdateSpiteStand(keys);
 			break;
 		case Jump:
@@ -259,23 +263,32 @@ public:
 			m_vX = -VxMax;
 	}
 	// Jump
-	void jump(char keys[256],char last_keys[256])
+	void jump()
 	{
+		IsJump = true;
 		m_statePrinny = Jump;
-		if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP) && IsJump == true)
-		{
-			m_vY -= VJump;
+			m_vY = -VJump;		
+			y += m_vY;
 			IsJump = false;
-		}
+		m_statePrinny = Stand;
 		
 	}
 	// update
-	int Update(char keys[256],char last_keys[256])
+	int Update(char keys[256],char last_keys[256],CQuadTree * _m_quadtree)
 	{
+		if (KEYDOWN(keys,DIK_SPACE) && KEYUP(last_keys,DIK_SPACE))
+		{
+			return 3;
+		}
+		if (m_heal == 0)
+		{
+			return 2;
+		}
+
 		UpdateSprite(keys);
 		Move(keys);
-		jump(keys,last_keys);
 		x += m_vX;
+
 		if (m_vX < GiatocX && m_vX > -GiatocX)
 		{
 			m_vX = 0;

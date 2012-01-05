@@ -16,8 +16,8 @@ void ReadFile(CQuadTree* quadTree, char* fileName)
 		fgets(base,10000,f);
 		int height = (base[0] - 48)*100 + (base[1] - 48)*10 + (base[2] - 48);
 		// Multiplying with SizeTile cuz' need to suit with each unit
-		quadTree->m_root->m_rect.bottom = height*SizeTile;
-		quadTree->m_root->m_rect.right = width*SizeTile;
+		quadTree->m_root->m_rect.bottom = (long)height*SizeTile;
+		quadTree->m_root->m_rect.right = (long)width*SizeTile;
 		int row = 0;
 		int column = 0;
 		while(!feof(f))
@@ -29,12 +29,12 @@ void ReadFile(CQuadTree* quadTree, char* fileName)
 				{
 					if(base[column] == UNIT_BEGIN) // '3'
 					{
-						quadTree->m_fX = column * SizeTile;
-						quadTree->m_fY = row * SizeTile;
+						quadTree->m_fX = (float)column * SizeTile;
+						quadTree->m_fY = (float)row * SizeTile;
 					}
 					else
 					{
-						quadTree->AddObject(new CCObject(column*SizeTile,row*SizeTile,base[column]));
+						quadTree->AddObject(new CCObject((float)column*SizeTile,(float)row*SizeTile,base[column]));
 					}
 				}
 				column++;
@@ -53,8 +53,8 @@ void SaveFile(int currentMap, float fX, float fY)
 	FILE* f;
 	f = fopen("Save.txt","r+");
 	fputc(currentMap,f);
-	fputc(fX/SizeTile,f);
-	fputc(fY/SizeTile,f);
+	fputc((int)fX/SizeTile,f);
+	fputc((int)fY/SizeTile,f);
 	fclose(f);
 }
 /************************************************************************/
@@ -65,7 +65,7 @@ void ReadSavedFile(int& currentMap, float& fX, float& fY)
 	FILE* f;
 	f = fopen("Save.txt","r+");
 	currentMap = fgetc(f);
-	fX = fgetc(f)*SizeTile;
-	fY = fgetc(f)*SizeTile;
+	fX = (float)fgetc(f)*SizeTile;
+	fY = (float)fgetc(f)*SizeTile;
 	fclose(f);
 }

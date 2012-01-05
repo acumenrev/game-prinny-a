@@ -68,7 +68,6 @@ int CMenuInGame::Update(char keys[256], char lastKeys[256],int &currentState)
 			return 1;
 			break;
 		case 3: // Quit
-			// as->_Sprite_T->Render(0,0,D3DCOLOR_ARGB(255,0,0,0));
 			currentState = GameMenu;
 			break;
 		default:
@@ -82,8 +81,9 @@ int CMenuInGame::Update(char keys[256], char lastKeys[256],int &currentState)
 /************************************************************************/
 void CMenuInGame::Render()
 {
-	/*as->_BackIngame->Render(461,195);
-	as->_borderIngame->Render(461,195+65+borderY,D3DCOLOR_ARGB(70,255,255,255));*/
+	
+	m_allSprites->m_menuInGame->Render(250,150);
+	m_allSprites->m_border->Render(285,215 + m_menuY,D3DCOLOR_ARGB(150,255,255,255));
 }
 
 #pragma endregion
