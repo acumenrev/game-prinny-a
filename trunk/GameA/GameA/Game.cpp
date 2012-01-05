@@ -277,7 +277,7 @@ void CGame::UpdateGamePlay()
 		m_currentState = MenuIn;
 		break;
 	}
-	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH,m_prinny->y - WINDOW_HEIGHT,3000,2000);
+	//m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2,m_prinny->y - WINDOW_HEIGHT/2,m_quadTree->m_root->m_rect.right,m_quadTree->m_root->m_rect.bottom);
 }
 /************************************************************************/
 /*                             Load Map                                 */
