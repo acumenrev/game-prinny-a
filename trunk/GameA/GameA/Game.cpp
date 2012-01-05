@@ -144,7 +144,7 @@ void CGame::InitObject()
 	m_currentMap = 1;
 	// Init camera
 	m_camera = new CCamera();
-	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_hWnd);
+	
 	// Init sound player
 	m_soundPlayer = CSoundPlayer::GetInstance(m_hWnd);
 	// Add sound file
@@ -154,6 +154,8 @@ void CGame::InitObject()
 		return;
 	}
 	m_soundPlayer->PlaySound(0,false);
+	m_soundPlayer->AddWav("Sounds\\Cut.wav",&m_id);
+	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_soundPlayer);
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -227,7 +229,7 @@ void CGame::Render()
 void CGame::RenderDeath()
 {
 	RenderGamePlay();
-
+	m_allSprite->m_prinnyDeath->Render(m_prinny->x,m_prinny->y);
 }
 /************************************************************************/
 /*                                Render Game play                      */
@@ -282,7 +284,7 @@ void CGame::UpdateGamePlay()
 	case 1:
 		break;
 	case 2:
-		RenderDeath();
+		m_currentState = GameDeath;
 		break;
 	case 3:
 		m_currentState = MenuIn;
