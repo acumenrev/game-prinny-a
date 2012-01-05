@@ -85,18 +85,6 @@ LRESULT CALLBACK CGame::WndProc(HWND hWnd,UINT msg,WPARAM wParam ,LPARAM lParam)
 	{
 	case WM_CREATE:
 		break;
-		/*case WM_KEYDOWN:
-		switch(wParam)
-		{
-		case VK_ESCAPE:
-		int e = MessageBox(NULL,"Quit program ?","",MB_YESNO | MB_ICONQUESTION);
-		if(e==IDYES)
-		{
-		DestroyWindow(hWnd);
-		}
-		break;
-		}
-		return 0;*/
 	case WM_QUIT:
 		DestroyWindow(hWnd);
 		return 0;
@@ -161,7 +149,6 @@ void CGame::InitObject()
 	m_bassSound->Play("startgame",false);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
 	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_bassSound);
-	
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -212,6 +199,7 @@ void CGame::Render()
 	switch(m_currentState)
 	{
 	case GamePlay:
+		//m_soundPlayer->PlaySound(1,false);
 		RenderGamePlay();
 		break;
 	case GameDeath:
@@ -248,7 +236,7 @@ void CGame::RenderDeath()
 	m_allSprite->m_prinnyDeath->Render(m_prinny->x,250+m_prinny->y,_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
 	PrinnyDeathIndex++;
 	Sleep(50);
-	if (PrinnyDeathIndex > 7)
+	if (PrinnyDeathIndex > 8)
 	{
 		m_prinny->m_heal = 1;
 		m_prinny->x = 400;
@@ -260,8 +248,8 @@ void CGame::RenderDeath()
 /************************************************************************/
 void CGame::RenderGamePlay()
 {
-		int index_sprite = m_object->m_spriteIndex;
-		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
+	int index_sprite = m_object->m_spriteIndex;
+	m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
 }
 
 /************************************************************************/
