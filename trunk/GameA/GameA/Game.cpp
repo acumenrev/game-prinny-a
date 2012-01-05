@@ -228,8 +228,25 @@ void CGame::Render()
 /************************************************************************/
 void CGame::RenderDeath()
 {
-	RenderGamePlay();
-	m_allSprite->m_prinnyDeath->Render(m_prinny->x,m_prinny->y);
+	//RenderGamePlay();
+	int hang = 0;
+	if (m_prinny->IsRight == true)
+	{
+		hang = 1;
+	} 
+	else
+	{
+		hang = 0;
+	}
+	m_allSprite->m_prinnyDeath->Render(m_prinny->x,250+m_prinny->y,_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
+	PrinnyDeathIndex++;
+	Sleep(200);
+	if (PrinnyDeathIndex > 7)
+	{
+		m_prinny->m_heal = 1;
+		m_prinny->x = 400;
+		m_currentState = GamePlay;
+	}
 }
 /************************************************************************/
 /*                                Render Game play                      */
@@ -237,7 +254,7 @@ void CGame::RenderDeath()
 void CGame::RenderGamePlay()
 {
 		int index_sprite = m_object->m_spriteIndex;
-		m_allSprite->m_prinny->Render(350+m_prinny->x,250+m_prinny->y,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
+		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
 }
 
 /************************************************************************/
@@ -250,8 +267,6 @@ void CGame::Update()
 	{
 	case GamePlay:
 		UpdateGamePlay();
-		break;
-	case GameDeath:
 		break;
 	case GameMenu:
 		m_menu->Update(m_keys,m_lastKeys,m_currentState);
@@ -285,6 +300,7 @@ void CGame::UpdateGamePlay()
 		break;
 	case 2:
 		m_currentState = GameDeath;
+		PrinnyDeathIndex = 0;
 		break;
 	case 3:
 		m_currentState = MenuIn;
