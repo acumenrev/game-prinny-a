@@ -122,6 +122,7 @@
     <None Include="Pics\Menu.png" />
     <None Include="Pics\MenuBG.png" />
     <None Include="Pics\MenuInGame.png" />
+    <None Include="Pics\Prinny\Chem.png" />
     <None Include="Pics\Prinny\Prinny.png" />
     <None Include="Pics\Prinny\walking.png" />
     <None Include="Sounds\Boom.ogg" />

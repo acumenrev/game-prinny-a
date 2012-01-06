@@ -32,6 +32,7 @@ public:
 	CSprite* m_prinny;
 	CSprite* m_border;
 	CSprite* m_prinnyDeath;
+	CSprite* m_cut;
 	CSprite* m_grass1;
 	CSprite* m_ground1;
 	/************************************************************************/
@@ -51,11 +52,13 @@ public:
 		// Menu in game
 		m_menuInGame = new CSprite(d3ddev,"Pics\\MenuInGame.PNG",D3DCOLOR_ARGB(100,100,100,100));
 		//Priny
-		m_prinny = new CSprite (d3ddev,"Pics\\Prinny\\Prinny.png",D3DCOLOR_ARGB(255,101,141,209));
-		//Priny
-		m_prinnyDeath = new CSprite (d3ddev,"Pics\\Prinny\\die.png",D3DCOLOR_ARGB(255,0,102,102));
+		m_prinny = new CSprite(d3ddev,"Pics\\Prinny\\Prinny.png",D3DCOLOR_ARGB(255,101,141,209));
+		//Priny die
+		m_prinnyDeath = new CSprite(d3ddev,"Pics\\Prinny\\die.png",D3DCOLOR_ARGB(255,0,102,102));
 		// BorderMenu
 		m_border = new CSprite (d3ddev,"Pics\\Border.png",D3DCOLOR_ARGB(100,100,100,100));
+		// cut
+		m_cut = new CSprite (d3ddev,"Pics\\Prinny\\Chem.png",D3DCOLOR_ARGB(100,100,100,100));
 		// Grass 
 		m_grass1 = new CSprite(d3ddev,"Pics\\UNIT\\grass.png",D3DCOLOR_ARGB(100,100,100,100));
 		// Ground

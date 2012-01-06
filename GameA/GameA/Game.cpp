@@ -149,7 +149,7 @@ void CGame::InitObject()
 	//m_bassSound->Play("startgame",false);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("Boom",100);
-	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_bassSound);
+	m_prinny = new CPrinny(200,0,56,56,m_allSprite,m_camera,m_bassSound);
 	// Load Map
 	m_quadTreeMap1 = new CQuadTree(SizeTile*30, SizeTile*30);
 	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");
@@ -323,12 +323,13 @@ void CGame::RenderGamePlay()
 		tempNode = tempNode->m_nextNode;
 	}
 	// Render Prinny
-	if(m_prinny->x_shoot < 7)
+	if(m_prinny->x_prinnyCut < 7)
 	{
-		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));	
+		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));
+		m_allSprite->m_cut->Render(m_prinny->x+m_prinny->TiLeRenderX,250+m_prinny->y+m_prinny->TiLeRenderY,m_prinny->m_rectSpritekiem,D3DCOLOR_ARGB(255,255,255,255));
 	}
 	else
-	{
+	{		
 		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));	
 	}
 }
