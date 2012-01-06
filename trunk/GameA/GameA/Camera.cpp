@@ -55,7 +55,7 @@ void CCamera::SetViewPort(long fX, long fY,long width, long height)
 	}
 	if(Abs(fX - m_fX) > 0.3)
 	{
-		m_fX += (fX-m_fX)/50;
+		m_fX += (fX-m_fX)/10;
 	}
 	else
 		m_fX = fX;

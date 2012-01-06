@@ -90,8 +90,7 @@ public:
 		m_listObject = new ListNodes();
 		InitSprite();
 		//UpdateSpriteShoot();
-		m_heal = 1;
-		//m_soundPlayer = _m_soundPlayer;	
+		m_heal = 1;	
 		m_bassSound = bassSound;
 	}
 	/************************************************************************/
@@ -347,13 +346,12 @@ public:
 
 		if(CollisionLeft == true && CollisionRight == false)
 		{
-			m_vX = VJump*0.4;
+			m_vX = VJump*0.2;
 		}
 		if(CollisionLeft == false && CollisionRight == true)
 		{
-			m_vX = -VJump*0.4;
+			m_vX = -VJump*0.2;
 		}
-
 		m_vY = -VJump;
 		m_statePrinny = Jump;
 	}
@@ -423,6 +421,7 @@ public:
 	/************************************************************************/
 	int x_before;
 	int y_before;
+	int jump_cout;
 	int Update(char keys[256],char last_keys[256],CQuadTree * m_quadTree)
 	{
 		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))
@@ -443,16 +442,15 @@ public:
 		{ 
 			IsJump = true;
 			if (!CheckRectCollideWithList(_Rectangle(x,y+m_vY,m_wight,m_height),m_listObject)) // va cham trai' phai?
-			{		
+			{			
 				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
-				{
-					jump();
+				{	
+					jump();				
 				}
 				else
 				{
-					m_vX = 0;
-					m_vY = 3;
-					IsJump = false;
+						m_vX = 0;
+						m_vY = VJump*0.3;	
 				}
 			}
 			else
@@ -551,6 +549,10 @@ public:
 				m_vX = 0;
 				m_vY = 0;
 			}
+		}
+		if (y > 500)
+		{
+			m_heal = 0;
 		}
 		UpdateSprite(keys);
 		return 0;
