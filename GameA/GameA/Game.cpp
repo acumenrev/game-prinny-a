@@ -228,7 +228,7 @@ void CGame::Render()
 void CGame::RenderDeath()
 {
 	m_bassSound->Play("Boom",false);
-	//RenderGamePlay();
+	RenderGamePlay();
 	int hang = 0;
 	if (m_prinny->IsRight == true)
 	{
@@ -238,13 +238,14 @@ void CGame::RenderDeath()
 	{
 		hang = 0;
 	}
-	m_allSprite->m_prinnyDeath->Render(m_prinny->x,250+m_prinny->y,_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
+	m_allSprite->m_prinnyDeath->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
+										m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
+										_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
 	PrinnyDeathIndex++;
 	Sleep(50);
 	if (PrinnyDeathIndex > 8)
 	{
-		m_prinny->m_heal = 1;
-		m_prinny->x = 400;
+		m_prinny->m_heal = 1;	
 		m_currentState = GamePlay;
 	}
 }
@@ -302,7 +303,6 @@ void CGame::RenderGamePlay()
 			{
 			case UNIT_GRASS1:
 				m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
-				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
 		}
@@ -322,7 +322,6 @@ void CGame::RenderGamePlay()
 			{
 			case UNIT_GROUND1:
 				m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
-				//m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
 		}
@@ -463,8 +462,8 @@ void CGame::UpdateGamePlay()
 		m_currentState = MenuIn;
 		break;
 	}
-	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2, 
-						  m_prinny->y - WINDOW_HEIGHT/2,
+	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2 + m_prinny->m_wight/2, 
+						  m_prinny->y - WINDOW_HEIGHT/2 + m_prinny->m_height/2,
 						 m_quadTree->m_root->m_rect.right,
 						 m_quadTree->m_root->m_rect.bottom);
 	m_objectsList->ResetListObject();
