@@ -274,8 +274,29 @@ void CGame::Update()
 	case GameMenu:
 		m_bassSound->Play("stargame",false);
 		m_bassSound->SetItemVolume("startgame",100);
-		m_bassSound->SetItemVolume("MainBackground",0);		
-		m_menu->Update(m_keys,m_lastKeys,m_currentState);
+		m_bassSound->SetItemVolume("MainBackground",0);	
+		/*if(m_menu->Update(m_keys,m_lastKeys,m_currentState) == 1)
+		{
+			m_currentState = GamePlay;
+			m_currentMap = 1;
+			Loadmap();
+			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);
+		}*/
+		switch(m_menu->Update(m_keys,m_lastKeys,m_currentState))
+		{
+		case 1:
+			/*m_currentState = GamePlay;
+			m_currentMap = 1;
+			Loadmap();
+			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);*/
+			break;
+		case 2:
+			/*ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
+			m_currentState = GamePlay;
+			Loadmap();
+			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);*/
+			break;
+		}
 		break;
 	case GameAbout:
 		m_menu->UpdateAbout(m_keys,m_lastKeys,m_currentState);

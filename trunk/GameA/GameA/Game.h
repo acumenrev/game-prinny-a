@@ -17,7 +17,7 @@
 #include "MenuInGame.h"
 #include "Collision.h"
 #include "QuadTree.h"
-#include "CPrinny.h"
+#include "CFile.h"
 #include "Camera.h"
 #include "Bass_Sound.h"
 using namespace WaZ_Game_App;
