@@ -91,6 +91,7 @@ public:
 		m_listObject = new ListNodes();
 		m_quadtree = new CQuadTree();
 		InitSprite();
+		//UpdateSpriteShoot();
 		m_heal = 1;
 		//m_soundPlayer = _m_soundPlayer;	
 		m_bassSound = bassSound;
@@ -113,6 +114,8 @@ public:
 		m_max_spriteIndex_X[Shoot_Right] = 7;
 		m_max_spriteIndex_X[Shoot_Left] = 7;
 
+		x_shoot = 0;
+		delayShoot = 0;
 		m_spriteIndex_X = 0;
 		m_spriteIndex_Y = 0;
 		m_spriteDelay = 0;
@@ -134,10 +137,9 @@ public:
 			m_spriteDelay_max = 15;
 			UpdateSpriteJump(keys);
 			break;
-		case Shoot:
-			m_spriteDelay_max = 1;
-			UpdateSpriteShoot(keys);
-			break;
+		/*case Shoot:
+			UpdateSpriteShoot();
+			break;*/
 		}
 
 		m_spriteDelay++;
@@ -150,10 +152,6 @@ public:
 				m_spriteIndex_X = m_srpiteIndexStar_X;
 			}
 			m_spriteDelay = 0;
-			if (m_statePrinny == Shoot)
-			{
-				x_shoot = m_spriteIndex_X;
-			}
 		}
 	}
 	/************************************************************************/
@@ -274,27 +272,27 @@ public:
 	/************************************************************************/
 	/*                        Update sprite shoot                           */
 	/************************************************************************/
-	void UpdateSpriteShoot(char keys[256])
+	/*void UpdateSpriteShoot()
 	{
 		if(IsRight == true)
 		{
-			if(m_spriteIndex_Y != Shoot_Right)
+			if(y_shoot != Shoot_Right)
 			{
-				m_spriteIndex_Y = Shoot_Right;
-				m_spriteIndex_X = 0;
-				m_srpiteIndexStar_X = 0;
+				y_shoot = Shoot_Right;
+				x_shoot = 0;
+				delayShoot = 7;
 			}
 		}
 		else
 		{
-			if (m_spriteIndex_Y != Shoot_Left)
+			if (y_shoot != Shoot_Left)
 			{
-				m_spriteIndex_Y = Shoot_Left;
-				m_spriteIndex_X = 0;
-				m_srpiteIndexStar_X = 0;
+				y_shoot = Shoot_Left;
+				x_shoot = 0;
+				delayShoot = 7;
 			}
 		}
-	}
+	}*/
 	/************************************************************************/
 	/*                            Move                                          */
 	/************************************************************************/
@@ -357,32 +355,49 @@ public:
 	/*                              Shoot                                   */
 	/************************************************************************/
 	int x_shoot;
+	int y_shoot;
 	int delayShoot;
+	RECT m_rectSpritechem;
 	void PrinnyShoot(char keys[256],char last_keys[256])
-	{
-		if (KEYDOWN(keys,DIK_SPACE))
+	{		
+		if (IsRight == true)
 		{
-			m_bassSound->Play("Cut",false);
-			m_statePrinny = Shoot;
-			/*if(x_shoot > m_max_spriteIndex_X[Shoot_Left])
-			{
-				m_statePrinny = Shoot;
-				m_soundPlayer->PlaySoundA(1,false);
-			}
-			else
-				m_statePrinny = Stand;*/
+			y_shoot = 9;
 		}
 		else
 		{
+			y_shoot = 8;
+		}
+		if(x_shoot < m_max_spriteIndex_X[y_shoot])
+		{
+			delayShoot++;
+			m_rectSpritechem = _Rectangle((float)(x_shoot*56),(float)(y_shoot*56),56,56);			
+			if(delayShoot >= 3)
+			{
+				x_shoot++;
+				delayShoot = 0;
+			}	
+		}
+		else
+		{
+			if (KEYDOWN(keys,DIK_SPACE) && KEYUP(last_keys,DIK_SPACE))
+			{
+				m_bassSound->Play("Cut",true);
+				x_shoot = 0;
+				delayShoot = 0;
+			}
+			else
+			{
 				m_statePrinny = Stand;
-		}	
+			}		
+		}
 	}
 	/************************************************************************/
 	/*                                Update                                */
 	/************************************************************************/
 	int Update(char keys[256],char last_keys[256],CQuadTree * _m_quadtree)
 	{
-		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))
+		if (KEYDOWN(keys,DIK_BACK) && KEYUP(last_keys,DIK_BACK))
 		{
 			return 3;
 		}

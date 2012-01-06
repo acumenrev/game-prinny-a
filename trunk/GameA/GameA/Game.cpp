@@ -141,13 +141,14 @@ void CGame::InitObject()
 	}
 	m_bassSound->Init(-1,44100,0);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"startgame","Sounds\\startgame.wav", BASS_MUSIC_RAMPS);
-	m_bassSound->SetItemVolume("startgame",70);
+	m_bassSound->SetItemVolume("startgame",100);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Cut","Sounds\\Cut.wav",BASS_MUSIC_RAMPS);
-	m_bassSound->SetItemVolume("Cut",60);
+	m_bassSound->SetItemVolume("Cut",50);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"MainBackground","Sounds\\MainBackground.wav",BASS_MUSIC_RAMPS | BASS_MUSIC_LOOP);
 	m_bassSound->SetItemVolume("MainBackground",100);
-	m_bassSound->Play("startgame",false);
+	//m_bassSound->Play("startgame",false);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
+	m_bassSound->SetItemVolume("Boom",100);
 	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_bassSound);
 }
 /************************************************************************/
@@ -179,7 +180,6 @@ void CGame::Run()
 				//itoa(1000/(a-b), fps, 10);
 				if(m_frame == 5)
 				{
-					//sprintf_s(m_fps, "%s%d", "Fps: ", 1000/(m_currentTime - m_lastTime));
 					sprintf_s(m_fps, "%s%d", "Fps: ",1000/(m_currentTime - m_lastTime));
 					m_frame = 0;
 				}
@@ -199,7 +199,6 @@ void CGame::Render()
 	switch(m_currentState)
 	{
 	case GamePlay:
-		//m_soundPlayer->PlaySound(1,false);
 		RenderGamePlay();
 		break;
 	case GameDeath:
@@ -248,8 +247,14 @@ void CGame::RenderDeath()
 /************************************************************************/
 void CGame::RenderGamePlay()
 {
-	int index_sprite = m_object->m_spriteIndex;
-	m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));
+	if(m_prinny->x_shoot < 7)
+	{
+		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));	
+	}
+	else
+	{
+		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));	
+	}
 }
 
 /************************************************************************/
@@ -261,11 +266,15 @@ void CGame::Update()
 	switch(m_currentState)
 	{
 	case GamePlay:
+		m_bassSound->SetItemVolume("startgame",0);
+		m_bassSound->SetItemVolume("MainBackground",100);
 		m_bassSound->Play("MainBackground",false);
 		UpdateGamePlay();
 		break;
 	case GameMenu:
-		m_bassSound->Stop("MainBackground");
+		m_bassSound->Play("stargame",false);
+		m_bassSound->SetItemVolume("startgame",100);
+		m_bassSound->SetItemVolume("MainBackground",0);		
 		m_menu->Update(m_keys,m_lastKeys,m_currentState);
 		break;
 	case GameAbout:
