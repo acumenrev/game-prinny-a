@@ -43,3 +43,5 @@ enum GameState
 // Backgrounds
 #define UNIT_BACKGROUND1 'T' // Background type 1
 #define UNIT_BACKGROUND2 'Y' // Background type 2
+//Rock
+#define UNIT_ROCK1 'Z' // rock type 1

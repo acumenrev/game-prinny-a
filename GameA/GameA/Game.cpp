@@ -270,7 +270,25 @@ void CGame::RenderGamePlay()
 		}
 		tempNode = tempNode->m_nextNode;
 	}
-
+	//////////////////////////////////////////////////////////////////////////
+	/// Background1
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX,m_camera->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_BACKGROUND1:
+				m_allSprite->m_background1->Render(0, 0);
+				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
 	//////////////////////////////////////////////////////////////////////////
 	/// Grass
 	//////////////////////////////////////////////////////////////////////////
@@ -290,25 +308,7 @@ void CGame::RenderGamePlay()
 		}
 		tempNode = tempNode->m_nextNode;
 	}
-	//////////////////////////////////////////////////////////////////////////
-	/// Background1
-	//////////////////////////////////////////////////////////////////////////
-	tempNode = m_objectsList->m_head;
-	while(tempNode != NULL)
-	{
-		if(tempNode->m_object->m_health > 0 &&
-			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX,m_camera->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
-		{
-			switch(tempNode->m_object->m_style)
-			{
-			case UNIT_BACKGROUND1:
-				m_allSprite->m_background1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
-				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
-				break;
-			}
-		}
-		tempNode = tempNode->m_nextNode;
-	}
+
 	//////////////////////////////////////////////////////////////////////////
 	/// Ground
 	//////////////////////////////////////////////////////////////////////////
@@ -322,6 +322,25 @@ void CGame::RenderGamePlay()
 			{
 			case UNIT_GROUND1:
 				m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				//m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	//////////////////////////////////////////////////////////////////////////
+	/// Rock1 units
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX, m_camera->m_fY, WINDOW_WIDTH, WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_ROCK1:
+				m_allSprite->m_rock1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
 				//m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
