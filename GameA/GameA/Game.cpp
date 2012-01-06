@@ -284,7 +284,7 @@ void CGame::RenderGamePlay()
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_BACKGROUND1:
-				m_allSprite->m_background1->Render(0 - m_camera2->m_fX, 0 - m_camera2->m_fY);
+				m_allSprite->m_background1->Render(tempNode->m_object->m_rect.left- m_camera2->m_fX, tempNode->m_object->m_rect.top  - m_camera2->m_fY);
 				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}

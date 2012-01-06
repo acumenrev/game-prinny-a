@@ -550,10 +550,6 @@ public:
 				m_vY = 0;
 			}
 		}
-		if (y > 500)
-		{
-			m_heal = 0;
-		}
 		UpdateSprite(keys);
 		return 0;
 	}
