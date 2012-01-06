@@ -52,8 +52,8 @@ CCObject::CCObject(float fX, float fY, char style)
 	// Ground
 	case UNIT_GROUND1:
 		m_canCollide = true;
-		m_rect = _Rectangle(fX, fY, SizeTile*10, SizeTile);
-		m_workingArea = _Rectangle(fX, fY, SizeTile*10, SizeTile);
+		m_rect = _Rectangle(fX, fY, SizeTile*11, SizeTile);
+		m_workingArea = _Rectangle(fX, fY, SizeTile*11, SizeTile);
 		break;
 	case UNIT_GROUND2:
 		m_canCollide = true;
