@@ -28,7 +28,6 @@ public:
 		m_topLeft = m_topRight = m_bottomLeft = m_bottomRight = NULL;
 		m_objectsList = new ListNodes();
 		m_count = 0;
-		m_level = 0;
 	}
 	QuadNode(RECT rect)
 	{
@@ -44,6 +43,10 @@ public:
 		m_rect.top = (long)fY;
 		m_rect.bottom = (long)(fY + height);
 		m_rect.right = (long)(fX + width);
+		m_bottomLeft = m_bottomRight = m_topLeft = m_topRight = NULL;
+		m_objectsList = new ListNodes();
+		m_count = 0;
+		m_level = 0;
 	}
 	~QuadNode(void);
 };
@@ -66,6 +69,7 @@ public:
 	/************************************************************************/
 	CQuadTree(void);
 	~CQuadTree(void);
+	CQuadTree(int width, int height);
 	/************************************************************************/
 	/*							Methods                                     */
 	/************************************************************************/

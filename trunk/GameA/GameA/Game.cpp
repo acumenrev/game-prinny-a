@@ -128,8 +128,8 @@ void CGame::InitObject()
 	m_menuInGame = new CMenuInGame(m_allSprite);
 	m_menu = new CCMenu(m_allSprite);
 	m_object = new CCObject(100,100,NULL);
-	// set m_currentMap
-	m_currentMap = 1;
+	// Init objects list
+	m_objectsList = new ListNodes();
 	// Init camera
 	m_camera = new CCamera();
 	// Init sound player
@@ -150,6 +150,12 @@ void CGame::InitObject()
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("Boom",100);
 	m_prinny = new CPrinny(0,0,56,56,m_allSprite,m_camera,m_bassSound);
+	// Load Map
+	m_quadTreeMap1 = new CQuadTree(SizeTile*30, SizeTile*30);
+	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");
+	// set m_currentMap
+	m_currentMap = 1;
+	Loadmap();
 }
 /************************************************************************/
 /*                             Run game                                 */
@@ -247,6 +253,76 @@ void CGame::RenderDeath()
 /************************************************************************/
 void CGame::RenderGamePlay()
 {
+	//////////////////////////////////////////////////////////////////////////
+	/// Background
+	//////////////////////////////////////////////////////////////////////////
+	Node* tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea,
+			_Rectangle(m_camera->m_fX,m_camera->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	/// Grass
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX,m_camera->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_GRASS1:
+				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	//////////////////////////////////////////////////////////////////////////
+	/// Ground
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX, m_camera->m_fY, WINDOW_WIDTH, WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_GROUND1:
+				//m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	//////////////////////////////////////////////////////////////////////////
+	/// Other units
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX, m_camera->m_fY, WINDOW_WIDTH, WINDOW_HEIGHT)))
+		{
+				
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	// Render Prinny
 	if(m_prinny->x_shoot < 7)
 	{
 		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));	
@@ -324,6 +400,12 @@ void CGame::UpdateGamePlay()
 	switch(m_prinny->Update(m_keys,m_lastKeys,m_quadTree))
 	{
 	case 1:
+		m_currentMap++;
+		if(m_currentMap > NumberOfMap)
+		{
+			m_currentMap = 1;
+		}
+		Loadmap();
 		break;
 	case 2:
 		m_currentState = GameDeath;
@@ -333,7 +415,13 @@ void CGame::UpdateGamePlay()
 		m_currentState = MenuIn;
 		break;
 	}
-	//m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2,m_prinny->y - WINDOW_HEIGHT/2,m_quadTree->m_root->m_rect.right,m_quadTree->m_root->m_rect.bottom);
+	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2, 
+						  m_prinny->y - WINDOW_HEIGHT/2,
+						 m_quadTree->m_root->m_rect.right,
+						 m_quadTree->m_root->m_rect.bottom);
+	m_objectsList->ResetListObject();
+	m_quadTree->SetObjectsList(m_objectsList,
+						_Rectangle(m_camera->m_fX, m_camera->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT));
 }
 /************************************************************************/
 /*                             Load Map                                 */
@@ -354,10 +442,6 @@ void CGame::Loadmap()
 	m_camera->m_fX = m_quadTree->m_fX;
 	m_camera->m_fY = m_quadTree->m_fY;
 	// load main character in here
-	// .....
-	// ,,,,,
-	// .....
-	// Set health for enemies
 	m_quadTree->SetHealth(m_quadTree->m_root);
 }
 #pragma endregion

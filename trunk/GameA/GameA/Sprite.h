@@ -32,6 +32,8 @@ public:
 	CSprite* m_prinny;
 	CSprite* m_border;
 	CSprite* m_prinnyDeath;
+	CSprite* m_grass1;
+	CSprite* m_ground1;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -54,5 +56,9 @@ public:
 		m_prinnyDeath = new CSprite (d3ddev,"Pics\\Prinny\\die.png",D3DCOLOR_ARGB(255,0,102,102));
 		// BorderMenu
 		m_border = new CSprite (d3ddev,"Pics\\Border.png",D3DCOLOR_ARGB(100,100,100,100));
+		// Grass 
+		m_grass1 = new CSprite(d3ddev,"Pics\\UNIT\\grass.png",D3DCOLOR_ARGB(100,100,100,100));
+		// Ground
+		m_ground1 = new CSprite(d3ddev,"Pics\\UNIT\\Ground.png",D3DCOLOR_ARGB(100,100,100,100));
 	}
 };

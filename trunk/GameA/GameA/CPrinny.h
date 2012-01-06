@@ -55,7 +55,6 @@ public:
 	int m_heal;
 	CCamera * m_camera;
 	ListNodes * m_listObject;
-	CQuadTree * m_quadtree;
 	WaZ_Game_App::Bass_Sound* m_bassSound;
 	int m_id;
 	//////////////////////////////////////////////////////////////////////////
@@ -89,7 +88,6 @@ public:
 		
 		m_camera = _m_camera;
 		m_listObject = new ListNodes();
-		m_quadtree = new CQuadTree();
 		InitSprite();
 		//UpdateSpriteShoot();
 		m_heal = 1;
@@ -395,7 +393,7 @@ public:
 	/************************************************************************/
 	/*                                Update                                */
 	/************************************************************************/
-	int Update(char keys[256],char last_keys[256],CQuadTree * _m_quadtree)
+	int Update(char keys[256],char last_keys[256],CQuadTree * m_quadTree)
 	{
 		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))
 		{
@@ -407,15 +405,15 @@ public:
 		}
 		Move(keys);
 		PrinnyShoot(keys,last_keys);
-		//
-		//m_listObject->Free();
-		//m_quadtree->SetObjectsList(m_listObject,_Rectangle(x,y,m_wight,m_height));
+		
+		m_listObject->ResetListObject();
+		m_quadTree->SetObjectsList(m_listObject,_Rectangle(x,y,m_wight,m_height));
 		//
 		/*if(CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
-		{
+		{ 
 			IsJump = true;
 			if (!CheckRectCollideWithList(_Rectangle(x,y+m_vY,m_wight,m_height),m_listObject)) // va cham trai' phai?
-			{
+			{		
 				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
 				{
 					jump();

@@ -37,7 +37,6 @@ float CCamera::Abs(float a)
 
 void CCamera::SetViewPort(float fX, float fY,int width, int height)
 {
-
 	if(fX < 0)
 	{
 		fX = 0;
