@@ -48,6 +48,7 @@ public:
 	CQuadTree* m_quadTreeMap1;
 	CQuadTree* m_quadTreeeMap2;
 	CCamera* m_camera;
+	CCamera* m_camera2;
 	CPrinny* m_prinny;
 	Bass_Sound* m_bassSound;
 	ListNodes* m_objectsList;
