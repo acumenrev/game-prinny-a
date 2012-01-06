@@ -149,7 +149,7 @@ void CGame::InitObject()
 	//m_bassSound->Play("startgame",false);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("Boom",100);
-	m_prinny = new CPrinny(0,0,36,56,m_allSprite,m_camera,m_bassSound);
+	m_prinny = new CPrinny(0,0,36,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
 	m_quadTreeMap1 = new CQuadTree(SizeTile*11, SizeTile*15);
 	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");
@@ -325,16 +325,16 @@ void CGame::RenderGamePlay()
 	// Render Prinny
 	if(m_prinny->x_prinnyCut < 7)
 	{
-		m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2,
+		m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
 									m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
 									m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));
-		m_allSprite->m_cut->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2+m_prinny->TiLeRenderX,
+		m_allSprite->m_cut->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2+m_prinny->TiLeRenderX-21,
 								m_prinny->y-m_camera->m_fY+m_prinny->m_height/2+m_prinny->TiLeRenderY-29,
 								m_prinny->m_rectSpritekiem,D3DCOLOR_ARGB(255,255,255,255));
 	}
 	else
 	{		
-		m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2,
+		m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
 									m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
 									m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));	
 	}
@@ -452,7 +452,7 @@ void CGame::Loadmap()
 	m_camera->m_fX = m_quadTree->m_fX;
 	m_camera->m_fY = m_quadTree->m_fY;
 	// load main character in here
-	m_prinny = new CPrinny(m_quadTree->m_fX,m_quadTree->m_fY,36,56,m_allSprite,m_camera,m_bassSound);
+	m_prinny = new CPrinny(m_quadTree->m_fX,m_quadTree->m_fY,36,36,m_allSprite,m_camera,m_bassSound);
 	m_quadTree->SetHealth(m_quadTree->m_root);
 }
 #pragma endregion
