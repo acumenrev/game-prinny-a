@@ -35,7 +35,7 @@ float CCamera::Abs(float a)
 
 #pragma region Methods
 
-void CCamera::SetViewPort(float fX, float fY,int width, int height)
+void CCamera::SetViewPort(long fX, long fY,long width, long height)
 {
 	if(fX < 0)
 	{
