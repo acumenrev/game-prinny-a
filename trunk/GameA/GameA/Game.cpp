@@ -132,6 +132,7 @@ void CGame::InitObject()
 	m_objectsList = new ListNodes();
 	// Init camera
 	m_camera = new CCamera();
+	m_camera2 = new CCamera(100,50);
 	// Init sound player
 	m_bassSound = new Bass_Sound(m_hWnd);
 	if(!m_bassSound)
@@ -278,12 +279,12 @@ void CGame::RenderGamePlay()
 	while(tempNode != NULL)
 	{
 		if(tempNode->m_object->m_health > 0 &&
-			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX,m_camera->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera2->m_fX,m_camera2->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
 		{
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_BACKGROUND1:
-				m_allSprite->m_background1->Render(0, 0);
+				m_allSprite->m_background1->Render(0 - m_camera2->m_fX, 0 - m_camera2->m_fY);
 				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}

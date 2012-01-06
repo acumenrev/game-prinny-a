@@ -9,6 +9,16 @@ CCamera::CCamera(void)
 {
 	m_fX = 0;
 	m_fY = 0;
+	m_vX = 50;
+	m_vY = 10;
+}
+//////////////////////////////////////////////////////////////////////////
+CCamera::CCamera(long vX,long vY)
+{
+	m_fX = 0;
+	m_fY = 0;
+	m_vX = vX;
+	m_vY = vY;
 }
 /************************************************************************/
 /*                           Destructor					                */
@@ -55,13 +65,13 @@ void CCamera::SetViewPort(long fX, long fY,long width, long height)
 	}
 	if(Abs(fX - m_fX) > 0.3)
 	{
-		m_fX += (fX-m_fX)/10;
+		m_fX += (fX-m_fX)/m_vX;
 	}
 	else
 		m_fX = fX;
 	if(Abs(fY - m_fY) > 0.3)
 	{
-		m_fY += (fY-m_fY)/10;
+		m_fY += (fY-m_fY)/m_vY;
 	}
 	else
 		m_fY = fY;
