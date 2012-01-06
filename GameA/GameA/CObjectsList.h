@@ -46,7 +46,7 @@ public:
 	{
 		if(m_head == NULL)
 		{
-			m_head->m_object = object;
+			m_head = new Node(object);
 			m_tail = m_head;
 			m_count++;
 		}
@@ -65,8 +65,9 @@ public:
 		{
 			m_head = list->m_head;
 			m_tail = list->m_tail;
-			m_count += list->m_count;
+			m_count = list->m_count;
 			m_tail->m_nextNode = NULL;
+			return;
 		}
 		else
 		{

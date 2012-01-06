@@ -50,6 +50,7 @@ public:
 	CCamera* m_camera;
 	CPrinny* m_prinny;
 	Bass_Sound* m_bassSound;
+	ListNodes* m_objectsList;
 	int m_id;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */
