@@ -36,6 +36,7 @@ public:
 	CSprite* m_grass1;
 	CSprite* m_ground1;
 	CSprite* m_background1;
+	CSprite* m_rock1;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -65,6 +66,8 @@ public:
 		// Ground
 		m_ground1 = new CSprite(d3ddev,"Pics\\UNIT\\BreakBrick.png",D3DCOLOR_ARGB(100,100,100,100));
 		//background1
-		m_background1 = new CSprite(d3ddev,"Pics\\UNIT\\Background1.png"D3DCOLOR_ARGB(100,100,100,100))
+		m_background1 = new CSprite(d3ddev,"Pics\\UNIT\\Background1.png",D3DCOLOR_ARGB(100,100,100,100));
+		//Rock 1
+		m_rock1 = new CSprite(d3ddev,"Pics\\UNIT\\ROCK.png",D3DCOLOR_ARGB(100,100,100,100));
 	}
 };

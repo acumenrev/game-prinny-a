@@ -127,6 +127,9 @@
     <None Include="Pics\Prinny\Prinny.png" />
     <None Include="Pics\Prinny\walking.png" />
     <None Include="Pics\UNIT\Background1.png" />
+    <None Include="Pics\UNIT\BreakBrick.png" />
+    <None Include="Pics\UNIT\grass.png" />
+    <None Include="Pics\UNIT\ROCK.png" />
     <None Include="Sounds\Boom.ogg" />
     <None Include="Sounds\Cut.wav" />
     <None Include="Sounds\MainBackground.wav" />

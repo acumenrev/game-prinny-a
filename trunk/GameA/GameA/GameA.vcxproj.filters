@@ -54,6 +54,9 @@
     <None Include="Pics\Prinny\Chem.png" />
     <None Include="Map\Map1.txt" />
     <None Include="Pics\UNIT\Background1.png" />
+    <None Include="Pics\UNIT\BreakBrick.png" />
+    <None Include="Pics\UNIT\grass.png" />
+    <None Include="Pics\UNIT\ROCK.png" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
