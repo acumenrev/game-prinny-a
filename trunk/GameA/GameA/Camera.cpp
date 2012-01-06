@@ -53,8 +53,18 @@ void CCamera::SetViewPort(long fX, long fY,long width, long height)
 	{
 		fY = (float)height - WINDOW_HEIGHT;
 	}
-	m_fX += fX - width;
-	m_fY += fY - height;
+	if(Abs(fX - m_fX) > 0.3)
+	{
+		m_fX += (fX-m_fX)/50;
+	}
+	else
+		m_fX = fX;
+	if(Abs(fY - m_fY) > 0.3)
+	{
+		m_fY += (fY-m_fY)/10;
+	}
+	else
+		m_fY = fY;
 }
 
 #pragma endregion 

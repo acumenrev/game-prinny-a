@@ -22,10 +22,10 @@ bool CheckCollisionBetween2Rect(RECT a, RECT b)
 /************************************************************************/
 bool CheckStayInAnotherRect(RECT a, RECT b)
 {
-	if(a.bottom <= b.bottom &&
-		a.left >= b.left &&
-		a.right <= b.right &&
-		a.top >= b.top)
+	if(a.bottom < b.bottom &&
+		a.left > b.left &&
+		a.right < b.right &&
+		a.top > b.top)
 	{
 		return true;
 	}

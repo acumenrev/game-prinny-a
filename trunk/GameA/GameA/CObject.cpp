@@ -42,8 +42,8 @@ CCObject::CCObject(float fX, float fY, char style)
 		break;
 	// Grass
 	case UNIT_GRASS1:
-		m_rect = _Rectangle(fX, fY, SizeTile*15, SizeTile*5);
-		m_workingArea = _Rectangle(fX, fY, SizeTile*15, SizeTile*5);
+		m_rect = _Rectangle(fX, fY, SizeTile*14, SizeTile*5);
+		m_workingArea = _Rectangle(fX, fY, SizeTile*14, SizeTile*5);
 		break;
 	case UNIT_GRASS2:
 		m_rect = _Rectangle(fX, fY, SizeTile/**13*/, SizeTile/**1*/);
@@ -52,8 +52,8 @@ CCObject::CCObject(float fX, float fY, char style)
 	// Ground
 	case UNIT_GROUND1:
 		m_canCollide = true;
-		m_rect = _Rectangle(fX, fY, SizeTile*11, SizeTile);
-		m_workingArea = _Rectangle(fX, fY, SizeTile*11, SizeTile);
+		m_rect = _Rectangle(fX, fY, SizeTile*10, SizeTile);
+		m_workingArea = _Rectangle(fX, fY, SizeTile*10, SizeTile);
 		break;
 	case UNIT_GROUND2:
 		m_canCollide = true;

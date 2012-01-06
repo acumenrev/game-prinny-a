@@ -62,6 +62,6 @@ public:
 		// Grass 
 		m_grass1 = new CSprite(d3ddev,"Pics\\UNIT\\grass.png",D3DCOLOR_ARGB(100,100,100,100));
 		// Ground
-		m_ground1 = new CSprite(d3ddev,"Pics\\UNIT\\Ground.png",D3DCOLOR_ARGB(100,100,100,100));
+		m_ground1 = new CSprite(d3ddev,"Pics\\UNIT\\BreakBrick.png",D3DCOLOR_ARGB(100,100,100,100));
 	}
 };
