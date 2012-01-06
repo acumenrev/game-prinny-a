@@ -112,13 +112,14 @@ public:
 		m_max_spriteIndex_X[Shoot_Right] = 7;
 		m_max_spriteIndex_X[Shoot_Left] = 7;
 
-		x_shoot = 0;
-		delayShoot = 0;
+		x_prinnyCut = 0;
+		x_kiem = 0;
+		DelayCut = 0;
 		m_spriteIndex_X = 0;
 		m_spriteIndex_Y = 0;
 		m_spriteDelay = 0;
 		IsRight = true;
-		m_statePrinny = Stand;
+		m_statePrinny = Jump;
 	}
 	/************************************************************************/
 	/*                            Update Sprite                             */
@@ -128,11 +129,11 @@ public:
 		switch(m_statePrinny)
 		{
 		case Stand:
-			m_spriteDelay_max =10;
+			m_spriteDelay_max =8;
 			UpdateSpiteStand(keys);
 			break;
 		case Jump:
-			m_spriteDelay_max = 15;
+			m_spriteDelay_max = 10;
 			UpdateSpriteJump(keys);
 			break;
 		/*case Shoot:
@@ -164,14 +165,14 @@ public:
 				m_spriteIndex_Y = Stand_Right;
 				m_spriteIndex_X = 7;
 				m_srpiteIndexStar_X = 7;
-				m_spriteDelay_max = 20;
+				m_spriteDelay_max = 8;
 			}
 			if (IsRight == false && m_spriteIndex_Y != Stand_Left)
 			{
 				m_spriteIndex_Y = Stand_Left;
 				m_spriteIndex_X = 7;
 				m_srpiteIndexStar_X = 7;
-				m_spriteDelay_max = 25;
+				m_spriteDelay_max = 8;
 			}
 		}
 		if(m_vX >0)
@@ -341,39 +342,59 @@ public:
 	/************************************************************************/
 	void jump()
 	{
-		IsJump = true;
+		bool CollisionLeft = CheckRectCollideWithList(_Rectangle(x-VJump,y-VJump,m_wight,m_height),m_listObject);
+		bool CollisionRight = CheckRectCollideWithList(_Rectangle(x+VJump,y-VJump,m_wight,m_height),m_listObject);
+
+		if(CollisionLeft == true && CollisionRight == false)
+		{
+			m_vX = VJump*0.4;
+		}
+		if(CollisionLeft == false && CollisionRight == true)
+		{
+			m_vX = -VJump*0.4;
+		}
+
+		m_vY = -VJump;
 		m_statePrinny = Jump;
-			m_vY = -VJump;		
-			y += m_vY;
-			IsJump = false;
-		m_statePrinny = Stand;
-		
 	}
 	/************************************************************************/
 	/*                              Shoot                                   */
 	/************************************************************************/
-	int x_shoot;
-	int y_shoot;
-	int delayShoot;
+	int x_prinnyCut;
+	int y_prinnyCut;
+	int x_kiem;
+	int y_kiem;
+	int DelayCut;
+	int TiLeRenderX;
+	int TiLeRenderY;
 	RECT m_rectSpritechem;
-	void PrinnyShoot(char keys[256],char last_keys[256])
+	RECT m_rectSpritekiem;
+	void PrinnyCut(char keys[256],char last_keys[256])
 	{		
 		if (IsRight == true)
 		{
-			y_shoot = 9;
+			y_prinnyCut = 9;
+			y_kiem = 1;
+			TiLeRenderX = -25;
+			TiLeRenderY = -5;
 		}
 		else
 		{
-			y_shoot = 8;
+			y_prinnyCut = 8;
+			y_kiem = 0;
+			TiLeRenderX = -40;
+			TiLeRenderY = -5;
 		}
-		if(x_shoot < m_max_spriteIndex_X[y_shoot])
+		if(x_prinnyCut < m_max_spriteIndex_X[y_prinnyCut])
 		{
-			delayShoot++;
-			m_rectSpritechem = _Rectangle((float)(x_shoot*56),(float)(y_shoot*56),56,56);			
-			if(delayShoot >= 3)
+			DelayCut++;
+			m_rectSpritechem = _Rectangle((float)(x_prinnyCut*56),(float)(y_prinnyCut*56),56,56);	
+			m_rectSpritekiem = _Rectangle((float)(x_kiem*108),(float)(y_kiem*64),108,64);
+			if(DelayCut >= 5)
 			{
-				x_shoot++;
-				delayShoot = 0;
+				x_kiem++;
+				x_prinnyCut++;
+				DelayCut = 0;
 			}	
 		}
 		else
@@ -381,8 +402,10 @@ public:
 			if (KEYDOWN(keys,DIK_SPACE) && KEYUP(last_keys,DIK_SPACE))
 			{
 				m_bassSound->Play("Cut",true);
-				x_shoot = 0;
-				delayShoot = 0;
+				x_prinnyCut = 0;
+				x_kiem = 0;
+				DelayCut = 0;
+				RenderChem();
 			}
 			else
 			{
@@ -390,9 +413,16 @@ public:
 			}		
 		}
 	}
+
+	void RenderChem()
+	{
+
+	}
 	/************************************************************************/
 	/*                                Update                                */
 	/************************************************************************/
+	int x_before;
+	int y_before;
 	int Update(char keys[256],char last_keys[256],CQuadTree * m_quadTree)
 	{
 		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))
@@ -404,12 +434,12 @@ public:
 			return 2;
 		}
 		Move(keys);
-		PrinnyShoot(keys,last_keys);
+		PrinnyCut(keys,last_keys);
 		
 		m_listObject->ResetListObject();
 		m_quadTree->SetObjectsList(m_listObject,_Rectangle(x,y,m_wight,m_height));
 		//
-		/*if(CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
+		if(CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
 		{ 
 			IsJump = true;
 			if (!CheckRectCollideWithList(_Rectangle(x,y+m_vY,m_wight,m_height),m_listObject)) // va cham trai' phai?
@@ -417,6 +447,11 @@ public:
 				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
 				{
 					jump();
+				}
+				else
+				{
+					m_vX = 0;
+					m_vY = -VJump;
 				}
 			}
 			else
@@ -466,22 +501,31 @@ public:
 			}
 		}
 		///////////////////////
-		
+		if (m_vX < GiatocX && m_vX > -GiatocX)
+		{
+			m_vX = 0;
+		}
+		if (m_vY < GiatocY && m_vY > -GiatocY)
+		{
+			m_vY = 0;
+		}
 		/////////////////
 		if(!CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
 		{
-			if(CheckCollisionBetween2Rect(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_quadtree->m_root->m_rect))
+			if(CheckStayInAnotherRect(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_quadTree->m_root->m_rect))
 			{
+				x_before = x;
+				y_before = y;
 				y += m_vY;
 				x += m_vX;
 			}
 			else
 			{
-				if (!CheckCollisionBetween2Rect(_Rectangle((x+m_vX),y,m_wight,m_height),m_quadtree->m_root->m_rect))
+				if (!CheckStayInAnotherRect(_Rectangle((x+m_vX),y,m_wight,m_height),m_quadTree->m_root->m_rect))
 				{
 					m_vX = 0;
 				}
-				if (!CheckCollisionBetween2Rect(_Rectangle(x,y+m_vY,m_wight,m_height),m_quadtree->m_root->m_rect))
+				if (!CheckStayInAnotherRect(_Rectangle(x,y+m_vY,m_wight,m_height),m_quadTree->m_root->m_rect))
 				{
 					m_vY = 0;
 				}
@@ -491,27 +535,23 @@ public:
 		}
 		else
 		{
-			if(CheckRectCollideWithList(_Rectangle(x,y,m_wight,m_height),m_listObject))
+			if(CheckRectCollideWithList(_Rectangle(x_before,y_before,m_wight,m_height),m_listObject))
 			{
-
+				m_heal = 0;
 			}
-		}*/
-
-		UpdateSprite(keys);
-		x += m_vX;
-
-		if (m_vX < GiatocX && m_vX > -GiatocX)
-		{
-			m_vX = 0;
+			else
+			{
+				x = x_before;
+				y = y_before;
+				m_vX = 0;
+				m_vY = 0;
+			}
 		}
-		if (m_vY < GiatocY && m_vY > -GiatocY)
-		{
-			m_vY = 0;
-		}
-		if(x>200 && x<250)
+		/*if(x>200 && x<250)
 		{
 			m_heal = 0;
-		}
+		}*/
+		UpdateSprite(keys);
 		return 0;
 	}
 };

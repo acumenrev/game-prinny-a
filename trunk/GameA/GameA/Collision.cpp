@@ -8,10 +8,10 @@
 /************************************************************************/
 bool CheckCollisionBetween2Rect(RECT a, RECT b)
 {
-	if(a.bottom < b.bottom &&
-		a.left > b.left &&
-		a.right < b.right &&
-		a.top > b.top)
+	if (a.bottom<b.top
+		||a.top>b.bottom
+		||a.right<b.left
+		||a.left>b.right)
 	{
 		return false;
 	}
