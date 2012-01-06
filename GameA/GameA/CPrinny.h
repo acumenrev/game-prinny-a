@@ -451,7 +451,8 @@ public:
 				else
 				{
 					m_vX = 0;
-					m_vY = -VJump;
+					m_vY = 3;
+					IsJump = false;
 				}
 			}
 			else
@@ -509,6 +510,10 @@ public:
 		{
 			m_vY = 0;
 		}
+		if(y+m_height+10 > m_quadTree->m_root->m_rect.bottom)
+		{
+			m_heal = 0;
+		}
 		/////////////////
 		if(!CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
 		{
@@ -547,10 +552,6 @@ public:
 				m_vY = 0;
 			}
 		}
-		/*if(x>200 && x<250)
-		{
-			m_heal = 0;
-		}*/
 		UpdateSprite(keys);
 		return 0;
 	}

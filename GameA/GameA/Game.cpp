@@ -149,9 +149,9 @@ void CGame::InitObject()
 	//m_bassSound->Play("startgame",false);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("Boom",100);
-	m_prinny = new CPrinny(200,0,56,56,m_allSprite,m_camera,m_bassSound);
+	m_prinny = new CPrinny(0,0,36,56,m_allSprite,m_camera,m_bassSound);
 	// Load Map
-	m_quadTreeMap1 = new CQuadTree(SizeTile*30, SizeTile*30);
+	m_quadTreeMap1 = new CQuadTree(SizeTile*11, SizeTile*15);
 	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");
 	// set m_currentMap
 	m_currentMap = 1;
@@ -283,8 +283,8 @@ void CGame::RenderGamePlay()
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_GRASS1:
-				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
-				m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
+				m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
 		}
@@ -302,8 +302,8 @@ void CGame::RenderGamePlay()
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_GROUND1:
-				//m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
-				m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
+				m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				//m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
 		}
@@ -325,12 +325,18 @@ void CGame::RenderGamePlay()
 	// Render Prinny
 	if(m_prinny->x_prinnyCut < 7)
 	{
-		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));
-		m_allSprite->m_cut->Render(m_prinny->x+m_prinny->TiLeRenderX,250+m_prinny->y+m_prinny->TiLeRenderY,m_prinny->m_rectSpritekiem,D3DCOLOR_ARGB(255,255,255,255));
+		m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2,
+									m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
+									m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));
+		m_allSprite->m_cut->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2+m_prinny->TiLeRenderX,
+								m_prinny->y-m_camera->m_fY+m_prinny->m_height/2+m_prinny->TiLeRenderY-29,
+								m_prinny->m_rectSpritekiem,D3DCOLOR_ARGB(255,255,255,255));
 	}
 	else
 	{		
-		m_allSprite->m_prinny->Render(m_prinny->x,250+m_prinny->y,m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));	
+		m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2,
+									m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
+									m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));	
 	}
 }
 
@@ -410,9 +416,12 @@ void CGame::UpdateGamePlay()
 		break;
 	case 2:
 		m_currentState = GameDeath;
+		m_camera->m_fX = 200;
+		m_camera->m_fY = 0;
 		PrinnyDeathIndex = 0;
 		break;
 	case 3:
+
 		m_currentState = MenuIn;
 		break;
 	}
@@ -443,6 +452,7 @@ void CGame::Loadmap()
 	m_camera->m_fX = m_quadTree->m_fX;
 	m_camera->m_fY = m_quadTree->m_fY;
 	// load main character in here
+	m_prinny = new CPrinny(m_quadTree->m_fX,m_quadTree->m_fY,36,56,m_allSprite,m_camera,m_bassSound);
 	m_quadTree->SetHealth(m_quadTree->m_root);
 }
 #pragma endregion
