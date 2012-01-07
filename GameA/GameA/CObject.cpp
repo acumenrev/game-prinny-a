@@ -69,6 +69,8 @@ CCObject::CCObject(float fX, float fY, char style)
 		break;
 	case UNIT_ROCK1:
 		m_canCollide = true;
+		m_canBeDestroyed = false;
+		m_checkedItem = false;
 		m_rect = _Rectangle(fX, fY, SizeTile*1, SizeTile*1);
 		m_workingArea = _Rectangle(fX, fY, SizeTile*1, SizeTile*1);
 		break;
@@ -108,8 +110,8 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_canCollide = false;
 		m_checkedItem = true;
 		m_canBeDestroyed = true;
-		m_rect = _Rectangle(fX, fY, SizeTile, SizeTile);
-		m_workingArea = _Rectangle(fX, fY, SizeTile*20, SizeTile*20);
+		m_rect = _Rectangle(fX, fY, 40, 40);
+		m_workingArea = _Rectangle(fX, fY, SizeTile, SizeTile);
 		m_vX = 0;
 		m_vY = 0;
 		break;

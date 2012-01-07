@@ -10,8 +10,8 @@ public:
 	/************************************************************************/
 	int m_fx;
 	int m_fy;
-	int m_iWidth;
-	int m_iHeight;
+	long m_iWidth;
+	long m_iHeight;
 	// Constructors & Destructor
 	char m_style;
 	RECT m_workingArea;

@@ -149,7 +149,7 @@ void CGame::InitObject()
 	m_bassSound->SetItemVolume("Jump",100);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("Boom",100);
-	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"MonsterDeath","Sounds\\MonsterDeath.mp3",BASS_MUSIC_RAMPS);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"MonsterDeath","Sounds\\MonsterDeath.ogg",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("MonsterDeath",50);
 	m_prinny = new CPrinny(0,0,40,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
@@ -365,23 +365,89 @@ void CGame::RenderGamePlay()
 				{
 					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
 													tempNode->m_object->m_rect.top - m_camera->m_fY,
-													_Rectangle(tempNode->m_object->m_spriteIndex*56,100,56,56),
+													_Rectangle(tempNode->m_object->m_spriteIndex/10%3*56,100,56,56),
 													D3DCOLOR_ARGB(255,255,255,255));
 				}
 				if(tempNode->m_object->m_vX < 0)
 				{
 					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
 													tempNode->m_object->m_rect.top - m_camera->m_fY,
-													_Rectangle(tempNode->m_object->m_spriteIndex*56,0,56,56),
+													_Rectangle(tempNode->m_object->m_spriteIndex/5%3*56,100,56,56),
 													D3DCOLOR_ARGB(255,255,255,255));
 				}
-				if(tempNode->m_object->m_spriteIndex >= 5)
+				tempNode->m_object->m_spriteIndex++;
+				if(tempNode->m_object->m_spriteIndex >= 10*5)
 				{
 					tempNode->m_object->m_spriteIndex = 0;
 				}
 				if(m_currentState == GamePlay || m_currentState == GameDeath)
 				{
-					
+					if(CheckCollisionBetween2Rect(_Rectangle(m_prinny->x, m_prinny->y, m_prinny->m_width, m_prinny->m_height),
+												tempNode->m_object->m_workingArea))
+					{
+						long xx = tempNode->m_object->m_rect.left;
+						long yy = tempNode->m_object->m_rect.top;
+						if( xx > m_prinny->x)
+						{
+							tempNode->m_object->m_vX -= 0.1;
+						}
+						else
+						{
+							tempNode->m_object->m_vX += 0.1;
+						}
+						if( yy > m_prinny->y)
+						{
+							tempNode->m_object->m_vY -= 0.1;
+						}
+						else
+						{
+							tempNode->m_object->m_vY += 0.1;
+						}
+						if(tempNode->m_object->m_vY > 5)
+						{
+							tempNode->m_object->m_vY = 5;
+						}
+						if(!CheckRectCollideWithList(_Rectangle(xx + tempNode->m_object->m_vX,
+																yy,
+																tempNode->m_object->m_iWidth,
+																tempNode->m_object->m_iHeight),
+													  m_objectsList) &&
+							CheckStayInAnotherRect(_Rectangle(xx + tempNode->m_object->m_vX, 
+																yy, 
+																tempNode->m_object->m_iWidth, 
+																tempNode->m_object->m_iHeight),
+													tempNode->m_object->m_workingArea))
+						{
+							xx += tempNode->m_object->m_vX;
+						}
+						else
+						{
+							tempNode->m_object->m_vX = 0;
+						}
+						if(!CheckRectCollideWithList(_Rectangle(xx,
+																yy + tempNode->m_object->m_vY,
+																tempNode->m_object->m_iWidth,
+																tempNode->m_object->m_iHeight),
+														m_objectsList) &&
+							CheckStayInAnotherRect(_Rectangle(xx, 
+															  yy + tempNode->m_object->m_vY, 
+															  tempNode->m_object->m_iWidth, 
+															  tempNode->m_object->m_iHeight),
+													tempNode->m_object->m_workingArea))
+						{
+							yy += tempNode->m_object->m_vY;
+						}
+						else
+						{
+							tempNode->m_object->m_vY = 0;
+						}
+						tempNode->m_object->m_rect = _Rectangle(xx, yy, tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
+					}
+					else
+					{
+						tempNode->m_object->m_vX = 0;
+						tempNode->m_object->m_vY = 0;
+					}
 				}
 			}
 			else
