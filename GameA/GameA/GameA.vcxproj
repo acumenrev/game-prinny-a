@@ -134,7 +134,9 @@
     <None Include="Pics\UNIT\ROCK.png" />
     <None Include="Sounds\Boom.ogg" />
     <None Include="Sounds\Cut.wav" />
+    <None Include="Sounds\Jump.mp3" />
     <None Include="Sounds\MainBackground.wav" />
+    <None Include="Sounds\MonsterDeath.mp3" />
     <None Include="Sounds\startgame.wav" />
   </ItemGroup>
   <ItemGroup>

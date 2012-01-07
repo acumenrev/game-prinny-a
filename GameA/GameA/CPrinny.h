@@ -383,11 +383,6 @@ public:
 					{
 						switch(ob_check->m_style)
 						{
-						case UNIT_ROCK1:
-							ob_check->m_health = 0;
-							ob_check->m_spriteIndex = 0;
-							Cutting = 1;
-							break;
 						case UNIT_MONSTER1:
 							ob_check->m_health = 0;
 							ob_check->m_spriteIndex = 0;
@@ -437,12 +432,13 @@ public:
 			{			
 				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
 				{	
+					m_bassSound->Play("Jump",true);
 					jump();				
 				}
 				else
 				{
-						m_vX = 0;
-						m_vY = VJump*0.3;	
+					m_vX = 0;
+					m_vY = VJump*0.3;	
 				}
 			}
 			else
@@ -453,6 +449,7 @@ public:
 					{
 						if(KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
 						{
+							m_bassSound->Play("Jump",true);
 							m_vY = -VJump;
 							m_statePrinny = Jump;
 						}
@@ -472,10 +469,12 @@ public:
 				{
 					if(KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
 					{
+						m_bassSound->Play("Jump",true);
 						jump();
 					}
 					else
 					{
+
 						m_vX = 0;
 						m_vY = 0;
 					}
@@ -487,6 +486,7 @@ public:
 			m_statePrinny = Jump;
 			if(KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP) && IsJump == true)
 			{
+				m_bassSound->Play("Jump",true);
 				m_vY = -VJump;
 				IsJump = false;
 			}
@@ -549,9 +549,6 @@ public:
 		{
 			switch(ob_check->m_style)
 			{
-			case UNIT_ROCK1:
-				m_heal = 0;
-				break;
 			case UNIT_MONSTER1:
 				m_heal = 0;
 				break;
