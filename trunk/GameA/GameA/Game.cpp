@@ -361,18 +361,25 @@ void CGame::RenderGamePlay()
 		{
 			if(tempNode->m_object->m_health > 0)
 			{
-				if(tempNode->m_object->m_vX >= 0)
+				if(tempNode->m_object->m_vX > 0)
 				{
 					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
 													tempNode->m_object->m_rect.top - m_camera->m_fY,
-													_Rectangle(tempNode->m_object->m_spriteIndex/10%3*56,100,56,56),
+													_Rectangle(tempNode->m_object->m_spriteIndex/10%3*56,168,56,56),
 													D3DCOLOR_ARGB(255,255,255,255));
 				}
 				if(tempNode->m_object->m_vX < 0)
 				{
 					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
 													tempNode->m_object->m_rect.top - m_camera->m_fY,
-													_Rectangle(tempNode->m_object->m_spriteIndex/5%3*56,100,56,56),
+													_Rectangle(tempNode->m_object->m_spriteIndex/10%3*56,112,56,56),
+													D3DCOLOR_ARGB(255,255,255,255));
+				}
+				if(tempNode->m_object->m_vX == 0)
+				{
+					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
+													tempNode->m_object->m_rect.top - m_camera->m_fY,
+													_Rectangle(tempNode->m_object->m_spriteIndex/10%3*56,0,56,56),
 													D3DCOLOR_ARGB(255,255,255,255));
 				}
 				tempNode->m_object->m_spriteIndex++;
@@ -395,17 +402,13 @@ void CGame::RenderGamePlay()
 						{
 							tempNode->m_object->m_vX += 0.1;
 						}
-						if( yy > m_prinny->y)
+						if( tempNode->m_object->m_vY > 0.4)
 						{
-							tempNode->m_object->m_vY -= 0.1;
+							tempNode->m_object->m_vY = 0.4;
 						}
-						else
+						if(tempNode->m_object->m_vX > 0.4)
 						{
-							tempNode->m_object->m_vY += 0.1;
-						}
-						if(tempNode->m_object->m_vY > 5)
-						{
-							tempNode->m_object->m_vY = 5;
+							tempNode->m_object->m_vX = 0.4;
 						}
 						if(!CheckRectCollideWithList(_Rectangle(xx + tempNode->m_object->m_vX,
 																yy,
@@ -435,7 +438,7 @@ void CGame::RenderGamePlay()
 															  tempNode->m_object->m_iHeight),
 													tempNode->m_object->m_workingArea))
 						{
-							yy += tempNode->m_object->m_vY;
+							yy += 1;
 						}
 						else
 						{
@@ -448,6 +451,7 @@ void CGame::RenderGamePlay()
 						tempNode->m_object->m_vX = 0;
 						tempNode->m_object->m_vY = 0;
 					}
+					
 				}
 			}
 			else
