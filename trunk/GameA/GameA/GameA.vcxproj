@@ -136,7 +136,7 @@
     <None Include="Sounds\Cut.wav" />
     <None Include="Sounds\Jump.mp3" />
     <None Include="Sounds\MainBackground.wav" />
-    <None Include="Sounds\MonsterDeath.mp3" />
+    <None Include="Sounds\MonsterDeath.ogg" />
     <None Include="Sounds\startgame.wav" />
   </ItemGroup>
   <ItemGroup>

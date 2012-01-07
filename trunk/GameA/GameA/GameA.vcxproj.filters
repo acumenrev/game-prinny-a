@@ -60,7 +60,7 @@
     <None Include="Map\Save.txt" />
     <None Include="Pics\UNIT\Attack3.png" />
     <None Include="Sounds\Jump.mp3" />
-    <None Include="Sounds\MonsterDeath.mp3" />
+    <None Include="Sounds\MonsterDeath.ogg" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
