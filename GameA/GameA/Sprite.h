@@ -37,6 +37,8 @@ public:
 	CSprite* m_ground1;
 	CSprite* m_background1;
 	CSprite* m_rock1;
+	CSprite* m_monster1;
+	CSprite* m_monster2;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -69,5 +71,9 @@ public:
 		m_background1 = new CSprite(d3ddev,"Pics\\UNIT\\Background1.png",D3DCOLOR_ARGB(100,100,100,100));
 		//Rock 1
 		m_rock1 = new CSprite(d3ddev,"Pics\\UNIT\\ROCK.png",D3DCOLOR_ARGB(100,100,100,100));
+		// Monster type 1
+		m_monster1 = new CSprite(d3ddev,"Pics\\UNIT\\Monster.png",D3DCOLOR_ARGB(100,100,100,100));
+		// Monster type 2
+		m_monster2 = new CSprite(d3ddev,"Pics\\UNIT\\MonsterB.png",D3DCOLOR_ARGB(100,100,100,100));
 	}
 };
