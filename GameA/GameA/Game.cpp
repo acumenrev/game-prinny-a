@@ -315,6 +315,25 @@ void CGame::RenderGamePlay()
 	}
 
 	//////////////////////////////////////////////////////////////////////////
+	/// save
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX,m_camera->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_SAVE:
+				m_allSprite->m_save->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+
+	//////////////////////////////////////////////////////////////////////////
 	/// Ground
 	//////////////////////////////////////////////////////////////////////////
 	tempNode = m_objectsList->m_head;

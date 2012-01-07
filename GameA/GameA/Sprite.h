@@ -41,6 +41,7 @@ public:
 	CSprite* m_monster2;
 	CSprite* m_monsterDestroy;
 	CSprite* m_borderMenuIn;
+	CSprite* m_save;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -81,5 +82,7 @@ public:
 		m_monster2 = new CSprite(d3ddev,"Pics\\UNIT\\MonsterB.png",D3DCOLOR_ARGB(100,100,100,100));
 		// Montser destroy
 		m_monsterDestroy = new CSprite(d3ddev,"Pics\\UNIT\\Attack3.png",D3DCOLOR_ARGB(100,100,100,100));
+		//save
+		m_save = new CSprite(d3ddev,"Pics\\UNIT\\Save.png",D3DCOLOR_ARGB(100,100,100,100));
 	}
 };
