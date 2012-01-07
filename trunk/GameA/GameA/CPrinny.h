@@ -124,7 +124,7 @@ public:
 		m_spriteIndex_Y = 0;
 		m_spriteDelay = 0;
 		IsRight = true;
-		m_statePrinny = Jump;
+		m_statePrinny = Stand;
 	}
 	/************************************************************************/
 	/*                            Update Sprite                             */

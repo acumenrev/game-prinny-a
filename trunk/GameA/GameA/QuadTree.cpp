@@ -215,7 +215,7 @@ bool CheckNodeCollideWithList(Node* node,ListNodes* objectsList)
 	{
 		if(temp->m_object->m_canCollide == true &&
 			temp->m_object->m_health > 0 &&
-			temp->m_object->m_style > '0' &&
+			temp->m_object->m_style > UNIT_BLANK &&
 			CheckCollisionBetween2Rect(node->m_object->m_rect,temp->m_object->m_rect) &&
 			node != temp)
 		{

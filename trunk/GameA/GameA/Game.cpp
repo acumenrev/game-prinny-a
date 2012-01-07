@@ -245,10 +245,9 @@ void CGame::RenderDeath()
 										m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
 										_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
 		PrinnyDeathIndex++;
-		Sleep(100);
+		Sleep(50);
 	if (PrinnyDeathIndex > 8)
 	{
-		//Sleep(500);
 		m_prinny->ReSpam(m_quadTree);	
 		m_currentState = GamePlay;
 	}
@@ -289,7 +288,7 @@ void CGame::RenderGamePlay()
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_BACKGROUND1:
-				m_allSprite->m_background1->Render(tempNode->m_object->m_rect.left- m_camera2->m_fX, tempNode->m_object->m_rect.top  - m_camera2->m_fY);
+				m_allSprite->m_background1->Render(tempNode->m_object->m_rect.left - (m_camera->m_fX*0.1),tempNode->m_object->m_rect.left - (m_camera->m_fY*0.1)-50);
 				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
@@ -364,22 +363,15 @@ void CGame::RenderGamePlay()
 				if(tempNode->m_object->m_vX > 0)
 				{
 					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-													tempNode->m_object->m_rect.top - m_camera->m_fY,
-													_Rectangle(tempNode->m_object->m_spriteIndex/10%3*56,168,56,56),
+													tempNode->m_object->m_rect.top - m_camera->m_fY+15,
+													_Rectangle(tempNode->m_object->m_spriteIndex/10%5*56,168,56,56),
 													D3DCOLOR_ARGB(255,255,255,255));
 				}
 				if(tempNode->m_object->m_vX < 0)
 				{
 					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-													tempNode->m_object->m_rect.top - m_camera->m_fY,
-													_Rectangle(tempNode->m_object->m_spriteIndex/10%3*56,112,56,56),
-													D3DCOLOR_ARGB(255,255,255,255));
-				}
-				if(tempNode->m_object->m_vX == 0)
-				{
-					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-													tempNode->m_object->m_rect.top - m_camera->m_fY,
-													_Rectangle(tempNode->m_object->m_spriteIndex/10%3*56,0,56,56),
+													tempNode->m_object->m_rect.top - m_camera->m_fY+15,
+													_Rectangle(tempNode->m_object->m_spriteIndex/10%5*56,112,56,56),
 													D3DCOLOR_ARGB(255,255,255,255));
 				}
 				tempNode->m_object->m_spriteIndex++;
@@ -389,69 +381,23 @@ void CGame::RenderGamePlay()
 				}
 				if(m_currentState == GamePlay || m_currentState == GameDeath)
 				{
-					if(CheckCollisionBetween2Rect(_Rectangle(m_prinny->x, m_prinny->y, m_prinny->m_width, m_prinny->m_height),
-												tempNode->m_object->m_workingArea))
+					long xx = tempNode->m_object->m_rect.left;
+					long yy = tempNode->m_object->m_rect.top;
+					if(CheckNodeCollideWithList(tempNode,m_objectsList))
 					{
-						long xx = tempNode->m_object->m_rect.left;
-						long yy = tempNode->m_object->m_rect.top;
-						if( xx > m_prinny->x)
-						{
-							tempNode->m_object->m_vX -= 0.1;
-						}
-						else
-						{
-							tempNode->m_object->m_vX += 0.1;
-						}
-						if( tempNode->m_object->m_vY > 0.4)
-						{
-							tempNode->m_object->m_vY = 0.4;
-						}
-						if(tempNode->m_object->m_vX > 0.4)
-						{
-							tempNode->m_object->m_vX = 0.4;
-						}
-						if(!CheckRectCollideWithList(_Rectangle(xx + tempNode->m_object->m_vX,
-																yy,
-																tempNode->m_object->m_iWidth,
-																tempNode->m_object->m_iHeight),
-													  m_objectsList) &&
-							CheckStayInAnotherRect(_Rectangle(xx + tempNode->m_object->m_vX, 
-																yy, 
-																tempNode->m_object->m_iWidth, 
-																tempNode->m_object->m_iHeight),
-													tempNode->m_object->m_workingArea))
-						{
-							xx += tempNode->m_object->m_vX;
-						}
-						else
-						{
-							tempNode->m_object->m_vX = 0;
-						}
-						if(!CheckRectCollideWithList(_Rectangle(xx,
-																yy + tempNode->m_object->m_vY,
-																tempNode->m_object->m_iWidth,
-																tempNode->m_object->m_iHeight),
-														m_objectsList) &&
-							CheckStayInAnotherRect(_Rectangle(xx, 
-															  yy + tempNode->m_object->m_vY, 
-															  tempNode->m_object->m_iWidth, 
-															  tempNode->m_object->m_iHeight),
-													tempNode->m_object->m_workingArea))
-						{
-							yy += 1;
-						}
-						else
-						{
-							tempNode->m_object->m_vY = 0;
-						}
-						tempNode->m_object->m_rect = _Rectangle(xx, yy, tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
+						tempNode->m_object->m_rect.left = tempNode->m_object->m_fx;
 					}
-					else
-					{
-						tempNode->m_object->m_vX = 0;
-						tempNode->m_object->m_vY = 0;
-					}
+					tempNode->m_object->m_rect = _Rectangle(xx+tempNode->m_object->m_vX, yy, 
+															tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
 					
+					if(CheckNodeCollideWithList(tempNode,m_objectsList)
+						|| !CheckStayInAnotherRect(tempNode->m_object->m_rect,tempNode->m_object->m_workingArea))
+					{
+						tempNode->m_object->m_vX *= -1;
+						tempNode->m_object->m_rect = _Rectangle(xx+tempNode->m_object->m_vX, yy, 
+							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
+					}
+					/*tempNode->m_object->m_rect = _Rectangle(xx, yy, tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);*/
 				}
 			}
 			else
@@ -562,8 +508,6 @@ void CGame::UpdateGamePlay()
 		break;
 	case 2:
 		m_currentState = GameDeath;
-		m_camera->m_fX = 200;
-		m_camera->m_fY = 0;
 		PrinnyDeathIndex = 0;
 		break;
 	case 3:
