@@ -96,7 +96,6 @@ public:
 		m_camera = _m_camera;
 		m_listObject = new ListNodes();
 		InitSprite();
-		//UpdateSpriteShoot();
 		m_heal = 1;	
 		m_bassSound = bassSound;
 	}
@@ -142,9 +141,6 @@ public:
 			m_spriteDelay_max = 10;
 			UpdateSpriteJump(keys);
 			break;
-		/*case Shoot:
-			UpdateSpriteShoot();
-			break;*/
 		}
 
 		m_spriteDelay++;
@@ -275,30 +271,6 @@ public:
 		}
 	}
 	/************************************************************************/
-	/*                        Update sprite shoot                           */
-	/************************************************************************/
-	/*void UpdateSpriteShoot()
-	{
-		if(IsRight == true)
-		{
-			if(y_shoot != Shoot_Right)
-			{
-				y_shoot = Shoot_Right;
-				x_shoot = 0;
-				delayShoot = 7;
-			}
-		}
-		else
-		{
-			if (y_shoot != Shoot_Left)
-			{
-				y_shoot = Shoot_Left;
-				x_shoot = 0;
-				delayShoot = 7;
-			}
-		}
-	}*/
-	/************************************************************************/
 	/*                            Move                                          */
 	/************************************************************************/
 	void Move(char keys[256])
@@ -417,7 +389,6 @@ public:
 							break;
 						}
 					}
-
 				} while (Cutting == 1);
 			}	
 		}
@@ -429,19 +400,15 @@ public:
 				x_prinnyCut = 0;
 				x_kiem = 0;
 				DelayCut = 0;
-			}
-			else
-			{
-				m_statePrinny = Stand;
-			}		
+				
+			}	
 		}
 	}
 	/************************************************************************/
 	/*                                Update                                */
 	/************************************************************************/
-	int x_before;
-	int y_before;
-	int jump_cout;
+	float x_before;
+	float y_before;
 	int Update(char keys[256],char last_keys[256],CQuadTree * m_quadTree)
 	{
 		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))
