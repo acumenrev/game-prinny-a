@@ -8,7 +8,8 @@ public:
 	/************************************************************************/
 	/*                         Public variables                             */
 	/************************************************************************/
-	CPosition m_pos;
+	int m_fx;
+	int m_fy;
 	int m_iWidth;
 	int m_iHeight;
 	// Constructors & Destructor

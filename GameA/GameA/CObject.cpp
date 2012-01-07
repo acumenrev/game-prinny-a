@@ -5,8 +5,8 @@
 /************************************************************************/
 CCObject::CCObject(void)
 {
-	m_pos.m_fX = 0;
-	m_pos.m_fY = 0;
+	m_fx = 0;
+	m_fy = 0;
 	m_iHeight = 0;
 	m_iWidth = 0;
 }
@@ -21,8 +21,6 @@ CCObject::~CCObject(void)
 /************************************************************************/
 CCObject::CCObject(float fX, float fY, char style)
 {
-	m_pos.m_fX = fX;
-	m_pos.m_fY = fY;
 	m_rotate = 0;
 	m_scale = 1;
 	m_vX = 0;
@@ -70,7 +68,8 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
 		break;
 	case UNIT_ROCK1:
-		m_canCollide=true;
+		m_canCollide = true;
+		m_canBeDestroyed = true;
 		m_rect = _Rectangle(fX, fY, SizeTile*1, SizeTile*1);
 		m_workingArea = _Rectangle(fX, fY, SizeTile*1, SizeTile*1);
 		break;
@@ -111,6 +110,8 @@ CCObject::CCObject(float fX, float fY, char style)
 	}
 	m_health = 1;
 	m_style = style;
+	m_fx = fX;
+	m_fy = fY;
 	m_iHeight = (int)(m_rect.bottom  - m_rect.top);
 	m_iWidth = (int)(m_rect.right - m_rect.left);
 }

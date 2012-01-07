@@ -6,6 +6,7 @@
 #include "Collision.h"
 #include "QuadTree.h"
 #include "Bass_Sound.h"
+#include "CObject.h"
 #define GiatocX 0.5
 #define GiatocY 0.5
 #define VxMax 3
@@ -44,6 +45,8 @@ public:
 
 	float x;
 	float y;
+	float x_save;
+	float y_save;
 	float m_height;
 	float m_wight;
 
@@ -78,6 +81,10 @@ public:
 
 		x = _x;
 		y = _y;
+		x_save = _x;
+		y_save = _y;
+		x_before = _x;
+		y_before = _y;
 		m_height = _m_height;
 		m_wight = _m_wight;
 
@@ -367,7 +374,7 @@ public:
 	int TiLeRenderY;
 	RECT m_rectSpritechem;
 	RECT m_rectSpritekiem;
-	void PrinnyCut(char keys[256],char last_keys[256])
+	void PrinnyCut(char keys[256],char last_keys[256],CQuadTree* m_quadTree)
 	{		
 		if (IsRight == true)
 		{
@@ -393,6 +400,25 @@ public:
 				x_kiem++;
 				x_prinnyCut++;
 				DelayCut = 0;
+				m_listObject->ResetListObject();
+				m_quadTree->SetObjectsList(m_listObject,_Rectangle(x + TiLeRenderX ,y + TiLeRenderY ,108,64));
+				int Cutting = 0;
+				do 
+				{
+					Cutting = 0;
+					CCObject * ob_check = ObjectCheckRectWithListCut(_Rectangle(x + TiLeRenderX ,y + TiLeRenderY ,108,64),m_listObject);
+					if(ob_check)
+					{
+						switch(ob_check->m_style)
+						{
+						case UNIT_ROCK1:
+							ob_check->m_health = 0;
+							Cutting = 1;
+							break;
+						}
+					}
+
+				} while (Cutting == 1);
 			}	
 		}
 		else
@@ -403,18 +429,12 @@ public:
 				x_prinnyCut = 0;
 				x_kiem = 0;
 				DelayCut = 0;
-				RenderChem();
 			}
 			else
 			{
 				m_statePrinny = Stand;
 			}		
 		}
-	}
-
-	void RenderChem()
-	{
-
 	}
 	/************************************************************************/
 	/*                                Update                                */
@@ -433,7 +453,7 @@ public:
 			return 2;
 		}
 		Move(keys);
-		PrinnyCut(keys,last_keys);
+		PrinnyCut(keys,last_keys,m_quadTree);
 		
 		m_listObject->ResetListObject();
 		m_quadTree->SetObjectsList(m_listObject,_Rectangle(x,y,m_wight,m_height));
@@ -508,7 +528,7 @@ public:
 		{
 			m_vY = 0;
 		}
-		if(y+m_height+10 > m_quadTree->m_root->m_rect.bottom)
+		if(y+m_height+10 > 600)
 		{
 			m_heal = 0;
 		}
@@ -552,5 +572,14 @@ public:
 		}
 		UpdateSprite(keys);
 		return 0;
+	}
+	void ReSpam(CQuadTree * m_quadTree)
+	{
+		m_heal = 1;
+		x = x_save;
+		y = y_save;
+		m_vX = 0;
+		m_vY = 0;
+		m_quadTree->SetHealth();
 	}
 };

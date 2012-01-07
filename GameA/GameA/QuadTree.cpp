@@ -142,7 +142,34 @@ void CQuadTree::Free()
 /************************************************************************/
 void CQuadTree::SetHealth(QuadNode* node)
 {
-
+	Node* temp = node->m_objectsList->m_head;
+	while(temp)
+	{
+		temp->m_object->m_health = 1;
+		temp->m_object->m_rect = _Rectangle(temp->m_object->m_fx,temp->m_object->m_fy,temp->m_object->m_iWidth,temp->m_object->m_iHeight);
+		if (temp->m_object->m_style == UNIT_DESTRUCTION)
+		{
+			temp->m_object->m_vX = 0;
+			temp->m_object->m_vY = 0;
+		}
+		temp = temp->m_nextNode;
+	}
+	if (node->m_topLeft)
+	{
+		SetHealth(node->m_topLeft);
+	}
+	if (node->m_bottomLeft)
+	{
+		SetHealth(node->m_bottomLeft);
+	}
+	if (node->m_topRight)
+	{
+		SetHealth(node->m_topRight);
+	}
+	if (node->m_bottomRight)
+	{
+		SetHealth(node->m_bottomRight);
+	}
 }
 /************************************************************************/
 /*                          Set health for entire list                  */
@@ -293,6 +320,25 @@ CCObject* ObjectCheckRectWithListCheckItems(RECT rect, ListNodes* objectsList)
 		  CheckCollisionBetween2Rect(rect,temp->m_nextNode->m_object->m_rect))
 		{
 			return temp->m_object;
+		}
+		temp = temp->m_nextNode;
+	}
+	return NULL;
+}
+/************************************************************************/
+/*                                                                      */
+/************************************************************************/
+CCObject* ObjectCheckRectWithListCut(RECT rect, ListNodes* objectsList)
+{
+	Node* temp = objectsList->m_head;
+	while(temp != NULL)
+	{
+		if(temp->m_object->m_canBeDestroyed == true &&
+			temp->m_object->m_health > 0		&&
+			temp->m_object->m_style != UNIT_BLANK &&
+			CheckCollisionBetween2Rect(rect,temp->m_object->m_rect))
+		{
+			return temp->m_object ;
 		}
 		temp = temp->m_nextNode;
 	}

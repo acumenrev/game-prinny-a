@@ -88,5 +88,6 @@ bool CheckRectCollideWithList(RECT rect, ListNodes* objectsList);
 bool CheckRectCollideWithList(RECT rect, ListNodes* objectsList, char style);
 CCObject* ObjectCheckRectWithList(RECT rect, ListNodes* objectsList);
 CCObject* ObjectCheckRectWithList(RECT rect, ListNodes* objectList, char style);
+CCObject* ObjectCheckRectWithListCut(RECT rect, ListNodes* objectsList);
 CCObject* ObjectCheckRectWithListCheckItems(RECT rect, ListNodes* objectsList);
 
