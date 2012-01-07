@@ -120,7 +120,8 @@
     <None Include="bass.dll" />
     <None Include="Map\Map1.txt" />
     <None Include="Map\Save.txt" />
-    <None Include="Pics\Border.png" />
+    <None Include="Pics\BorderInGame.png" />
+    <None Include="Pics\borderpinny.png" />
     <None Include="Pics\Menu.png" />
     <None Include="Pics\MenuBG.png" />
     <None Include="Pics\MenuInGame.png" />

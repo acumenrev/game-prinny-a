@@ -88,8 +88,8 @@ void CCMenu::Render()
 	// render background
 	m_allSprites->m_backgroundMenu->Render(0,0);
 	// render menu
-	m_allSprites->m_border->Render(270,(float)(m_menuY+260));
-	m_allSprites->m_menu->Render(275,235);
+	m_allSprites->m_border->Render(250,(float)(m_menuY+275),D3DCOLOR_ARGB(255,255,255,255));
+	m_allSprites->m_menu->Render(285,235);
 	// render selected region
 }
 /************************************************************************/
@@ -101,13 +101,6 @@ void CCMenu::RenderAbout()
 	// render background
 	m_allSprites->m_backgroundMenu->Render(0,0);
 	// sprite
-	int index_sprite = m_object->m_spriteIndex/2;
-	m_allSprites->m_prinny->Render(350,250,_Rectangle((float)(index_sprite%5*41),0,41,46),D3DCOLOR_ARGB(255,255,255,255));
-	m_object->m_spriteIndex++;
-	if(m_object->m_spriteIndex>=5)
-	{
-		m_object->m_spriteIndex=0;
-	}
 }
 /************************************************************************/
 /*                           Update About                               */

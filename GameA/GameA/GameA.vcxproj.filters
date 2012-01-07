@@ -40,7 +40,6 @@
     <ClInclude Include="Bass_Sound.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pics\Border.png" />
     <None Include="Pics\Menu.png" />
     <None Include="Pics\MenuBG.png" />
     <None Include="Pics\MenuInGame.png" />
@@ -61,6 +60,8 @@
     <None Include="Pics\UNIT\Attack3.png" />
     <None Include="Sounds\Jump.mp3" />
     <None Include="Sounds\MonsterDeath.ogg" />
+    <None Include="Pics\BorderInGame.png" />
+    <None Include="Pics\borderpinny.png" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
