@@ -150,7 +150,7 @@ void CGame::InitObject()
 	//m_bassSound->Play("startgame",false);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("Boom",100);
-	m_prinny = new CPrinny(0,0,36,36,m_allSprite,m_camera,m_bassSound);
+	m_prinny = new CPrinny(0,0,40,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
 	m_quadTreeMap1 = new CQuadTree(SizeTile*10, SizeTile*10);
 	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");

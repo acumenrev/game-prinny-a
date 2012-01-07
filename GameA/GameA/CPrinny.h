@@ -571,6 +571,17 @@ public:
 			}
 		}
 		UpdateSprite(keys);
+		/////////////////
+		CCObject * ob_check = ObjectCheckRectWithListCheckItems(_Rectangle(x,y,m_wight,m_height),m_listObject);
+		if(ob_check)
+		{
+			switch(ob_check->m_style)
+			{
+			case UNIT_ROCK1:
+				m_heal = 0;
+				break;
+			}
+		}
 		return 0;
 	}
 	void ReSpam(CQuadTree * m_quadTree)

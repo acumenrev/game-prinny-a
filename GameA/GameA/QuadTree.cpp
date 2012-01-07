@@ -316,8 +316,8 @@ CCObject* ObjectCheckRectWithListCheckItems(RECT rect, ListNodes* objectsList)
 	{
 		if(temp->m_object->m_checkedItem == true &&
 			temp->m_object->m_health > 0 &&
-			temp->m_object->m_style == UNIT_BLANK &&
-		  CheckCollisionBetween2Rect(rect,temp->m_nextNode->m_object->m_rect))
+			temp->m_object->m_style != UNIT_BLANK &&
+		CheckCollisionBetween2Rect(rect,temp->m_object->m_rect))
 		{
 			return temp->m_object;
 		}
