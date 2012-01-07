@@ -152,7 +152,7 @@ void CGame::InitObject()
 	m_bassSound->SetItemVolume("Boom",100);
 	m_prinny = new CPrinny(0,0,36,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
-	m_quadTreeMap1 = new CQuadTree(SizeTile*11, SizeTile*15);
+	m_quadTreeMap1 = new CQuadTree(SizeTile*10, SizeTile*10);
 	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");
 	// set m_currentMap
 	m_currentMap = 1;
@@ -246,7 +246,8 @@ void CGame::RenderDeath()
 	Sleep(50);
 	if (PrinnyDeathIndex > 8)
 	{
-		m_prinny->m_heal = 1;	
+		//Sleep(500);
+		m_prinny->ReSpam(m_quadTree);	
 		m_currentState = GamePlay;
 	}
 }
@@ -340,8 +341,10 @@ void CGame::RenderGamePlay()
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_ROCK1:
-				m_allSprite->m_rock1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
-				//m_allSprite->m_ground1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
+				if (tempNode->m_object->m_health > 0)
+				{
+					m_allSprite->m_rock1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				}			
 				break;
 			}
 		}
@@ -361,21 +364,24 @@ void CGame::RenderGamePlay()
 		tempNode = tempNode->m_nextNode;
 	}
 	// Render Prinny
-	if(m_prinny->x_prinnyCut < 7)
+	if (m_prinny->m_heal > 0)
 	{
-		m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
-									m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
-									m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));
-		m_allSprite->m_cut->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2+m_prinny->TiLeRenderX-21,
-								m_prinny->y-m_camera->m_fY+m_prinny->m_height/2+m_prinny->TiLeRenderY-29,
-								m_prinny->m_rectSpritekiem,D3DCOLOR_ARGB(255,255,255,255));
-	}
-	else
-	{		
-		m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
-									m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
-									m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));	
-	}
+		if(m_prinny->x_prinnyCut < 7)
+		{
+			m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
+				m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
+				m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));
+			m_allSprite->m_cut->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2+m_prinny->TiLeRenderX-21,
+				m_prinny->y-m_camera->m_fY+m_prinny->m_height/2+m_prinny->TiLeRenderY-29,
+				m_prinny->m_rectSpritekiem,D3DCOLOR_ARGB(255,255,255,255));
+		}
+		else
+		{		
+			m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
+				m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
+				m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));	
+		}
+	}	
 }
 
 /************************************************************************/
