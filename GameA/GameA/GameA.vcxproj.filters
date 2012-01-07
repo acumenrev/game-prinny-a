@@ -57,6 +57,7 @@
     <None Include="Pics\UNIT\BreakBrick.png" />
     <None Include="Pics\UNIT\grass.png" />
     <None Include="Pics\UNIT\ROCK.png" />
+    <None Include="Map\Save.txt" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />

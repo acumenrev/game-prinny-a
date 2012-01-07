@@ -402,7 +402,8 @@ void CGame::Update()
 		m_bassSound->Play("stargame",false);
 		m_bassSound->SetItemVolume("startgame",100);
 		m_bassSound->SetItemVolume("MainBackground",0);	
-		/*if(m_menu->Update(m_keys,m_lastKeys,m_currentState) == 1)
+/*
+		if(m_menu->Update(m_keys,m_lastKeys,m_currentState) == 1)
 		{
 			m_currentState = GamePlay;
 			m_currentMap = 1;
@@ -412,16 +413,16 @@ void CGame::Update()
 		switch(m_menu->Update(m_keys,m_lastKeys,m_currentState))
 		{
 		case 1:
-			/*m_currentState = GamePlay;
+			m_currentState = GamePlay;
 			m_currentMap = 1;
 			Loadmap();
-			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);*/
+			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);
 			break;
 		case 2:
-			/*ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
+			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
 			m_currentState = GamePlay;
 			Loadmap();
-			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);*/
+			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
 			break;
 		}
 		break;
