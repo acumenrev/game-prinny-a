@@ -452,7 +452,7 @@ void CGame::RenderGamePlay()
 			}
 			else
 			{	
-				if(tempNode->m_object->m_spriteIndex <= 8*4)
+				if(tempNode->m_object->m_spriteIndex <= 8*5)
 				{
 					m_bassSound->Play("MonsterDeath",false);
 					m_allSprite->m_monsterDestroy->Render(tempNode->m_object->m_rect.left - m_camera->m_fX -28,tempNode->m_object->m_rect.top - m_camera->m_fY-28,

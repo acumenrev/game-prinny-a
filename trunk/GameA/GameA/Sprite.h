@@ -40,6 +40,7 @@ public:
 	CSprite* m_monster1;
 	CSprite* m_monster2;
 	CSprite* m_monsterDestroy;
+	CSprite* m_borderMenuIn;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -61,7 +62,9 @@ public:
 		//Priny die
 		m_prinnyDeath = new CSprite(d3ddev,"Pics\\Prinny\\die.png",D3DCOLOR_ARGB(255,0,102,102));
 		// BorderMenu
-		m_border = new CSprite (d3ddev,"Pics\\Border.png",D3DCOLOR_ARGB(100,100,100,100));
+		m_border = new CSprite (d3ddev,"Pics\\borderpinny.png",D3DCOLOR_ARGB(255,101,141,209));
+		// border menu in
+		m_borderMenuIn = new CSprite (d3ddev,"Pics\\BorderInGame.png",D3DCOLOR_ARGB(100,100,100,100));
 		// cut
 		m_cut = new CSprite (d3ddev,"Pics\\Prinny\\Chem.png",D3DCOLOR_ARGB(100,100,100,100));
 		// Grass 
