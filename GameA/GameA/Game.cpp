@@ -152,7 +152,7 @@ void CGame::InitObject()
 	m_bassSound->SetItemVolume("Boom",100);
 	m_prinny = new CPrinny(0,0,40,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
-	m_quadTreeMap1 = new CQuadTree(SizeTile*10, SizeTile*10);
+	m_quadTreeMap1 = new CQuadTree(SizeTile*300, SizeTile*300);
 	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");
 	// set m_currentMap
 	m_currentMap = 1;
@@ -280,7 +280,9 @@ void CGame::RenderGamePlay()
 	while(tempNode != NULL)
 	{
 		if(tempNode->m_object->m_health > 0 &&
-			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera2->m_fX,m_camera2->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera2->m_fX,
+																					m_camera2->m_fY,
+																					WINDOW_WIDTH,WINDOW_HEIGHT)))
 		{
 			switch(tempNode->m_object->m_style)
 			{

@@ -495,7 +495,7 @@ public:
 		{
 			m_vY = 0;
 		}
-		if(y+m_height+10 > 600)
+		if(y+m_height+10 > m_quadTree->m_root->m_rect.bottom)
 		{
 			m_heal = 0;
 		}
@@ -517,7 +517,7 @@ public:
 				}
 				if (!CheckStayInAnotherRect(_Rectangle(x,y+m_vY,m_width,m_height),m_quadTree->m_root->m_rect))
 				{
-					m_vY = 0;
+					m_vX = 0;
 				}
 				y += m_vY;
 				x += m_vX;
