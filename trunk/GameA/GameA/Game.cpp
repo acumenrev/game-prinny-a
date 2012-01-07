@@ -239,7 +239,7 @@ void CGame::RenderDeath()
 	{
 		hang = 0;
 	}
-	m_allSprite->m_prinnyDeath->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
+	m_allSprite->m_prinnyDeath->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_width/2-21,
 										m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
 										_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
 	PrinnyDeathIndex++;
@@ -356,10 +356,33 @@ void CGame::RenderGamePlay()
 	tempNode = m_objectsList->m_head;
 	while(tempNode != NULL)
 	{
-		if(tempNode->m_object->m_health > 0 &&
-			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX, m_camera->m_fY, WINDOW_WIDTH, WINDOW_HEIGHT)))
+		if(tempNode->m_object->m_style == UNIT_MONSTER1)
 		{
-				
+			if(tempNode->m_object->m_health > 0)
+			{
+				if(tempNode->m_object->m_vX >= 0)
+				{
+					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
+													tempNode->m_object->m_rect.top - m_camera->m_fY,
+													_Rectangle(tempNode->m_object->m_spriteIndex*56,100,56,56),
+													D3DCOLOR_ARGB(255,255,255,255));
+				}
+				if(tempNode->m_object->m_vX < 0)
+				{
+					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
+													tempNode->m_object->m_rect.top - m_camera->m_fY,
+													_Rectangle(tempNode->m_object->m_spriteIndex*56,0,56,56),
+													D3DCOLOR_ARGB(255,255,255,255));
+				}
+				if(tempNode->m_object->m_spriteIndex >= 5)
+				{
+					tempNode->m_object->m_spriteIndex = 0;
+				}
+				if(m_currentState == GamePlay || m_currentState == GameDeath)
+				{
+					
+				}
+			}
 		}
 		tempNode = tempNode->m_nextNode;
 	}
@@ -368,16 +391,16 @@ void CGame::RenderGamePlay()
 	{
 		if(m_prinny->x_prinnyCut < 7)
 		{
-			m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
+			m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_width/2-21,
 				m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
 				m_prinny->m_rectSpritechem,D3DCOLOR_ARGB(255,255,255,255));
-			m_allSprite->m_cut->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2+m_prinny->TiLeRenderX-21,
+			m_allSprite->m_cut->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_width/2+m_prinny->TiLeRenderX-21,
 				m_prinny->y-m_camera->m_fY+m_prinny->m_height/2+m_prinny->TiLeRenderY-29,
 				m_prinny->m_rectSpritekiem,D3DCOLOR_ARGB(255,255,255,255));
 		}
 		else
 		{		
-			m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_wight/2-21,
+			m_allSprite->m_prinny->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_width/2-21,
 				m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
 				m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));	
 		}
@@ -470,7 +493,7 @@ void CGame::UpdateGamePlay()
 		m_currentState = MenuIn;
 		break;
 	}
-	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2 + m_prinny->m_wight/2, 
+	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2 + m_prinny->m_width/2, 
 						  m_prinny->y - WINDOW_HEIGHT/2 + m_prinny->m_height/2,
 						 m_quadTree->m_root->m_rect.right,
 						 m_quadTree->m_root->m_rect.bottom);

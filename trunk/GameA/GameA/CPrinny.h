@@ -48,7 +48,7 @@ public:
 	float x_save;
 	float y_save;
 	float m_height;
-	float m_wight;
+	float m_width;
 
 	float m_vX;
 	float m_vY;
@@ -75,7 +75,7 @@ public:
 	/************************************************************************/
 	/*                             Methods                                  */
 	/************************************************************************/
-	CPrinny(float _x , float _y , float _m_height , float _m_wight , AllSprite * _m_allSprites , CCamera * _m_camera, WaZ_Game_App::Bass_Sound* bassSound)
+	CPrinny(float _x , float _y , float _m_height , float _m_width , AllSprite * _m_allSprites , CCamera * _m_camera, WaZ_Game_App::Bass_Sound* bassSound)
 	{
 		m_allSprites = _m_allSprites;
 
@@ -86,7 +86,7 @@ public:
 		x_before = _x;
 		y_before = _y;
 		m_height = _m_height;
-		m_wight = _m_wight;
+		m_width = _m_width;
 
 		m_vX = 0;
 		m_vY = 0;
@@ -320,8 +320,8 @@ public:
 	/************************************************************************/
 	void jump()
 	{
-		bool CollisionLeft = CheckRectCollideWithList(_Rectangle(x-VJump,y-VJump,m_wight,m_height),m_listObject);
-		bool CollisionRight = CheckRectCollideWithList(_Rectangle(x+VJump,y-VJump,m_wight,m_height),m_listObject);
+		bool CollisionLeft = CheckRectCollideWithList(_Rectangle(x-VJump,y-VJump,m_width,m_height),m_listObject);
+		bool CollisionRight = CheckRectCollideWithList(_Rectangle(x+VJump,y-VJump,m_width,m_height),m_listObject);
 
 		if(CollisionLeft == true && CollisionRight == false)
 		{
@@ -423,12 +423,12 @@ public:
 		PrinnyCut(keys,last_keys,m_quadTree);
 		
 		m_listObject->ResetListObject();
-		m_quadTree->SetObjectsList(m_listObject,_Rectangle(x,y,m_wight,m_height));
+		m_quadTree->SetObjectsList(m_listObject,_Rectangle(x,y,m_width,m_height));
 		//
-		if(CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
+		if(CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_width,m_height),m_listObject))
 		{ 
 			IsJump = true;
-			if (!CheckRectCollideWithList(_Rectangle(x,y+m_vY,m_wight,m_height),m_listObject)) // va cham trai' phai?
+			if (!CheckRectCollideWithList(_Rectangle(x,y+m_vY,m_width,m_height),m_listObject)) // va cham trai' phai?
 			{			
 				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
 				{	
@@ -442,7 +442,7 @@ public:
 			}
 			else
 			{
-				if (!CheckRectCollideWithList(_Rectangle(x+m_vX,y,m_wight,m_height),m_listObject)) // va cham tren duoi'
+				if (!CheckRectCollideWithList(_Rectangle(x+m_vX,y,m_width,m_height),m_listObject)) // va cham tren duoi'
 				{
 					if(m_vY > 0) // va cham tren
 					{
@@ -500,9 +500,9 @@ public:
 			m_heal = 0;
 		}
 		/////////////////
-		if(!CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_listObject))
+		if(!CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_width,m_height),m_listObject))
 		{
-			if(CheckStayInAnotherRect(_Rectangle((x+m_vX),(y+m_vY),m_wight,m_height),m_quadTree->m_root->m_rect))
+			if(CheckStayInAnotherRect(_Rectangle((x+m_vX),(y+m_vY),m_width,m_height),m_quadTree->m_root->m_rect))
 			{
 				x_before = x;
 				y_before = y;
@@ -511,11 +511,11 @@ public:
 			}
 			else
 			{
-				if (!CheckStayInAnotherRect(_Rectangle((x+m_vX),y,m_wight,m_height),m_quadTree->m_root->m_rect))
+				if (!CheckStayInAnotherRect(_Rectangle((x+m_vX),y,m_width,m_height),m_quadTree->m_root->m_rect))
 				{
 					m_vX = 0;
 				}
-				if (!CheckStayInAnotherRect(_Rectangle(x,y+m_vY,m_wight,m_height),m_quadTree->m_root->m_rect))
+				if (!CheckStayInAnotherRect(_Rectangle(x,y+m_vY,m_width,m_height),m_quadTree->m_root->m_rect))
 				{
 					m_vY = 0;
 				}
@@ -525,7 +525,7 @@ public:
 		}
 		else
 		{
-			if(CheckRectCollideWithList(_Rectangle(x_before,y_before,m_wight,m_height),m_listObject))
+			if(CheckRectCollideWithList(_Rectangle(x_before,y_before,m_width,m_height),m_listObject))
 			{
 				m_heal = 0;
 			}
@@ -539,7 +539,7 @@ public:
 		}
 		UpdateSprite(keys);
 		/////////////////
-		CCObject * ob_check = ObjectCheckRectWithListCheckItems(_Rectangle(x,y,m_wight,m_height),m_listObject);
+		CCObject * ob_check = ObjectCheckRectWithListCheckItems(_Rectangle(x,y,m_width,m_height),m_listObject);
 		if(ob_check)
 		{
 			switch(ob_check->m_style)
