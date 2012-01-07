@@ -141,15 +141,16 @@ void CGame::InitObject()
 		return;
 	}
 	m_bassSound->Init(-1,44100,0);
-	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"startgame","Sounds\\startgame.wav", BASS_MUSIC_RAMPS);
-	m_bassSound->SetItemVolume("startgame",100);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Cut","Sounds\\Cut.wav",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("Cut",50);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"MainBackground","Sounds\\MainBackground.wav",BASS_MUSIC_RAMPS | BASS_MUSIC_LOOP);
 	m_bassSound->SetItemVolume("MainBackground",100);
-	//m_bassSound->Play("startgame",false);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Jump","Sounds\\Jump.mp3", BASS_MUSIC_RAMPS);
+	m_bassSound->SetItemVolume("Jump",100);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"Boom","Sounds\\Boom.ogg",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("Boom",100);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"MonsterDeath","Sounds\\MonsterDeath.mp3",BASS_MUSIC_RAMPS);
+	m_bassSound->SetItemVolume("MonsterDeath",50);
 	m_prinny = new CPrinny(0,0,40,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
 	m_quadTreeMap1 = new CQuadTree(SizeTile*300, SizeTile*300);
@@ -239,11 +240,12 @@ void CGame::RenderDeath()
 	{
 		hang = 0;
 	}
-	m_allSprite->m_prinnyDeath->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_width/2-21,
+
+		m_allSprite->m_prinnyDeath->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_width/2-21,
 										m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
 										_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
-	PrinnyDeathIndex++;
-	Sleep(50);
+		PrinnyDeathIndex++;
+		Sleep(100);
 	if (PrinnyDeathIndex > 8)
 	{
 		//Sleep(500);
@@ -347,16 +349,6 @@ void CGame::RenderGamePlay()
 				break;
 			}
 		}
-		else
-		{
-			if(tempNode->m_object->m_health == 0 && tempNode->m_object->m_spriteIndex <= 8*3)
-			{
-				m_allSprite->m_monsterDestroy->Render(tempNode->m_object->m_rect.left - m_camera->m_fX-28,tempNode->m_object->m_rect.top - m_camera->m_fY-28,
-					_Rectangle(tempNode->m_object->m_spriteIndex/3%5*120,tempNode->m_object->m_spriteIndex/3/5*120,120,120),D3DCOLOR_ARGB(255,255,255,255));
-				tempNode->m_object->m_spriteIndex++;
-			}
-
-		}
 		tempNode = tempNode->m_nextNode;
 	}
 	//////////////////////////////////////////////////////////////////////////
@@ -393,9 +385,10 @@ void CGame::RenderGamePlay()
 				}
 			}
 			else
-			{
-				if(tempNode->m_object->m_spriteIndex <= 8*3)
+			{	
+				if(tempNode->m_object->m_spriteIndex <= 8*4)
 				{
+					m_bassSound->Play("MonsterDeath",false);
 					m_allSprite->m_monsterDestroy->Render(tempNode->m_object->m_rect.left - m_camera->m_fX -28,tempNode->m_object->m_rect.top - m_camera->m_fY-28,
 															_Rectangle(tempNode->m_object->m_spriteIndex/3%5*120,tempNode->m_object->m_spriteIndex/3/5*120,120,120),D3DCOLOR_ARGB(255,255,255,255));
 					tempNode->m_object->m_spriteIndex++;
@@ -434,14 +427,11 @@ void CGame::Update()
 	switch(m_currentState)
 	{
 	case GamePlay:
-		m_bassSound->SetItemVolume("startgame",0);
 		m_bassSound->SetItemVolume("MainBackground",100);
 		m_bassSound->Play("MainBackground",false);
 		UpdateGamePlay();
 		break;
 	case GameMenu:
-		m_bassSound->Play("stargame",false);
-		m_bassSound->SetItemVolume("startgame",100);
 		m_bassSound->SetItemVolume("MainBackground",0);	
 /*
 		if(m_menu->Update(m_keys,m_lastKeys,m_currentState) == 1)
