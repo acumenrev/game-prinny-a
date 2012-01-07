@@ -385,10 +385,12 @@ public:
 						{
 						case UNIT_ROCK1:
 							ob_check->m_health = 0;
+							ob_check->m_spriteIndex = 0;
 							Cutting = 1;
 							break;
 						case UNIT_MONSTER1:
 							ob_check->m_health = 0;
+							ob_check->m_spriteIndex = 0;
 							Cutting = 1;
 							break;
 						}
@@ -520,7 +522,7 @@ public:
 				}
 				if (!CheckStayInAnotherRect(_Rectangle(x,y+m_vY,m_width,m_height),m_quadTree->m_root->m_rect))
 				{
-					m_vX = 0;
+					m_vY = 0;
 				}
 				y += m_vY;
 				x += m_vX;
@@ -548,6 +550,9 @@ public:
 			switch(ob_check->m_style)
 			{
 			case UNIT_ROCK1:
+				m_heal = 0;
+				break;
+			case UNIT_MONSTER1:
 				m_heal = 0;
 				break;
 			}

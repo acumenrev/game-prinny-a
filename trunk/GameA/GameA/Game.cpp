@@ -343,12 +343,19 @@ void CGame::RenderGamePlay()
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_ROCK1:
-				if (tempNode->m_object->m_health > 0)
-				{
 					m_allSprite->m_rock1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
-				}			
 				break;
 			}
+		}
+		else
+		{
+			if(tempNode->m_object->m_health == 0 && tempNode->m_object->m_spriteIndex <= 8*3)
+			{
+				m_allSprite->m_monsterDestroy->Render(tempNode->m_object->m_rect.left - m_camera->m_fX-28,tempNode->m_object->m_rect.top - m_camera->m_fY-28,
+					_Rectangle(tempNode->m_object->m_spriteIndex/3%5*120,tempNode->m_object->m_spriteIndex/3/5*120,120,120),D3DCOLOR_ARGB(255,255,255,255));
+				tempNode->m_object->m_spriteIndex++;
+			}
+
 		}
 		tempNode = tempNode->m_nextNode;
 	}
@@ -383,6 +390,15 @@ void CGame::RenderGamePlay()
 				if(m_currentState == GamePlay || m_currentState == GameDeath)
 				{
 					
+				}
+			}
+			else
+			{
+				if(tempNode->m_object->m_spriteIndex <= 8*3)
+				{
+					m_allSprite->m_monsterDestroy->Render(tempNode->m_object->m_rect.left - m_camera->m_fX -28,tempNode->m_object->m_rect.top - m_camera->m_fY-28,
+															_Rectangle(tempNode->m_object->m_spriteIndex/3%5*120,tempNode->m_object->m_spriteIndex/3/5*120,120,120),D3DCOLOR_ARGB(255,255,255,255));
+					tempNode->m_object->m_spriteIndex++;
 				}
 			}
 		}
