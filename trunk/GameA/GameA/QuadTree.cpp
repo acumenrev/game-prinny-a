@@ -11,7 +11,7 @@ CQuadTree::CQuadTree(void)
 //////////////////////////////////////////////////////////////////////////
 CQuadTree::CQuadTree(int width, int height)
 {
-	m_root = new QuadNode(0,0,width,height);
+	m_root = new QuadNode(SizeTile,SizeTile,width,height);
 	m_fX = 0;
 	m_fY = 0;
 }
