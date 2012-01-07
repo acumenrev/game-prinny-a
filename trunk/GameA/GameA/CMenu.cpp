@@ -63,10 +63,10 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 		switch(m_choice)
 		{
 		case 1: // New Game
-			currentState = GamePlay;
+			return 1;
 			break;
 		case 2: // Continue
-			currentState = GameDeath;
+			return 2;
 			break;
 		case 3: // About
 			currentState = GameAbout;
@@ -77,9 +77,8 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 		default:
 			break;
 		}
-		return 0;
 	}
-	return 1;
+	return 0;
 }
 /************************************************************************/
 /*                          Render menu                                 */

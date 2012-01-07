@@ -51,7 +51,7 @@ void ReadFile(CQuadTree* quadTree, char* fileName)
 void SaveFile(int currentMap, float fX, float fY)
 {
 	FILE* f;
-	f = fopen("Save.txt","r+");
+	f = fopen("Map\\Save.txt","r+");
 	fputc(currentMap,f);
 	fputc((int)fX/SizeTile,f);
 	fputc((int)fY/SizeTile,f);
@@ -63,7 +63,7 @@ void SaveFile(int currentMap, float fX, float fY)
 void ReadSavedFile(int& currentMap, float& fX, float& fY)
 {
 	FILE* f;
-	f = fopen("Save.txt","r+");
+	f = fopen("Map\\Save.txt","r+");
 	currentMap = fgetc(f);
 	fX = (float)fgetc(f)*SizeTile;
 	fY = (float)fgetc(f)*SizeTile;
