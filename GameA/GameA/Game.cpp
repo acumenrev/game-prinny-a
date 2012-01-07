@@ -434,7 +434,7 @@ void CGame::Update()
 		menuInGameChoice = m_menuInGame->Update(m_keys,m_lastKeys,m_currentState);
 		if(menuInGameChoice == 1)
 		{
-			// Save file
+			SaveFile(m_currentState,m_prinny->x,m_prinny->y);
 			m_currentState = GamePlay;
 		}
 		break;
