@@ -387,6 +387,10 @@ public:
 							ob_check->m_health = 0;
 							Cutting = 1;
 							break;
+						case UNIT_MONSTER1:
+							ob_check->m_health = 0;
+							Cutting = 1;
+							break;
 						}
 					}
 				} while (Cutting == 1);
@@ -400,7 +404,6 @@ public:
 				x_prinnyCut = 0;
 				x_kiem = 0;
 				DelayCut = 0;
-				
 			}	
 		}
 	}
