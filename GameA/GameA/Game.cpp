@@ -412,7 +412,7 @@ void CGame::RenderGamePlay()
 	tempNode = m_objectsList->m_head;
 	while(tempNode != NULL)
 	{
-		if(tempNode->m_object->m_style == UNIT_MONSTER1)
+		if(tempNode->m_object->m_style == UNIT_MONSTER1 || tempNode->m_object->m_style == UNIT_MONSTER2)
 		{
 			if(tempNode->m_object->m_health > 0)
 			{
@@ -474,6 +474,72 @@ void CGame::RenderGamePlay()
 					m_bassSound->Play("MonsterDeath",false);
 					m_allSprite->m_monsterDestroy->Render(tempNode->m_object->m_rect.left - m_camera->m_fX -28,tempNode->m_object->m_rect.top - m_camera->m_fY-28,
 															_Rectangle(tempNode->m_object->m_spriteIndex/3%5*120,tempNode->m_object->m_spriteIndex/3/5*120,120,120),D3DCOLOR_ARGB(255,255,255,255));
+					tempNode->m_object->m_spriteIndex++;
+				}
+			}
+		}
+		if(tempNode->m_object->m_style == UNIT_MONSTER3)
+		{
+			if(tempNode->m_object->m_health > 0)
+			{
+				if(tempNode->m_object->m_vX > 0)
+				{
+					m_allSprite->m_monster3->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
+						tempNode->m_object->m_rect.top -m_camera->m_fY,
+						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,58,40,40),
+						D3DCOLOR_ARGB(255,255,255,255));
+				}
+				if(tempNode->m_object->m_vX < 0)
+				{
+					m_allSprite->m_monster3->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
+						tempNode->m_object->m_rect.top - m_camera->m_fY,
+						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,0,40,40),
+						D3DCOLOR_ARGB(255,255,255,255));
+				}
+				tempNode->m_object->m_spriteIndex++;
+				if(tempNode->m_object->m_spriteIndex >= 10*8)
+				{
+					tempNode->m_object->m_spriteIndex = 0;
+				}
+				if(m_currentState == GamePlay || m_currentState == GameDeath)
+				{
+					long xx = tempNode->m_object->m_rect.left;
+					long yy = tempNode->m_object->m_rect.top;
+					if(CheckNodeCollideWithList(tempNode,m_objectsList))
+					{
+						tempNode->m_object->m_rect.left = tempNode->m_object->m_fx;
+					}
+					tempNode->m_object->m_rect = _Rectangle(xx+tempNode->m_object->m_vX, yy, 
+						tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
+
+					if(CheckNodeCollideWithList(tempNode,m_objectsList)
+						|| !CheckStayInAnotherRect(tempNode->m_object->m_rect,tempNode->m_object->m_workingArea))
+					{
+						tempNode->m_object->m_vX *= -1;
+						tempNode->m_object->m_rect = _Rectangle(xx+tempNode->m_object->m_vX, yy, 
+							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
+					}
+					else
+					{
+						if(!CheckRectCollideWithList( _Rectangle(xx, yy+tempNode->m_object->m_vY, 
+							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight),m_objectsList)
+							|| !CheckStayInAnotherRect(_Rectangle(xx, yy+tempNode->m_object->m_vY, 
+							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight),tempNode->m_object->m_workingArea))
+						{
+							tempNode->m_object->m_vY = 5;
+							tempNode->m_object->m_rect = _Rectangle(xx, yy+tempNode->m_object->m_vY, 
+								tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
+						}
+					}
+				}
+			}
+			else
+			{	
+				if(tempNode->m_object->m_spriteIndex <= 8*5)
+				{
+					m_bassSound->Play("MonsterDeath",false);
+					m_allSprite->m_monsterDestroy->Render(tempNode->m_object->m_rect.left - m_camera->m_fX -28,tempNode->m_object->m_rect.top - m_camera->m_fY-28,
+						_Rectangle(tempNode->m_object->m_spriteIndex/3%5*120,tempNode->m_object->m_spriteIndex/3/5*120,120,120),D3DCOLOR_ARGB(255,255,255,255));
 					tempNode->m_object->m_spriteIndex++;
 				}
 			}

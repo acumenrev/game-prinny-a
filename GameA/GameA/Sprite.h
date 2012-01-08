@@ -39,6 +39,7 @@ public:
 	CSprite* m_rock1;
 	CSprite* m_monster1;
 	CSprite* m_monster2;
+	CSprite* m_monster3;
 	CSprite* m_monsterDestroy;
 	CSprite* m_borderMenuIn;
 	CSprite* m_save;
@@ -81,6 +82,8 @@ public:
 		m_monster1 = new CSprite(d3ddev,"Pics\\UNIT\\Monster.png",D3DCOLOR_ARGB(100,100,100,100));
 		// Monster type 2
 		m_monster2 = new CSprite(d3ddev,"Pics\\UNIT\\MonsterB.png",D3DCOLOR_ARGB(100,100,100,100));
+		// Monster type 3
+		m_monster3 = new CSprite(d3ddev,"Pics\\UNIT\\MonsterC.png",D3DCOLOR_ARGB(100,100,100,100));
 		// Montser destroy
 		m_monsterDestroy = new CSprite(d3ddev,"Pics\\UNIT\\Attack3.png",D3DCOLOR_ARGB(100,100,100,100));
 		//save
