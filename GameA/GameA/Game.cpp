@@ -159,9 +159,9 @@ void CGame::InitObject()
 	m_prinny = new CPrinny(0,0,40,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
 	m_quadTreeMap1 = new CQuadTree(SizeTile*300, SizeTile*300);
-	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");
+	ReadFile(m_quadTreeMap1,"Map\\Map2.txt");
 	m_quadTreeMap2 = new CQuadTree(SizeTile*300, SizeTile*300);
-	ReadFile(m_quadTreeMap2,"Map\\Map2.txt");
+	ReadFile(m_quadTreeMap2,"Map\\Map1.txt");
 	// set m_currentMap
 	m_currentMap = 1;
 	Loadmap();
@@ -303,6 +303,27 @@ void CGame::RenderGamePlay()
 		tempNode = tempNode->m_nextNode;
 	}
 	//////////////////////////////////////////////////////////////////////////
+	/// Background1
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera2->m_fX,
+			m_camera2->m_fY,
+			WINDOW_WIDTH,WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_BACKGROUND2:
+				m_allSprite->m_background2->Render(tempNode->m_object->m_rect.left - (m_camera->m_fX*0.01),tempNode->m_object->m_rect.left - (m_camera->m_fY*0.1)-50);
+				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	//////////////////////////////////////////////////////////////////////////
 	/// Grass
 	//////////////////////////////////////////////////////////////////////////
 	tempNode = m_objectsList->m_head;
@@ -320,7 +341,42 @@ void CGame::RenderGamePlay()
 		}
 		tempNode = tempNode->m_nextNode;
 	}
-
+	//////////////////////////////////////////////////////////////////////////
+	/// Grass1M2
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX,m_camera->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_GRASS1M2:
+				m_allSprite->m_grass1m2->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	//////////////////////////////////////////////////////////////////////////
+	/// Grass2M2
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX,m_camera->m_fY,WINDOW_WIDTH,WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_GRASS2M2:
+				m_allSprite->m_grass2m2->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
 	//////////////////////////////////////////////////////////////////////////
 	/// save
 	//////////////////////////////////////////////////////////////////////////
@@ -362,6 +418,24 @@ void CGame::RenderGamePlay()
 		tempNode = tempNode->m_nextNode;
 	}
 	//////////////////////////////////////////////////////////////////////////
+	/// GroundM2
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX, m_camera->m_fY, WINDOW_WIDTH, WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_GROUND1M2:
+				m_allSprite->m_groundm2->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	//////////////////////////////////////////////////////////////////////////
 	/// Rock1 units
 	//////////////////////////////////////////////////////////////////////////
 	tempNode = m_objectsList->m_head;
@@ -374,6 +448,24 @@ void CGame::RenderGamePlay()
 			{
 			case UNIT_ROCK1:
 					m_allSprite->m_rock1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	//////////////////////////////////////////////////////////////////////////
+	/// RockM2 units
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, _Rectangle(m_camera->m_fX, m_camera->m_fY, WINDOW_WIDTH, WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_ROCKM2:
+				m_allSprite->m_rockm2->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
 				break;
 			}
 		}
