@@ -143,6 +143,7 @@
     <None Include="Pics\UNIT\ROCK.png" />
     <None Include="Pics\UNIT\RockM2.png" />
     <None Include="Pics\UNIT\Save.png" />
+    <None Include="Pics\UNIT\TrapM2.png" />
     <None Include="Sounds\Boom.ogg" />
     <None Include="Sounds\Cut.wav" />
     <None Include="Sounds\Jump.mp3" />

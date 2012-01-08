@@ -141,6 +141,13 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_rect = _Rectangle(fX,fY, SizeTile, SizeTile*2);
 		m_workingArea = _Rectangle(fX,fY,SizeTile,SizeTile*2);
 		break;
+	case UNIT_TRAP:
+		m_canCollide = false;
+		m_checkedItem = true;
+		m_canBeDestroyed = false;
+		m_rect = _Rectangle(fX,fY, SizeTile, SizeTile*2);
+		m_workingArea = _Rectangle(fX,fY,SizeTile,SizeTile*2);
+		break;
 	case UNIT_GROUND1M2:
 		m_canCollide = true;
 		m_rect = _Rectangle(fX, fY, SizeTile*11, SizeTile);
