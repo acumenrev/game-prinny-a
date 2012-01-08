@@ -499,6 +499,33 @@ void CGame::RenderGamePlay()
 		tempNode = tempNode->m_nextNode;
 	}
 	//////////////////////////////////////////////////////////////////////////
+	/// Trap
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, 
+			_Rectangle(m_camera->m_fX, m_camera->m_fY, WINDOW_WIDTH,WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_TRAP:
+				m_allSprite->m_trap->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
+					tempNode->m_object->m_rect.top - m_camera->m_fY,
+					_Rectangle(tempNode->m_object->m_spriteIndex/10%3*56,0,56,56),
+					D3DCOLOR_ARGB(255,255,255,255));
+				tempNode->m_object->m_spriteIndex++;
+				if(tempNode->m_object->m_spriteIndex >= 3*10)
+				{
+					tempNode->m_object->m_spriteIndex = 0;
+				}
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	//////////////////////////////////////////////////////////////////////////
 	/// Other units
 	//////////////////////////////////////////////////////////////////////////
 	tempNode = m_objectsList->m_head;

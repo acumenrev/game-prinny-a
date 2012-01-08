@@ -562,6 +562,7 @@ public:
 			case UNIT_MONSTER2:
 			case UNIT_MONSTER3:
 			case UNIT_FIRE1:
+			case UNIT_TRAP:
 				m_heal = 0;
 				break;
 			case UNIT_SAVE:

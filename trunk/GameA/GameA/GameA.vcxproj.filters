@@ -74,6 +74,7 @@
     <None Include="Pics\UNIT\GroundM2.png" />
     <None Include="Pics\UNIT\RockM2.png" />
     <None Include="Map\Map2.txt" />
+    <None Include="Pics\UNIT\TrapM2.png" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
