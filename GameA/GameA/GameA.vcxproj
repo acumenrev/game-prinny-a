@@ -139,7 +139,9 @@
     <None Include="Sounds\Jump.mp3" />
     <None Include="Sounds\MainBackground.wav" />
     <None Include="Sounds\MonsterDeath.ogg" />
+    <None Include="Sounds\SelectMenu.mp3" />
     <None Include="Sounds\startgame.wav" />
+    <None Include="Sounds\switchMenu.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
