@@ -43,20 +43,11 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_rect = _Rectangle(fX, fY, SizeTile*14, SizeTile*5);
 		m_workingArea = _Rectangle(fX, fY, SizeTile*14, SizeTile*5);
 		break;
-	case UNIT_GRASS2:
-		m_rect = _Rectangle(fX, fY, SizeTile/**13*/, SizeTile/**1*/);
-		m_workingArea = _Rectangle(fX, fY, SizeTile*2, SizeTile*3);
-		break;
 	// Ground
 	case UNIT_GROUND1:
 		m_canCollide = true;
 		m_rect = _Rectangle(fX, fY, SizeTile*11, SizeTile);
 		m_workingArea = _Rectangle(fX, fY, SizeTile*11, SizeTile);
-		break;
-	case UNIT_GROUND2:
-		m_canCollide = true;
-		m_rect = _Rectangle(fX, fY, SizeTile/*14*/, SizeTile/*3*/);
-		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
 		break;
 	// Background
 	case UNIT_BACKGROUND1:
@@ -87,24 +78,8 @@ CCObject::CCObject(float fX, float fY, char style)
 	case UNIT_END:
 		m_canCollide = false;
 		m_checkedItem = true;
-		m_rect = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
-		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
-		break;
-	case UNIT_DESTRUCTION:
-		m_canCollide = false;
-		m_checkedItem = true;
-		m_rect = _Rectangle(fX, fY, SizeTile*2, SizeTile*2);
-		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
-		break;
-	case UNIT_LEFTRIGHT:
-		m_canCollide = true;
-		m_rect = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile);
-		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
-		break;
-	case UNIT_TOPBOTTOM:
-		m_canCollide = true;
-		m_rect = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile);
-		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		m_rect = _Rectangle(fX, fY,130, 112);
+		m_workingArea = _Rectangle(fX, fY, SizeTile, SizeTile);
 		break;
 	/// Monster
 	case UNIT_MONSTER1:
@@ -170,9 +145,9 @@ CCObject::CCObject(float fX, float fY, char style)
 		break;
 	case UNIT_CLOUD:
 		m_canCollide = true;
-		m_rect = _Rectangle(fX+10, fY, 90, 37);
-		m_workingArea = _Rectangle(fX-SizeTile*1, fY-SizeTile*1, SizeTile*2, SizeTile*2);
-		m_vX = 2;
+		m_rect = _Rectangle(fX, fY, 60, 37);
+		m_workingArea = _Rectangle(fX-SizeTile, fY-SizeTile, SizeTile*2, SizeTile*2);
+		m_vX = 1;
 		break;
 	default:
 		break;

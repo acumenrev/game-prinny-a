@@ -117,7 +117,6 @@
     <ClCompile Include="StdAfx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Map2\RockM2.png" />
     <None Include="bass.dll" />
     <None Include="Map\Map1.txt" />
     <None Include="Map\Map2.txt" />
@@ -134,6 +133,7 @@
     <None Include="Pics\UNIT\Background1.png" />
     <None Include="Pics\UNIT\Background2.png" />
     <None Include="Pics\UNIT\BreakBrick.png" />
+    <None Include="Pics\UNIT\finish.png" />
     <None Include="Pics\UNIT\fire.png" />
     <None Include="Pics\UNIT\grass.png" />
     <None Include="Pics\UNIT\Grass2M2.png" />

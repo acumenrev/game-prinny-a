@@ -52,7 +52,7 @@ public:
 	CSprite* m_groundm2;
 	CSprite* m_trap;
 	CSprite* m_cloud;
-
+	CSprite* m_end;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -97,6 +97,8 @@ public:
 		m_monsterDestroy = new CSprite(d3ddev,"Pics\\UNIT\\Attack3.png",D3DCOLOR_ARGB(100,100,100,100));
 		//save
 		m_save = new CSprite(d3ddev,"Pics\\UNIT\\Save.png",D3DCOLOR_ARGB(100,100,100,100));
+		// end
+		m_end = new CSprite(d3ddev,"Pics\\UNIT\\finish.png",D3DCOLOR_ARGB(100,100,100,100));
 		// fire 
 		m_fire1 = new CSprite(d3ddev,"Pics\\UNIT\\fire.png",D3DCOLOR_ARGB(100,100,100,100));
 		//
