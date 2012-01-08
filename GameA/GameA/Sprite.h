@@ -57,7 +57,7 @@ public:
 		// Background in GameMenu
 		m_backgroundMenu = new CSprite(d3ddev,"Pics\\MenuBG.PNG",D3DCOLOR_ARGB(100,100,100,100));
 		// Menu in game
-		m_menuInGame = new CSprite(d3ddev,"Pics\\MenuInGame.PNG",D3DCOLOR_ARGB(100,101,141,209));
+		m_menuInGame = new CSprite(d3ddev,"Pics\\MenuInGame.PNG",D3DCOLOR_ARGB(100,100,100,100));
 		//Priny
 		m_prinny = new CSprite(d3ddev,"Pics\\Prinny\\Prinny.png",D3DCOLOR_ARGB(255,101,141,209));
 		//Priny die
