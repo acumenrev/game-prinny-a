@@ -198,7 +198,7 @@ void CGame::Run()
 					sprintf_s(m_fps, "%s%d", "Fps: ",1000/(m_currentTime - m_lastTime));
 					m_frame = 0;
 				}
-				SetWindowText(m_hWnd,m_fps);
+				SetWindowText(m_hWnd,"PEN - TNT");
 				m_frame++;
 				m_dxManager->EndDraw();
 				m_lastTime = m_currentTime;
