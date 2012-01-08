@@ -65,6 +65,7 @@
     <None Include="Pics\UNIT\Save.png" />
     <None Include="Sounds\switchMenu.mp3" />
     <None Include="Sounds\SelectMenu.mp3" />
+    <None Include="Map\Map2.txt" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
