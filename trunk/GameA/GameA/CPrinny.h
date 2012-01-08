@@ -390,6 +390,8 @@ public:
 						switch(ob_check->m_style)
 						{
 						case UNIT_MONSTER1:
+						case UNIT_MONSTER2:
+						case UNIT_MONSTER3:
 							ob_check->m_health = 0;
 							ob_check->m_spriteIndex = 0;
 							Cutting = 1;
@@ -557,6 +559,8 @@ public:
 			switch(ob_check->m_style)
 			{
 			case UNIT_MONSTER1:
+			case UNIT_MONSTER2:
+			case UNIT_MONSTER3:
 			case UNIT_FIRE1:
 				m_heal = 0;
 				break;
