@@ -644,16 +644,16 @@ void CGame::RenderGamePlay()
 				if(tempNode->m_object->m_vX >= 0)
 				{
 					m_allSprite->m_monster3->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-						tempNode->m_object->m_rect.top -m_camera->m_fY+18,
-						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,58,56,58),
-						D3DCOLOR_ARGB(255,255,255,255));
+													tempNode->m_object->m_rect.top -m_camera->m_fY+18,
+													_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,58,56,58),
+													D3DCOLOR_ARGB(255,255,255,255));
 				}
 				if(tempNode->m_object->m_vX < 0)
 				{
 					m_allSprite->m_monster3->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-						tempNode->m_object->m_rect.top - m_camera->m_fY+18,
-						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,0,56,58),
-						D3DCOLOR_ARGB(255,255,255,255));			
+													tempNode->m_object->m_rect.top - m_camera->m_fY+18,
+													_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,0,56,58),
+													D3DCOLOR_ARGB(255,255,255,255));			
 				}
 				tempNode->m_object->m_spriteIndex++;
 				if(tempNode->m_object->m_spriteIndex >= 10*8)
