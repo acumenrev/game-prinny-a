@@ -393,11 +393,11 @@ void CGame::RenderGamePlay()
 			{
 			case UNIT_FIRE1:
 				m_allSprite->m_fire1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-											tempNode->m_object->m_rect.top - m_camera->m_fY,
-											_Rectangle(tempNode->m_object->m_spriteIndex/10%6*30,7,30,56),
+											tempNode->m_object->m_rect.top - m_camera->m_fY - 25,
+											_Rectangle(tempNode->m_object->m_spriteIndex/10%4*56,29,56,83),
 											D3DCOLOR_ARGB(255,255,255,255));
 				tempNode->m_object->m_spriteIndex++;
-				if(tempNode->m_object->m_spriteIndex >= 6*10)
+				if(tempNode->m_object->m_spriteIndex >= 4*10)
 				{
 					tempNode->m_object->m_spriteIndex = 0;
 				}
