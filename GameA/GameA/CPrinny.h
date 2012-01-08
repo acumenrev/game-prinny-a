@@ -344,6 +344,8 @@ public:
 	int DelayCut;
 	int TiLeRenderX;
 	int TiLeRenderY;
+	int TiLeChemX;
+	int TiLeChemY;
 	RECT m_rectSpritechem;
 	RECT m_rectSpritekiem;
 	void PrinnyCut(char keys[256],char last_keys[256],CQuadTree* m_quadTree)
@@ -354,6 +356,8 @@ public:
 			y_kiem = 1;
 			TiLeRenderX = -25;
 			TiLeRenderY = -5;
+			TiLeChemX = 18;
+			TiLeChemY = -5;
 		}
 		else
 		{
@@ -361,6 +365,8 @@ public:
 			y_kiem = 0;
 			TiLeRenderX = -40;
 			TiLeRenderY = -5;
+			TiLeChemX = -25;
+			TiLeChemY = -5;
 		}
 		if(x_prinnyCut < m_max_spriteIndex_X[y_prinnyCut])
 		{
@@ -378,7 +384,7 @@ public:
 				do 
 				{
 					Cutting = 0;
-					CCObject * ob_check = ObjectCheckRectWithListCut(_Rectangle(x + TiLeRenderX ,y + TiLeRenderY ,108,64),m_listObject);
+					CCObject * ob_check = ObjectCheckRectWithListCut(_Rectangle(x + TiLeChemX ,y + TiLeChemY ,60,56),m_listObject);
 					if(ob_check)
 					{
 						switch(ob_check->m_style)
@@ -430,7 +436,7 @@ public:
 			IsJump = true;
 			if (!CheckRectCollideWithList(_Rectangle(x,y+m_vY,m_width,m_height),m_listObject)) // va cham trai' phai?
 			{			
-				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
+				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP)&& (!KEYDOWN(keys,DIK_LEFT) || !(KEYDOWN(keys,DIK_RIGHT))))
 				{	
 					m_bassSound->Play("Jump",true);
 					jump();				
@@ -438,7 +444,8 @@ public:
 				else
 				{
 					m_vX = 0;
-					m_vY = VJump*0.3;	
+					m_vY = VJump*0.5;
+					m_statePrinny = Stand;
 				}
 			}
 			else
@@ -500,7 +507,7 @@ public:
 		{
 			m_vY = 0;
 		}
-		if(y+m_height+10 > m_quadTree->m_root->m_rect.bottom)
+		if(y+m_height+10 > 1100)
 		{
 			m_heal = 0;
 		}

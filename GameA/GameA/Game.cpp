@@ -246,11 +246,11 @@ void CGame::RenderDeath()
 		hang = 0;
 	}
 
-		m_allSprite->m_prinnyDeath->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_width/2-21,
+	m_allSprite->m_prinnyDeath->Render(m_prinny->x-m_camera->m_fX+m_prinny->m_width/2-21,
 										m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
 										_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
-		PrinnyDeathIndex++;
-		Sleep(50);
+	PrinnyDeathIndex++;	
+	Sleep(50);
 	if (PrinnyDeathIndex > 8)
 	{
 		m_prinny->ReSpam(m_quadTree);	
@@ -390,14 +390,14 @@ void CGame::RenderGamePlay()
 				if(tempNode->m_object->m_vX > 0)
 				{
 					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-													tempNode->m_object->m_rect.top - m_camera->m_fY+15,
+													tempNode->m_object->m_rect.top - m_camera->m_fY,
 													_Rectangle(tempNode->m_object->m_spriteIndex/10%5*56,168,56,56),
 													D3DCOLOR_ARGB(255,255,255,255));
 				}
 				if(tempNode->m_object->m_vX < 0)
 				{
 					m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-													tempNode->m_object->m_rect.top - m_camera->m_fY+15,
+													tempNode->m_object->m_rect.top - m_camera->m_fY,
 													_Rectangle(tempNode->m_object->m_spriteIndex/10%5*56,112,56,56),
 													D3DCOLOR_ARGB(255,255,255,255));
 				}
@@ -424,7 +424,18 @@ void CGame::RenderGamePlay()
 						tempNode->m_object->m_rect = _Rectangle(xx+tempNode->m_object->m_vX, yy, 
 							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
 					}
-					/*tempNode->m_object->m_rect = _Rectangle(xx, yy, tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);*/
+					else
+					{
+						if(!CheckRectCollideWithList( _Rectangle(xx, yy+tempNode->m_object->m_vY, 
+							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight),m_objectsList)
+							|| !CheckStayInAnotherRect(_Rectangle(xx, yy+tempNode->m_object->m_vY, 
+							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight),tempNode->m_object->m_workingArea))
+						{
+							tempNode->m_object->m_vY = 5;
+							tempNode->m_object->m_rect = _Rectangle(xx, yy+tempNode->m_object->m_vY, 
+								tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
+						}
+					}
 				}
 			}
 			else
