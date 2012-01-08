@@ -51,7 +51,6 @@
     <None Include="bass.dll" />
     <None Include="Sounds\Boom.ogg" />
     <None Include="Pics\Prinny\Chem.png" />
-    <None Include="Map\Map1.txt" />
     <None Include="Pics\UNIT\Background1.png" />
     <None Include="Pics\UNIT\BreakBrick.png" />
     <None Include="Pics\UNIT\grass.png" />
@@ -65,7 +64,13 @@
     <None Include="Pics\UNIT\Save.png" />
     <None Include="Sounds\switchMenu.mp3" />
     <None Include="Sounds\SelectMenu.mp3" />
+<<<<<<< .mine
+    <None Include="Pics\UNIT\fire.png" />
+    <None Include="Map\Map1.txt" />
     <None Include="Map\Map2.txt" />
+=======
+    <None Include="Map\Map2.txt" />
+>>>>>>> .r129
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />

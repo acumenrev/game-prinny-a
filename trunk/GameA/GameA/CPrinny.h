@@ -438,8 +438,8 @@ public:
 			{			
 				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP)&& (!KEYDOWN(keys,DIK_LEFT) || !(KEYDOWN(keys,DIK_RIGHT))))
 				{	
-					m_bassSound->Play("Jump",true);
-					jump();				
+					//m_bassSound->Play("Jump",true);
+					//jump();				
 				}
 				else
 				{

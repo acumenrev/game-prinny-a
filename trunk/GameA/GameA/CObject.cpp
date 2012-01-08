@@ -61,7 +61,7 @@ CCObject::CCObject(float fX, float fY, char style)
 	// Background
 	case UNIT_BACKGROUND1:
 		m_rect = _Rectangle(fX, fY, SizeTile*20, SizeTile*10);
-		m_workingArea = _Rectangle(fX, fY, SizeTile*200, SizeTile*100);
+		m_workingArea = _Rectangle(fX, fY, SizeTile*500, SizeTile*100);
 		break;
 	case UNIT_BACKGROUND2:
 		m_rect = _Rectangle(fX, fY, SizeTile/*13*/, SizeTile/*1*/);

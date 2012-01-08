@@ -46,7 +46,7 @@ public:
 	CCObject* m_object;
 	CQuadTree* m_quadTree;
 	CQuadTree* m_quadTreeMap1;
-	CQuadTree* m_quadTreeeMap2;
+	CQuadTree* m_quadTreeMap2;
 	CCamera* m_camera;
 	CCamera* m_camera2;
 	CPrinny* m_prinny;
