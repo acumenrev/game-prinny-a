@@ -102,17 +102,19 @@ void CCMenu::RenderAbout()
 {
 	
 	// render background
-	m_allSprites->m_backgroundMenu->Render(0,0);
+	m_allSprites->m_about->Render(0,0);
+	
 	// sprite
 }
 /************************************************************************/
 /*                           Update About                               */
 /************************************************************************/
-int CCMenu::UpdateAbout(char keys[256], char lastKeys[256],int &currentState)
+int CCMenu::UpdateAbout(char keys[256], char lastKeys[256],int &currentState, WaZ_Game_App::Bass_Sound* bassSound)
 {
 	if(KEYDOWN(keys,DIK_RETURN) && KEYUP(lastKeys,DIK_RETURN))
 	{
 		currentState = GameMenu;
+		bassSound->Play("SelectMenu",true);
 		return 1;
 	}
 	return 1;

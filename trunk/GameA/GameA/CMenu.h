@@ -7,6 +7,7 @@
 #include "Collision.h"
 #include "CObject.h"
 #include "Bass_Sound.h"
+#include "Bass_Sound.h"
 class CCMenu
 {
 public:
@@ -30,7 +31,7 @@ public:
 	void Render();
 	void RenderAbout();
 	int Update(char keys[256], char lastKeys[256],int &currentState, WaZ_Game_App::Bass_Sound* bassSound);
-	int UpdateAbout(char keys[256], char lastKeys[256],int &currentState);
+	int UpdateAbout(char keys[256], char lastKeys[256],int &currentState, WaZ_Game_App::Bass_Sound* bassSound);
 	int GetUpdate();
 };
 

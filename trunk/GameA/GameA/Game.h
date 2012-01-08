@@ -54,6 +54,8 @@ public:
 	ListNodes* m_objectsList;
 	int m_id;
 	bool m_isSaved;
+	int m_prinnyLife;
+	int m_prinnyLifeX;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */
 	/************************************************************************/
@@ -74,5 +76,7 @@ public:
 	void UpdateGamePlay();
 	void RenderGamePlay();
 	void RenderDeath();
+	void RenderGameOver();
+	void UpdateGameOver();
 };
 

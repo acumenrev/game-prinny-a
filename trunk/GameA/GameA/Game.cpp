@@ -25,6 +25,8 @@ CGame::CGame(HINSTANCE hInstance)
 	m_lastTime = 0;
 	m_frame = 0;
 	m_isSaved = false;
+	m_prinnyLife = 3;
+	m_prinnyLifeX = 0;
 }
 
 #pragma endregion 
@@ -228,6 +230,8 @@ void CGame::Render()
 	case MenuIn:
 		RenderGamePlay();
 		m_menuInGame->Render();
+	case GameOver:
+		RenderGameOver();
 		break;
 	}
 }
@@ -745,6 +749,17 @@ void CGame::RenderGamePlay()
 				m_prinny->m_rectSprite,D3DCOLOR_ARGB(255,255,255,255));	
 		}
 	}	
+	if(m_prinnyLife >= 0)
+	{
+		for(int i = 1; i<= m_prinnyLife; i++)
+		{
+			m_allSprite->m_life->Render(i*25,0, D3DCOLOR_ARGB(255,255,255,255));
+		}
+	}
+	else
+	{
+		m_currentState = GameOver;
+	}
 }
 
 /************************************************************************/
@@ -781,7 +796,7 @@ void CGame::Update()
 		}
 		break;
 	case GameAbout:
-		m_menu->UpdateAbout(m_keys,m_lastKeys,m_currentState);
+		m_menu->UpdateAbout(m_keys,m_lastKeys,m_currentState,m_bassSound);
 		break;
 	case MenuIn:
 		int menuInGameChoice;
@@ -794,6 +809,9 @@ void CGame::Update()
 		break;
 	case GameExit:
 		PostQuitMessage(0);
+		break;
+	case GameOver:
+		UpdateGameOver();
 		break;
 	}
 	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&m_lastKeys);
@@ -816,12 +834,16 @@ void CGame::UpdateGamePlay()
 	case 2:
 		m_currentState = GameDeath;	
 		PrinnyDeathIndex = 0;	
+		m_prinnyLife--;
 		break;
 	case 3:
 		m_currentState = MenuIn;
 		break;
 	case 4:
 		SaveFile(m_currentState,m_prinny->x,m_prinny->y);
+		break;
+	case 5:
+		m_currentState = GameMenu;
 		break;
 	}
 	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2 + m_prinny->m_width/2, 
@@ -853,5 +875,23 @@ void CGame::Loadmap()
 	// load main character in here
 	m_prinny = new CPrinny(m_quadTree->m_fX,m_quadTree->m_fY,36,36,m_allSprite,m_camera,m_bassSound);
 	m_quadTree->SetHealth(m_quadTree->m_root);
+}
+/************************************************************************/
+/*                            Render GameOver                           */
+/************************************************************************/
+void CGame::RenderGameOver()
+{
+	m_allSprite->m_gameOver->Render(0,0,D3DCOLOR_ARGB(255,255,255,255));
+}
+/************************************************************************/
+/*                            Update GameOver                           */
+/************************************************************************/
+void CGame::UpdateGameOver()
+{
+	if(KEYDOWN(m_keys,DIK_RETURN)&&KEYUP(m_lastKeys,DIK_RETURN))
+	{
+		m_prinnyLife = 3;
+		m_currentState = GameMenu;
+	}
 }
 #pragma endregion
