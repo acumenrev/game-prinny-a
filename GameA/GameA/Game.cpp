@@ -416,7 +416,7 @@ void CGame::RenderGamePlay()
 		{
 			if(tempNode->m_object->m_health > 0)
 			{
-				if(tempNode->m_object->m_vX > 0)
+				if(tempNode->m_object->m_vX >= 0)
 				{
 					if (tempNode->m_object->m_style == UNIT_MONSTER1)
 					{
@@ -451,24 +451,24 @@ void CGame::RenderGamePlay()
 							D3DCOLOR_ARGB(255,255,255,255));
 					}
 				}
-				if(tempNode->m_object->m_vX == 0)
+				/*if(tempNode->m_object->m_vX == 0)
 				{
 					if (tempNode->m_object->m_style == UNIT_MONSTER1)
 					{
 						m_allSprite->m_monster1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-							tempNode->m_object->m_rect.top - m_camera->m_fY,
+							tempNode->m_object->m_rect.top - m_camera->m_fY+15,
 							_Rectangle(tempNode->m_object->m_spriteIndex/10%5*56,0,56,56),
 							D3DCOLOR_ARGB(255,255,255,255));
 					}
 					if (tempNode->m_object->m_style == UNIT_MONSTER2)
 					{
 						m_allSprite->m_monster2->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-							tempNode->m_object->m_rect.top - m_camera->m_fY,
-							_Rectangle(tempNode->m_object->m_spriteIndex/10%5*56,0,56,56),
+							tempNode->m_object->m_rect.top - m_camera->m_fY+15,
+							_Rectangle(tempNode->m_object->m_spriteIndex/10%5*56,17,56,56),
 							D3DCOLOR_ARGB(255,255,255,255));
 					}
 
-				}
+				}*/
 				tempNode->m_object->m_spriteIndex++;
 				if(tempNode->m_object->m_spriteIndex >= 10*5)
 				{
@@ -560,15 +560,15 @@ void CGame::RenderGamePlay()
 				if(tempNode->m_object->m_vX >= 0)
 				{
 					m_allSprite->m_monster3->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-						tempNode->m_object->m_rect.top -m_camera->m_fY,
-						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,58,40,40),
+						tempNode->m_object->m_rect.top -m_camera->m_fY+3,
+						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,58,56,58),
 						D3DCOLOR_ARGB(255,255,255,255));
 				}
 				if(tempNode->m_object->m_vX < 0)
 				{
 					m_allSprite->m_monster3->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-						tempNode->m_object->m_rect.top - m_camera->m_fY,
-						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,0,40,40),
+						tempNode->m_object->m_rect.top - m_camera->m_fY+3,
+						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,0,56,58),
 						D3DCOLOR_ARGB(255,255,255,255));
 				}
 				tempNode->m_object->m_spriteIndex++;
