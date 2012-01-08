@@ -44,7 +44,15 @@ public:
 	CSprite* m_borderMenuIn;
 	CSprite* m_save;
 	CSprite* m_fire1;
+
+	CSprite* m_background2;
+	CSprite* m_rockm2;
+	CSprite* m_grass1m2;
+	CSprite* m_grass2m2;
+	CSprite* m_groundm2;
+
 	CSprite* m_cloud;
+
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -91,6 +99,18 @@ public:
 		m_save = new CSprite(d3ddev,"Pics\\UNIT\\Save.png",D3DCOLOR_ARGB(100,100,100,100));
 		// fire 
 		m_fire1 = new CSprite(d3ddev,"Pics\\UNIT\\fire.png",D3DCOLOR_ARGB(100,100,100,100));
+
+		//
+		m_background2 = new CSprite(d3ddev,"Pics\\UNIT\\Background2.png",D3DCOLOR_ARGB(100,100,100,100));
+
+		m_rockm2 = new CSprite(d3ddev,"Pics\\UNIT\\RockM2.png",D3DCOLOR_ARGB(100,100,100,100));
+
+		m_groundm2 = new CSprite(d3ddev,"Pics\\UNIT\\GroundM2.png",D3DCOLOR_ARGB(100,100,100,100));
+
+		m_grass1m2 = new CSprite(d3ddev,"Pics\\UNIT\\Grass2M2.png",D3DCOLOR_ARGB(100,100,100,100));
+
+		m_grass2m2 = new CSprite(d3ddev,"Pics\\UNIT\\Grass3M2.png",D3DCOLOR_ARGB(100,100,100,100));
+
 		// cloud
 		m_cloud = new CSprite(d3ddev,"Pics\\UNIT\\cloud.png",D3DCOLOR_ARGB(100,100,100,100));
 	}

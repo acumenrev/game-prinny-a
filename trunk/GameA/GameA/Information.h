@@ -51,5 +51,11 @@ enum GameState
 #define UNIT_MONSTER3 'L' // Monster type 3
 // Fire
 #define UNIT_FIRE1 'B' // Fire type 1
+//Map2
+#define UNIT_GROUND1M2 'A'
+#define UNIT_GRASS1M2 'S'
+#define UNIT_GRASS2M2 'F'
+#define UNIT_ROCKM2	'G'
 // Cloud
 #define UNIT_CLOUD 'C'
+
