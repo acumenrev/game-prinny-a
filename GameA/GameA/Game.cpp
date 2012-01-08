@@ -560,16 +560,16 @@ void CGame::RenderGamePlay()
 				if(tempNode->m_object->m_vX >= 0)
 				{
 					m_allSprite->m_monster3->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-						tempNode->m_object->m_rect.top -m_camera->m_fY+3,
+						tempNode->m_object->m_rect.top -m_camera->m_fY+18,
 						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,58,56,58),
 						D3DCOLOR_ARGB(255,255,255,255));
 				}
 				if(tempNode->m_object->m_vX < 0)
 				{
 					m_allSprite->m_monster3->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
-						tempNode->m_object->m_rect.top - m_camera->m_fY+3,
+						tempNode->m_object->m_rect.top - m_camera->m_fY+18,
 						_Rectangle(tempNode->m_object->m_spriteIndex/10%8*56,0,56,58),
-						D3DCOLOR_ARGB(255,255,255,255));
+						D3DCOLOR_ARGB(255,255,255,255));			
 				}
 				tempNode->m_object->m_spriteIndex++;
 				if(tempNode->m_object->m_spriteIndex >= 10*8)
@@ -578,34 +578,24 @@ void CGame::RenderGamePlay()
 				}
 				if(m_currentState == GamePlay || m_currentState == GameDeath)
 				{
-					long xx = tempNode->m_object->m_rect.left;
-					long yy = tempNode->m_object->m_rect.top;
-					if(CheckNodeCollideWithList(tempNode,m_objectsList))
-					{
-						tempNode->m_object->m_rect.left = tempNode->m_object->m_fx;
-					}
-					tempNode->m_object->m_rect = _Rectangle(xx+tempNode->m_object->m_vX, yy, 
-						tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
-
-					if(CheckNodeCollideWithList(tempNode,m_objectsList)
-						|| !CheckStayInAnotherRect(tempNode->m_object->m_rect,tempNode->m_object->m_workingArea))
+					long XX = tempNode->m_object->m_rect.left;
+					long YY = tempNode->m_object->m_rect.top;
+					if(CheckRectCollideWithList(_Rectangle(XX+tempNode->m_object->m_vX,YY,tempNode->m_object->m_iWidth,tempNode->m_object->m_iHeight),m_objectsList)
+						|| !CheckCollisionBetween2Rect(_Rectangle(XX+tempNode->m_object->m_vX,YY,tempNode->m_object->m_iWidth,tempNode->m_object->m_iHeight),tempNode->m_object->m_workingArea))
 					{
 						tempNode->m_object->m_vX *= -1;
-						tempNode->m_object->m_rect = _Rectangle(xx+tempNode->m_object->m_vX, yy, 
-							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
+						XX += tempNode->m_object->m_vX;
 					}
 					else
 					{
-						if(!CheckRectCollideWithList( _Rectangle(xx, yy+tempNode->m_object->m_vY, 
-							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight),m_objectsList)
-							|| !CheckStayInAnotherRect(_Rectangle(xx, yy+tempNode->m_object->m_vY, 
-							tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight),tempNode->m_object->m_workingArea))
-						{
-							tempNode->m_object->m_vY = 5;
-							tempNode->m_object->m_rect = _Rectangle(xx, yy+tempNode->m_object->m_vY, 
-								tempNode->m_object->m_iWidth, tempNode->m_object->m_iHeight);
-						}
+						XX += tempNode->m_object->m_vX;
 					}
+					if(!CheckRectCollideWithList(_Rectangle(XX,YY+tempNode->m_object->m_vY,tempNode->m_object->m_iWidth,tempNode->m_object->m_iHeight),m_objectsList)
+						||!CheckCollisionBetween2Rect(_Rectangle(XX,YY+tempNode->m_object->m_vY,tempNode->m_object->m_iWidth,tempNode->m_object->m_iHeight),tempNode->m_object->m_workingArea))
+						YY += tempNode->m_object->m_vY;
+					else
+						tempNode->m_object->m_vY = 0;
+					tempNode->m_object->m_rect = _Rectangle(XX,YY,tempNode->m_object->m_iWidth,tempNode->m_object->m_iHeight);
 				}
 			}
 			else
@@ -616,6 +606,48 @@ void CGame::RenderGamePlay()
 					m_allSprite->m_monsterDestroy->Render(tempNode->m_object->m_rect.left - m_camera->m_fX -28,tempNode->m_object->m_rect.top - m_camera->m_fY-28,
 						_Rectangle(tempNode->m_object->m_spriteIndex/3%5*120,tempNode->m_object->m_spriteIndex/3/5*120,120,120),D3DCOLOR_ARGB(255,255,255,255));
 					tempNode->m_object->m_spriteIndex++;
+				}
+			}
+		}
+		if (tempNode->m_object->m_style == UNIT_CLOUD)
+		{
+			m_allSprite->m_cloud->Render(tempNode->m_object->m_rect.left-m_camera->m_fX,tempNode->m_object->m_rect.top-m_camera->m_fY);
+			//////////////////////////////////////////////////////////////////////////
+			if (m_currentState == GamePlay || m_currentState == GameDeath)
+			{
+				if (CheckNodeCollideWithList(tempNode,m_objectsList))
+				{
+					tempNode->m_object->m_rect.left = tempNode->m_object->m_fx;
+					tempNode->m_object->m_rect.top = tempNode->m_object->m_fy;
+				}
+				tempNode->m_object->m_rect = _Rectangle(tempNode->m_object->m_rect.left + tempNode->m_object->m_vX,
+					tempNode->m_object->m_rect.top + tempNode->m_object->m_vY,
+					tempNode->m_object->m_iWidth,
+					tempNode->m_object->m_iHeight);
+				if (CheckNodeCollideWithList(tempNode,m_objectsList)
+					||!CheckCollisionBetween2Rect(tempNode->m_object->m_rect,tempNode->m_object->m_workingArea))
+				{
+					tempNode->m_object->m_vX = -tempNode->m_object->m_vX;
+					tempNode->m_object->m_vY = -tempNode->m_object->m_vY;
+					tempNode->m_object->m_rect = _Rectangle(tempNode->m_object->m_rect.left + tempNode->m_object->m_vX,
+						tempNode->m_object->m_rect.top + tempNode->m_object->m_vY,
+						tempNode->m_object->m_iWidth,
+						tempNode->m_object->m_iHeight);
+				}
+				else
+				{
+					switch(tempNode->m_object->m_style)
+					{
+					case UNIT_CLOUD:
+						if (CheckCollisionBetween2Rect(_Rectangle(m_prinny->x,m_prinny->y-50,m_prinny->m_width,m_prinny->m_height),tempNode->m_object->m_rect))
+						{
+							if(!CheckRectCollideWithList(_Rectangle(m_prinny->x+ tempNode->m_object->m_vX,m_prinny->y,m_prinny->m_width,m_prinny->m_height),m_objectsList))
+							{
+								m_prinny->x += tempNode->m_object->m_vX;
+							}
+						}
+						break;
+					}
 				}
 			}
 		}

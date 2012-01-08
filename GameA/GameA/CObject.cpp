@@ -141,6 +141,12 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_rect = _Rectangle(fX,fY, SizeTile, SizeTile*2);
 		m_workingArea = _Rectangle(fX,fY,SizeTile,SizeTile*2);
 		break;
+	case UNIT_CLOUD:
+		m_canCollide = true;
+		m_rect = _Rectangle(fX+10, fY, 90, 37);
+		m_workingArea = _Rectangle(fX-SizeTile*1, fY-SizeTile*1, SizeTile*2, SizeTile*2);
+		m_vX = 2;
+		break;
 	default:
 		break;
 	}
