@@ -96,7 +96,7 @@ public:
 		m_camera = _m_camera;
 		m_listObject = new ListNodes();
 		InitSprite();
-		m_heal = 1;	
+		m_heal = 3;	
 		m_bassSound = bassSound;
 	}
 	/************************************************************************/
@@ -424,8 +424,15 @@ public:
 			return 3;
 		}
 		if (m_heal == 0)
-		{
+		{		
 			return 2;
+		}
+		else
+		{
+			for(int i = 1;i<m_heal;i++)
+			{
+				m_allSprites->m_life->Render(0,0);
+			}
 		}
 		Move(keys);
 		PrinnyCut(keys,last_keys,m_quadTree);

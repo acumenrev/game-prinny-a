@@ -53,6 +53,9 @@ public:
 	CSprite* m_trap;
 	CSprite* m_cloud;
 	CSprite* m_end;
+	CSprite* m_about;
+	CSprite* m_life;
+	CSprite* m_gameOver;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -116,5 +119,11 @@ public:
 
 		// cloud
 		m_cloud = new CSprite(d3ddev,"Pics\\UNIT\\cloud.png",D3DCOLOR_ARGB(100,100,100,100));
+		// about
+		m_about = new CSprite(d3ddev,"Pics\\About.png",D3DCOLOR_ARGB(100,100,100,100));
+		// life
+		m_life = new CSprite(d3ddev,"Pics\\Heal.png",D3DCOLOR_ARGB(100,100,100,100));
+		// Game Over
+		m_gameOver = new CSprite(d3ddev,"Pics\\Gameover.png",D3DCOLOR_ARGB(100,100,100,100));
 	}
 };
