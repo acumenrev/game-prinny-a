@@ -417,7 +417,7 @@ public:
 	float y_before;
 	int Update(char keys[256],char last_keys[256],CQuadTree * m_quadTree)
 	{
-		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))
+		if (KEYDOWN(keys,DIK_BACK) && KEYUP(last_keys,DIK_BACK))
 		{
 			return 3;
 		}
@@ -560,6 +560,9 @@ public:
 				m_heal = 0;
 				break;
 			case UNIT_SAVE:
+				ob_check->m_health = 0;
+				x_save = ob_check->m_rect.left;
+				y_save = ob_check->m_rect.top;
 				return 4;
 				break;
 			}
