@@ -539,21 +539,14 @@ void CGame::UpdateGamePlay()
 		Loadmap();
 		break;
 	case 2:
-		m_currentState = GameDeath;
-		PrinnyDeathIndex = 0;
-		ReadSavedFile(m_currentState,m_prinny->x,m_prinny->y);
-		Loadmap();
-		ReadSavedFile(m_currentState,m_prinny->x,m_prinny->y);
-		m_isSaved = false;
-		m_currentState = GamePlay;
+		m_currentState = GameDeath;	
+		PrinnyDeathIndex = 0;	
 		break;
 	case 3:
 		m_currentState = MenuIn;
 		break;
 	case 4:
 		SaveFile(m_currentState,m_prinny->x,m_prinny->y);
-		m_currentState = GamePlay;
-		m_isSaved = true;
 		break;
 	}
 	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2 + m_prinny->m_width/2, 
