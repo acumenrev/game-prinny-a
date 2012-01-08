@@ -53,6 +53,7 @@ public:
 	Bass_Sound* m_bassSound;
 	ListNodes* m_objectsList;
 	int m_id;
+	bool m_isSaved;
 	/************************************************************************/
 	/*                     Constructors & Destructor                        */
 	/************************************************************************/
