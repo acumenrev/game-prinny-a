@@ -571,6 +571,9 @@ public:
 				y_save = ob_check->m_rect.top;
 				return 4;
 				break;
+			case UNIT_END:
+				return 1;
+				break;
 			}
 		}
 		return 0;

@@ -67,7 +67,6 @@
     <None Include="Sounds\startgame.wav" />
     <None Include="Sounds\switchMenu.mp3" />
     <None Include="Pics\UNIT\MonsterC.png" />
-    <None Include="..\..\Map2\RockM2.png" />
     <None Include="Pics\UNIT\Background2.png" />
     <None Include="Pics\UNIT\Grass2M2.png" />
     <None Include="Pics\UNIT\Grass3M2.png" />
@@ -75,6 +74,7 @@
     <None Include="Pics\UNIT\RockM2.png" />
     <None Include="Map\Map2.txt" />
     <None Include="Pics\UNIT\TrapM2.png" />
+    <None Include="Pics\UNIT\finish.png" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
