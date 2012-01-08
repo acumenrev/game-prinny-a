@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="Bass_Sound.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CFile.cpp" />
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -15,11 +17,12 @@
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StdAfx.cpp" />
-    <ClCompile Include="CFile.cpp" />
-    <ClCompile Include="Bass_Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bass.h" />
+    <ClInclude Include="Bass_Sound.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CFile.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CObjectsList.h" />
@@ -35,42 +38,36 @@
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="CFile.h" />
-    <ClInclude Include="bass.h" />
-    <ClInclude Include="Bass_Sound.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bass.dll" />
+    <None Include="Map\Map1.txt" />
+    <None Include="Map\Map2.txt" />
+    <None Include="Map\Save.txt" />
+    <None Include="Pics\BorderInGame.png" />
+    <None Include="Pics\borderpinny.png" />
     <None Include="Pics\Menu.png" />
     <None Include="Pics\MenuBG.png" />
     <None Include="Pics\MenuInGame.png" />
+    <None Include="Pics\Prinny\Chem.png" />
     <None Include="Pics\Prinny\Prinny.png" />
     <None Include="Pics\Prinny\walking.png" />
-    <None Include="Sounds\startgame.wav" />
-    <None Include="Sounds\Cut.wav" />
-    <None Include="Sounds\MainBackground.wav" />
-    <None Include="bass.dll" />
-    <None Include="Sounds\Boom.ogg" />
-    <None Include="Pics\Prinny\Chem.png" />
+    <None Include="Pics\UNIT\Attack3.png" />
     <None Include="Pics\UNIT\Background1.png" />
     <None Include="Pics\UNIT\BreakBrick.png" />
+    <None Include="Pics\UNIT\fire.png" />
     <None Include="Pics\UNIT\grass.png" />
     <None Include="Pics\UNIT\ROCK.png" />
-    <None Include="Map\Save.txt" />
-    <None Include="Pics\UNIT\Attack3.png" />
-    <None Include="Sounds\Jump.mp3" />
-    <None Include="Sounds\MonsterDeath.ogg" />
-    <None Include="Pics\BorderInGame.png" />
-    <None Include="Pics\borderpinny.png" />
     <None Include="Pics\UNIT\Save.png" />
-    <None Include="Sounds\switchMenu.mp3" />
+    <None Include="Sounds\Boom.ogg" />
+    <None Include="Sounds\Cut.wav" />
+    <None Include="Sounds\Jump.mp3" />
+    <None Include="Sounds\MainBackground.wav" />
+    <None Include="Sounds\MonsterDeath.ogg" />
     <None Include="Sounds\SelectMenu.mp3" />
-<<<<<<< .mine
-    <None Include="Pics\UNIT\fire.png" />
-    <None Include="Map\Map1.txt" />
-    <None Include="Map\Map2.txt" />
-=======
-    <None Include="Map\Map2.txt" />
->>>>>>> .r129
+    <None Include="Sounds\startgame.wav" />
+    <None Include="Sounds\switchMenu.mp3" />
+    <None Include="Pics\UNIT\MonsterC.png" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />

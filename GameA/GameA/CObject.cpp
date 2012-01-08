@@ -130,8 +130,8 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_canCollide = false;
 		m_checkedItem = true;
 		m_canBeDestroyed = false;
-		m_rect = _Rectangle(fX,fY, 30, 45);
-		m_workingArea = _Rectangle(fX,fY,SizeTile,SizeTile);
+		m_rect = _Rectangle(fX,fY, SizeTile, SizeTile*2);
+		m_workingArea = _Rectangle(fX,fY,SizeTile,SizeTile*2);
 		break;
 	default:
 		break;
