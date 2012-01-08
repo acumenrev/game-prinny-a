@@ -31,17 +31,19 @@ CCMenu::~CCMenu(void)
 /************************************************************************/
 /*                          Update menu                                 */
 /************************************************************************/
-int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
+int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState, WaZ_Game_App::Bass_Sound* bassSound)
 {
 	// Handle event when UP key pressed
 	if(KEYDOWN(keys,DIK_UP) && KEYUP(lastKeys,DIK_UP))
 	{
+		bassSound->Play("SwitchMenu",true);
 		m_menuY -= m_jumpMenu;
 		m_choice--;
 	}
 	// Handle event when DOWN key pressed
 	if(KEYDOWN(keys,DIK_DOWN) && KEYUP(lastKeys,DIK_DOWN))
 	{
+		bassSound->Play("SwitchMenu",true);
 		m_menuY += m_jumpMenu;
 		m_choice++;
 	}
@@ -77,6 +79,7 @@ int CCMenu::Update(char keys[256], char lastKeys[256],int &currentState)
 		default:
 			break;
 		}
+		bassSound->Play("SelectMenu",true);
 	}
 	return 0;
 }

@@ -151,6 +151,10 @@ void CGame::InitObject()
 	m_bassSound->SetItemVolume("Boom",100);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"MonsterDeath","Sounds\\MonsterDeath.ogg",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("MonsterDeath",50);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"SwitchMenu","Sounds\\switchMenu.mp3",BASS_MUSIC_RAMPS);
+	m_bassSound->SetItemVolume("SwitchMenu",50);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"SelectMenu","Sounds\\SelectMenu.mp3",BASS_MUSIC_RAMPS);
+	m_bassSound->SetItemVolume("SelectMenu",50);
 	m_prinny = new CPrinny(0,0,40,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
 	m_quadTreeMap1 = new CQuadTree(SizeTile*300, SizeTile*300);
@@ -476,7 +480,7 @@ void CGame::Update()
 			Loadmap();
 			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);
 		}*/
-		switch(m_menu->Update(m_keys,m_lastKeys,m_currentState))
+		switch(m_menu->Update(m_keys,m_lastKeys,m_currentState,m_bassSound))
 		{
 		case 1:
 			m_currentState = GamePlay;
@@ -497,7 +501,7 @@ void CGame::Update()
 		break;
 	case MenuIn:
 		int menuInGameChoice;
-		menuInGameChoice = m_menuInGame->Update(m_keys,m_lastKeys,m_currentState);
+		menuInGameChoice = m_menuInGame->Update(m_keys,m_lastKeys,m_currentState,m_bassSound);
 		if(menuInGameChoice == 1)
 		{
 			SaveFile(m_currentState,m_prinny->x,m_prinny->y);

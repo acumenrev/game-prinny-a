@@ -62,6 +62,9 @@
     <None Include="Sounds\MonsterDeath.ogg" />
     <None Include="Pics\BorderInGame.png" />
     <None Include="Pics\borderpinny.png" />
+    <None Include="Pics\UNIT\Save.png" />
+    <None Include="Sounds\switchMenu.mp3" />
+    <None Include="Sounds\SelectMenu.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
