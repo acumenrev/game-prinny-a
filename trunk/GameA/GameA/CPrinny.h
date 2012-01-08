@@ -373,7 +373,7 @@ public:
 			DelayCut++;
 			m_rectSpritechem = _Rectangle((float)(x_prinnyCut*56),(float)(y_prinnyCut*56),56,56);	
 			m_rectSpritekiem = _Rectangle((float)(x_kiem*108),(float)(y_kiem*64),108,64);
-			if(DelayCut >= 5)
+			if(DelayCut >= 2)
 			{
 				x_kiem++;
 				x_prinnyCut++;
