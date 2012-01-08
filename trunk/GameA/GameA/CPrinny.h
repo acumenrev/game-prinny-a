@@ -276,20 +276,20 @@ public:
 	void Move(char keys[256])
 	{
 		m_vY += GiatocX;
-		bool IsMasat = true;
+		bool flagFriction = true;
 		if(KEYDOWN(keys,DIK_RIGHT))
 		{
 			MoveRight();
-			IsMasat = false;
+			flagFriction = false;
 			IsRight = true;
 		}
 		if(KEYDOWN(keys,DIK_LEFT))
 		{
 			MoveLeft();
-			IsMasat = false;
+			flagFriction = false;
 			IsRight = false;
 		}
-		if (IsMasat == true)
+		if (flagFriction == true)
 		{
 			m_vX = m_vX*(float)Masat;
 		}
@@ -551,6 +551,9 @@ public:
 			{
 			case UNIT_MONSTER1:
 				m_heal = 0;
+				break;
+			case UNIT_SAVE:
+				return 4;
 				break;
 			}
 		}
