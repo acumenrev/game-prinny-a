@@ -64,8 +64,8 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_workingArea = _Rectangle(fX, fY, SizeTile*500, SizeTile*100);
 		break;
 	case UNIT_BACKGROUND2:
-		m_rect = _Rectangle(fX, fY, SizeTile/*13*/, SizeTile/*1*/);
-		m_workingArea = _Rectangle(fX, fY, SizeTile/*2*/, SizeTile/*3*/);
+		m_rect = _Rectangle(fX, fY, SizeTile*20, SizeTile*10);
+		m_workingArea = _Rectangle(fX, fY, SizeTile*500, SizeTile*100);
 		break;
 	case UNIT_ROCK1:
 		m_canCollide = true;
@@ -140,6 +140,26 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_canBeDestroyed = false;
 		m_rect = _Rectangle(fX,fY, SizeTile, SizeTile*2);
 		m_workingArea = _Rectangle(fX,fY,SizeTile,SizeTile*2);
+		break;
+	case UNIT_GROUND1M2:
+		m_canCollide = true;
+		m_rect = _Rectangle(fX, fY, SizeTile*11, SizeTile);
+		m_workingArea = _Rectangle(fX, fY, SizeTile*11, SizeTile);
+		break;
+	case UNIT_GRASS1M2:
+		m_rect = _Rectangle(fX, fY, SizeTile*14, SizeTile*5);
+		m_workingArea = _Rectangle(fX, fY, SizeTile*14, SizeTile*5);
+		break;
+	case UNIT_GRASS2M2:
+		m_rect = _Rectangle(fX, fY, SizeTile*14, SizeTile*5);
+		m_workingArea = _Rectangle(fX, fY, SizeTile*14, SizeTile*5);
+		break;
+	case UNIT_ROCKM2:
+		m_canCollide = true;
+		m_canBeDestroyed = false;
+		m_checkedItem = false;
+		m_rect = _Rectangle(fX, fY, SizeTile*1, SizeTile*1);
+		m_workingArea = _Rectangle(fX, fY, SizeTile*1, SizeTile*1);
 		break;
 	case UNIT_CLOUD:
 		m_canCollide = true;
