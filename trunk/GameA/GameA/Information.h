@@ -48,3 +48,5 @@ enum GameState
 // Monster
 #define UNIT_MONSTER1 'M' // Monster type 1
 #define UNIT_MONSTER2 'N' // Monster type 2
+// Fire
+#define UNIT_FIRE1 'B' // Fire type 1

@@ -119,6 +119,7 @@
   <ItemGroup>
     <None Include="bass.dll" />
     <None Include="Map\Map1.txt" />
+    <None Include="Map\Map2.txt" />
     <None Include="Map\Save.txt" />
     <None Include="Pics\BorderInGame.png" />
     <None Include="Pics\borderpinny.png" />

@@ -159,7 +159,7 @@ void CGame::InitObject()
 	m_prinny = new CPrinny(0,0,40,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
 	m_quadTreeMap1 = new CQuadTree(SizeTile*300, SizeTile*300);
-	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");
+	ReadFile(m_quadTreeMap1,"Map\\Map2.txt");
 	// set m_currentMap
 	m_currentMap = 1;
 	Loadmap();
@@ -372,6 +372,33 @@ void CGame::RenderGamePlay()
 			{
 			case UNIT_ROCK1:
 					m_allSprite->m_rock1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				break;
+			}
+		}
+		tempNode = tempNode->m_nextNode;
+	}
+	//////////////////////////////////////////////////////////////////////////
+	/// Fire
+	//////////////////////////////////////////////////////////////////////////
+	tempNode = m_objectsList->m_head;
+	while(tempNode != NULL)
+	{
+		if(tempNode->m_object->m_health > 0 &&
+			CheckCollisionBetween2Rect(tempNode->m_object->m_workingArea, 
+										_Rectangle(m_camera->m_fX, m_camera->m_fY, WINDOW_WIDTH,WINDOW_HEIGHT)))
+		{
+			switch(tempNode->m_object->m_style)
+			{
+			case UNIT_FIRE1:
+				m_allSprite->m_fire1->Render(tempNode->m_object->m_rect.left - m_camera->m_fX,
+											tempNode->m_object->m_rect.top - m_camera->m_fY,
+											_Rectangle(tempNode->m_object->m_spriteIndex/10%6*30,7,30,56),
+											D3DCOLOR_ARGB(255,255,255,255));
+				tempNode->m_object->m_spriteIndex++;
+				if(tempNode->m_object->m_spriteIndex >= 6*10)
+				{
+					tempNode->m_object->m_spriteIndex = 0;
+				}
 				break;
 			}
 		}
