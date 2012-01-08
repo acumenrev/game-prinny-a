@@ -572,6 +572,7 @@ public:
 				return 4;
 				break;
 			case UNIT_END:
+				Sleep(1000);
 				return 1;
 				break;
 			}
