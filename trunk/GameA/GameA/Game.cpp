@@ -24,6 +24,7 @@ CGame::CGame(HINSTANCE hInstance)
 	m_currentTime = 0;
 	m_lastTime = 0;
 	m_frame = 0;
+	m_isSaved = false;
 }
 
 #pragma endregion 
@@ -330,7 +331,10 @@ void CGame::RenderGamePlay()
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_SAVE:
-				m_allSprite->m_save->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				if(m_isSaved == false)
+				{
+					m_allSprite->m_save->Render(tempNode->m_object->m_rect.left - m_camera->m_fX, tempNode->m_object->m_rect.top - m_camera->m_fY);
+				}
 				break;
 			}
 		}
@@ -472,25 +476,19 @@ void CGame::Update()
 		break;
 	case GameMenu:
 		m_bassSound->SetItemVolume("MainBackground",0);	
-/*
-		if(m_menu->Update(m_keys,m_lastKeys,m_currentState) == 1)
-		{
-			m_currentState = GamePlay;
-			m_currentMap = 1;
-			Loadmap();
-			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);
-		}*/
 		switch(m_menu->Update(m_keys,m_lastKeys,m_currentState,m_bassSound))
 		{
 		case 1:
 			m_currentState = GamePlay;
 			m_currentMap = 1;
+			m_isSaved = false;
 			Loadmap();
 			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);
 			break;
 		case 2:
 			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
 			m_currentState = GamePlay;
+			m_isSaved = false;
 			Loadmap();
 			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
 			break;
@@ -532,6 +530,11 @@ void CGame::UpdateGamePlay()
 	case 2:
 		m_currentState = GameDeath;
 		PrinnyDeathIndex = 0;
+		ReadSavedFile(m_currentState,m_prinny->x,m_prinny->y);
+		Loadmap();
+		ReadSavedFile(m_currentState,m_prinny->x,m_prinny->y);
+		m_isSaved = false;
+		m_currentState = GamePlay;
 		break;
 	case 3:
 		m_currentState = MenuIn;
@@ -539,6 +542,7 @@ void CGame::UpdateGamePlay()
 	case 4:
 		SaveFile(m_currentState,m_prinny->x,m_prinny->y);
 		m_currentState = GamePlay;
+		m_isSaved = true;
 		break;
 	}
 	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2 + m_prinny->m_width/2, 
