@@ -325,11 +325,11 @@ public:
 
 		if(CollisionLeft == true && CollisionRight == false)
 		{
-			m_vX = VJump*0.2;
+			m_vX = VJump*0.4;
 		}
 		if(CollisionLeft == false && CollisionRight == true)
 		{
-			m_vX = -VJump*0.2;
+			m_vX = -VJump*0.4;
 		}
 		m_vY = -VJump;
 		m_statePrinny = Jump;
@@ -440,8 +440,8 @@ public:
 			{			
 				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP)&& (!KEYDOWN(keys,DIK_LEFT) || !(KEYDOWN(keys,DIK_RIGHT))))
 				{	
-					//m_bassSound->Play("Jump",true);
-					//jump();				
+					m_bassSound->Play("Jump",true);
+					jump();				
 				}
 				else
 				{
