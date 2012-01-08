@@ -534,8 +534,11 @@ void CGame::UpdateGamePlay()
 		PrinnyDeathIndex = 0;
 		break;
 	case 3:
-
 		m_currentState = MenuIn;
+		break;
+	case 4:
+		SaveFile(m_currentState,m_prinny->x,m_prinny->y);
+		m_currentState = GamePlay;
 		break;
 	}
 	m_camera->SetViewPort(m_prinny->x - WINDOW_WIDTH/2 + m_prinny->m_width/2, 
