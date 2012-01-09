@@ -96,7 +96,7 @@ public:
 		m_camera = _m_camera;
 		m_listObject = new ListNodes();
 		InitSprite();
-		m_heal = 3;	
+		m_heal = 1;	
 		m_bassSound = bassSound;
 	}
 	/************************************************************************/
@@ -427,13 +427,6 @@ public:
 		{		
 			return 2;
 		}
-		else
-		{
-			for(int i = 1;i<m_heal;i++)
-			{
-				m_allSprites->m_life->Render(0,0);
-			}
-		}
 		Move(keys);
 		PrinnyCut(keys,last_keys,m_quadTree);
 		
@@ -518,7 +511,7 @@ public:
 		}
 		if(y+m_height+10 > 1100)
 		{
-			m_heal = 0;
+			Death();
 		}
 		/////////////////
 		if(!CheckRectCollideWithList(_Rectangle((x+m_vX),(y+m_vY),m_width,m_height),m_listObject))
@@ -548,7 +541,7 @@ public:
 		{
 			if(CheckRectCollideWithList(_Rectangle(x_before,y_before,m_width,m_height),m_listObject))
 			{
-				m_heal = 0;
+				Death();
 			}
 			else
 			{
@@ -570,7 +563,7 @@ public:
 			case UNIT_MONSTER3:
 			case UNIT_FIRE1:
 			case UNIT_TRAP:
-				m_heal = 0;
+				Death();
 				break;
 			case UNIT_SAVE:
 				ob_check->m_health = 0;
@@ -585,6 +578,10 @@ public:
 			}
 		}
 		return 0;
+	}
+	void Death()
+	{
+		m_heal = 1;
 	}
 	void ReSpam(CQuadTree * m_quadTree)
 	{
