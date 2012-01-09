@@ -581,7 +581,7 @@ public:
 	}
 	void Death()
 	{
-		m_heal = 1;
+		m_heal = 0;
 	}
 	void ReSpam(CQuadTree * m_quadTree)
 	{
