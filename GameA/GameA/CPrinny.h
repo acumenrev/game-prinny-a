@@ -419,7 +419,7 @@ public:
 	float y_before;
 	int Update(char keys[256],char last_keys[256],CQuadTree * m_quadTree)
 	{
-		if (KEYDOWN(keys,DIK_RETURN) && KEYUP(last_keys,DIK_RETURN))
+		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))
 		{
 			return 3;
 		}

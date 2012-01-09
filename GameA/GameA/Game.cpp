@@ -234,6 +234,7 @@ void CGame::Render()
 	case MenuIn:
 		RenderGamePlay();
 		m_menuInGame->Render();
+		break;
 	case GameOver:
 		RenderGameOver();
 		break;
