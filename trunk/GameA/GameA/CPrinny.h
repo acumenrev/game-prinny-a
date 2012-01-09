@@ -419,7 +419,7 @@ public:
 	float y_before;
 	int Update(char keys[256],char last_keys[256],CQuadTree * m_quadTree)
 	{
-		if (KEYDOWN(keys,DIK_ESCAPE) && KEYUP(last_keys,DIK_ESCAPE))
+		if (KEYDOWN(keys,DIK_BACK) && KEYUP(last_keys,DIK_BACK))
 		{
 			return 3;
 		}
@@ -438,7 +438,7 @@ public:
 			IsJump = true;
 			if (!CheckRectCollideWithList(_Rectangle(x,y+m_vY,m_width,m_height),m_listObject)) // va cham trai' phai?
 			{			
-				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP)&& (!KEYDOWN(keys,DIK_LEFT) || !(KEYDOWN(keys,DIK_RIGHT))))
+				if (KEYDOWN(keys,DIK_UP) && KEYUP(last_keys,DIK_UP))
 				{	
 					m_bassSound->Play("Jump",true);
 					jump();				
