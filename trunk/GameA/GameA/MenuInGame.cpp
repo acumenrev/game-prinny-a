@@ -83,8 +83,7 @@ int CMenuInGame::Update(char keys[256], char lastKeys[256],int &currentState, Wa
 /*                          Render menu                                 */
 /************************************************************************/
 void CMenuInGame::Render()
-{
-	
+{	
 	m_allSprites->m_menuInGame->Render(250,150);
 	m_allSprites->m_borderMenuIn->Render(265,225 + m_menuY,D3DCOLOR_ARGB(255,255,255,255));
 }

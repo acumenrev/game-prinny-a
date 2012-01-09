@@ -79,6 +79,7 @@
     <None Include="Pics\Victory.png" />
     <None Include="Sounds\GameOver.ogg" />
     <None Include="Sounds\GameVictory.ogg" />
+    <None Include="Pics\Store.png" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
