@@ -553,7 +553,7 @@ public:
 		}
 		UpdateSprite(keys);
 		/////////////////
-		CCObject * ob_check = ObjectCheckRectWithListCheckItems(_Rectangle(x,y,m_width,m_height),m_listObject);
+		CCObject * ob_check = ObjectCheckRectWithListCheckItems(_Rectangle(x,y+1,m_width,m_height),m_listObject);
 		if(ob_check)
 		{
 			switch(ob_check->m_style)
