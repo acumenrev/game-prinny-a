@@ -851,6 +851,7 @@ void CGame::UpdateGamePlay()
 	switch(m_prinny->Update(m_keys,m_lastKeys,m_quadTree))
 	{
 	case 1:
+		//m_prinnyLife = 3;
 		m_currentMap++;
 		if(m_currentMap > NumberOfMap)
 		{
