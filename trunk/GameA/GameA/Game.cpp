@@ -299,7 +299,7 @@ void CGame::RenderGamePlay()
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_BACKGROUND1:
-				m_allSprite->m_background1->Render(tempNode->m_object->m_rect.left - (m_camera->m_fX*0.01),tempNode->m_object->m_rect.left - (m_camera->m_fY*0.1)-50);
+				m_allSprite->m_background1->Render(tempNode->m_object->m_rect.left - (m_camera2->m_fX),tempNode->m_object->m_rect.left - (m_camera2->m_fY)-50);
 				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
@@ -320,7 +320,7 @@ void CGame::RenderGamePlay()
 			switch(tempNode->m_object->m_style)
 			{
 			case UNIT_BACKGROUND2:
-				m_allSprite->m_background2->Render(tempNode->m_object->m_rect.left - (m_camera->m_fX*0.01),tempNode->m_object->m_rect.left - (m_camera->m_fY*0.1)-50);
+				m_allSprite->m_background2->Render(tempNode->m_object->m_rect.left - (m_camera2->m_fX),tempNode->m_object->m_rect.left - (m_camera2->m_fY)-50);
 				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
@@ -782,14 +782,14 @@ void CGame::Update()
 		case 1:
 			m_currentState = GamePlay;
 			m_currentMap = 1;
-			m_isSaved = false;
+			//m_isSaved = false;
 			Loadmap();
 			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);
 			break;
 		case 2:
 			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
 			m_currentState = GamePlay;
-			m_isSaved = false;
+			//m_isSaved = false;
 			Loadmap();
 			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
 			break;
@@ -828,8 +828,9 @@ void CGame::UpdateGamePlay()
 		if(m_currentMap > NumberOfMap)
 		{
 			m_currentMap = 1;
-		}
+		}	
 		Loadmap();
+		SaveFile(m_currentMap,m_prinny->x,m_prinny->y);
 		break;
 	case 2:
 		m_currentState = GameDeath;	
