@@ -96,7 +96,7 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_checkedItem = true;
 		m_canBeDestroyed = true;
 		m_rect = _Rectangle(fX, fY, 40, 40);
-		m_workingArea = _Rectangle(fX-SizeTile*13, fY-SizeTile*10, SizeTile*20, SizeTile*20);
+		m_workingArea = _Rectangle(fX-SizeTile*10, fY-SizeTile*10, SizeTile*20, SizeTile*20);
 		m_vX = 2;
 		m_vY = 0;
 		break;
@@ -105,7 +105,7 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_checkedItem = true;
 		m_canBeDestroyed = true;
 		m_rect = _Rectangle(fX, fY, 40, 40);
-		m_workingArea = _Rectangle(fX-SizeTile*6, fY-SizeTile*6, SizeTile*12, SizeTile*12);
+		m_workingArea = _Rectangle(fX-SizeTile*4, fY-SizeTile*4, SizeTile*8, SizeTile*8);
 		m_vX = 2;
 		m_vY = 0;
 		break;
