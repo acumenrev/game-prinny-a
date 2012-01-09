@@ -266,8 +266,7 @@ void CGame::RenderDeath()
 										m_prinny->y-m_camera->m_fY+m_prinny->m_height/2-29,
 										_Rectangle(PrinnyDeathIndex*60,hang*70,60,70),D3DCOLOR_ARGB(255,255,255,255));
 	PrinnyDeathIndex++;	
-	Sleep(50);
-	if (PrinnyDeathIndex > 8)
+	if (PrinnyDeathIndex > 8*6)
 	{
 		m_prinny->ReSpam(m_quadTree);	
 		m_currentState = GamePlay;
@@ -310,7 +309,6 @@ void CGame::RenderGamePlay()
 			{
 			case UNIT_BACKGROUND1:
 				m_allSprite->m_background1->Render(tempNode->m_object->m_rect.left - (m_camera2->m_fX),tempNode->m_object->m_rect.left - (m_camera2->m_fY)-50);
-				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
 		}
@@ -331,7 +329,6 @@ void CGame::RenderGamePlay()
 			{
 			case UNIT_BACKGROUND2:
 				m_allSprite->m_background2->Render(tempNode->m_object->m_rect.left - (m_camera2->m_fX),tempNode->m_object->m_rect.left - (m_camera2->m_fY)-50);
-				//m_allSprite->m_grass1->Render(tempNode->m_object->m_rect.left,tempNode->m_object->m_rect.top);
 				break;
 			}
 		}
