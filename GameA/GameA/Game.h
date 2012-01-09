@@ -78,5 +78,7 @@ public:
 	void RenderDeath();
 	void RenderGameOver();
 	void UpdateGameOver();
+	void UpdateGameVictory();
+	void RenderGameVictory();
 };
 

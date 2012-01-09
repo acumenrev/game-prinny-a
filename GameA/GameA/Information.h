@@ -21,6 +21,7 @@ enum GameState
 	GameExit=4,
 	MenuIn=5,
 	GameOver = 6,
+	GameVictory = 7,
 	GameDeath
 };
 //////////////////////////////////////////////////////////////////////////

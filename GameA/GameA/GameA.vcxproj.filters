@@ -76,6 +76,9 @@
     <None Include="Pics\UNIT\TrapM2.png" />
     <None Include="Pics\UNIT\finish.png" />
     <None Include="Pics\Gameover.png" />
+    <None Include="Pics\Victory.png" />
+    <None Include="Sounds\GameOver.ogg" />
+    <None Include="Sounds\GameVictory.ogg" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="bass.lib" />
