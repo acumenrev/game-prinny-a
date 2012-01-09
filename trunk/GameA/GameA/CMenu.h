@@ -30,8 +30,10 @@ public:
 	/************************************************************************/
 	void Render();
 	void RenderAbout();
+	void RenderNewGame();
 	int Update(char keys[256], char lastKeys[256],int &currentState, WaZ_Game_App::Bass_Sound* bassSound);
 	int UpdateAbout(char keys[256], char lastKeys[256],int &currentState, WaZ_Game_App::Bass_Sound* bassSound);
+	int UpdateNewGame(char keys[256], char lastKeys[256],int &currentState, WaZ_Game_App::Bass_Sound* bassSound);
 	int GetUpdate();
 };
 

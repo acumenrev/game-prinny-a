@@ -240,6 +240,9 @@ void CGame::Render()
 	case GameVictory:
 		RenderGameVictory();
 		break;
+	case NewGame:
+		m_menu->RenderNewGame();
+		break;
 	}
 }
 /************************************************************************/
@@ -778,25 +781,23 @@ void CGame::Update()
 	switch(m_currentState)
 	{
 	case GamePlay:
+		m_bassSound->Stop("GameVictory");
 		m_bassSound->SetItemVolume("MainBackground",100);
 		m_bassSound->Play("MainBackground",false);
 		UpdateGamePlay();
 		break;
 	case GameMenu:
+		m_bassSound->Play("GameVictory",false);
 		m_bassSound->SetItemVolume("MainBackground",0);	
 		switch(m_menu->Update(m_keys,m_lastKeys,m_currentState,m_bassSound))
 		{
 		case 1:
-			m_currentState = GamePlay;
-			m_currentMap = 1;
-			//m_isSaved = false;
-			Loadmap();
-			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);
+			m_bassSound->Play("SelectMenu",true);
+			m_currentState = NewGame;
 			break;
 		case 2:
 			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
 			m_currentState = GamePlay;
-			//m_isSaved = false;
 			Loadmap();
 			ReadSavedFile(m_currentMap,m_prinny->x,m_prinny->y);
 			break;
@@ -826,6 +827,20 @@ void CGame::Update()
 		m_bassSound->SetItemVolume("MainBackground",0);
 		m_bassSound->Play("GameVictory",false);
 		UpdateGameVictory();
+		break;
+	case NewGame:
+		m_bassSound->Stop("GameVictory");
+		m_bassSound->Play("GameOver",false);
+		m_bassSound->SetItemVolume("MainBackground",0);
+		int NewGameChoice;
+		NewGameChoice = m_menu->UpdateNewGame(m_keys,m_lastKeys,m_currentState,m_bassSound);
+		if(NewGameChoice == 1)
+		{
+			m_currentState = GamePlay;
+			m_currentMap = 1;
+			Loadmap();
+			SaveFile(m_currentMap, m_prinny->x, m_prinny->y);
+		}
 		break;
 	}
 	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&m_lastKeys);
