@@ -761,7 +761,7 @@ void CGame::RenderGamePlay()
 	{
 		for(int i = 1; i<= m_prinnyLife; i++)
 		{
-			m_allSprite->m_life->Render(i*25,0, D3DCOLOR_ARGB(255,255,255,255));
+			m_allSprite->m_life->Render((i-1)*35+5,0, D3DCOLOR_ARGB(255,255,255,255));
 		}
 	}
 	else
@@ -851,7 +851,6 @@ void CGame::UpdateGamePlay()
 	switch(m_prinny->Update(m_keys,m_lastKeys,m_quadTree))
 	{
 	case 1:
-		//m_prinnyLife = 3;
 		m_currentMap++;
 		if(m_currentMap > NumberOfMap)
 		{
