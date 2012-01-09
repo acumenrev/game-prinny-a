@@ -117,6 +117,24 @@ int CCMenu::UpdateAbout(char keys[256], char lastKeys[256],int &currentState, Wa
 		bassSound->Play("SelectMenu",true);
 		return 1;
 	}
-	return 1;
+	return 0;
+}
+int CCMenu::UpdateNewGame(char keys[256], char lastKeys[256],int &currentState, WaZ_Game_App::Bass_Sound* bassSound)
+{
+	if(KEYDOWN(keys,DIK_RETURN) && KEYUP(lastKeys,DIK_RETURN))
+	{		
+		currentState = GamePlay;
+		bassSound->Stop("GameOver");
+		bassSound->Play("SelectMenu",true);
+		return 1;
+	}
+	return 0;
+}
+void CCMenu::RenderNewGame()
+{
+
+	// render background
+	m_allSprites->m_about->Render(0,0);
+	// sprite
 }
 #pragma endregion
