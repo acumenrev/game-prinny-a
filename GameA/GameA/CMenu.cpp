@@ -134,7 +134,7 @@ void CCMenu::RenderNewGame()
 {
 
 	// render background
-	m_allSprites->m_about->Render(0,0);
+	m_allSprites->m_newGame->Render(0,0);
 	// sprite
 }
 #pragma endregion

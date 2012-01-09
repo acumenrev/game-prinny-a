@@ -165,9 +165,9 @@ void CGame::InitObject()
 	m_prinny = new CPrinny(0,0,40,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
 	m_quadTreeMap1 = new CQuadTree(SizeTile*300, SizeTile*300);
-	ReadFile(m_quadTreeMap1,"Map\\Map2.txt");
+	ReadFile(m_quadTreeMap1,"Map\\Map1.txt");
 	m_quadTreeMap2 = new CQuadTree(SizeTile*300, SizeTile*300);
-	ReadFile(m_quadTreeMap2,"Map\\Map1.txt");
+	ReadFile(m_quadTreeMap2,"Map\\Map2.txt");
 	// set m_currentMap
 	m_currentMap = 1;
 	Loadmap();
