@@ -110,14 +110,14 @@ CCObject::CCObject(float fX, float fY, char style)
 		m_vY = 0;
 		break;
 	case UNIT_FIRE1:
-		m_canCollide = false;
+		m_canCollide = true;
 		m_checkedItem = true;
 		m_canBeDestroyed = false;
 		m_rect = _Rectangle(fX,fY, SizeTile, SizeTile*2);
 		m_workingArea = _Rectangle(fX,fY,SizeTile,SizeTile*2);
 		break;
 	case UNIT_TRAP:
-		m_canCollide = false;
+		m_canCollide = true;
 		m_checkedItem = true;
 		m_canBeDestroyed = false;
 		m_rect = _Rectangle(fX,fY, SizeTile, SizeTile*2);
