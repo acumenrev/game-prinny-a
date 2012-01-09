@@ -56,6 +56,7 @@ public:
 	CSprite* m_about;
 	CSprite* m_life;
 	CSprite* m_gameOver;
+	CSprite* m_gameVictory;
 	/************************************************************************/
 	/*                               Constructor                            */
 	/************************************************************************/
@@ -125,5 +126,7 @@ public:
 		m_life = new CSprite(d3ddev,"Pics\\Heal.png",D3DCOLOR_ARGB(100,100,100,100));
 		// Game Over
 		m_gameOver = new CSprite(d3ddev,"Pics\\Gameover.png",D3DCOLOR_ARGB(100,100,100,100));
+		// Game Victory
+		m_gameVictory = new CSprite(d3ddev,"Pics\\Victory.png",D3DCOLOR_ARGB(100,100,100,100));
 	}
 };

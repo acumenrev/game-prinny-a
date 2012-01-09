@@ -158,6 +158,10 @@ void CGame::InitObject()
 	m_bassSound->SetItemVolume("SwitchMenu",50);
 	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"SelectMenu","Sounds\\SelectMenu.mp3",BASS_MUSIC_RAMPS);
 	m_bassSound->SetItemVolume("SelectMenu",50);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"GameOver","Sounds\\GameOver.ogg",BASS_MUSIC_RAMPS);
+	m_bassSound->SetItemVolume("GameOver",50);
+	m_bassSound->AddFile(STR_MP123_OGG_WAV_AIFF,"GameVictory","Sounds\\GameVictory.ogg",BASS_MUSIC_RAMPS);
+	m_bassSound->SetItemVolume("GameVictory",50);
 	m_prinny = new CPrinny(0,0,40,36,m_allSprite,m_camera,m_bassSound);
 	// Load Map
 	m_quadTreeMap1 = new CQuadTree(SizeTile*300, SizeTile*300);
@@ -232,6 +236,9 @@ void CGame::Render()
 		m_menuInGame->Render();
 	case GameOver:
 		RenderGameOver();
+		break;
+	case GameVictory:
+		RenderGameVictory();
 		break;
 	}
 }
@@ -811,7 +818,14 @@ void CGame::Update()
 		PostQuitMessage(0);
 		break;
 	case GameOver:
+		m_bassSound->SetItemVolume("MainBackground",0);
+		m_bassSound->Play("GameOver",false);
 		UpdateGameOver();
+		break;
+	case GameVictory:
+		m_bassSound->SetItemVolume("MainBackground",0);
+		m_bassSound->Play("GameVictory",false);
+		UpdateGameVictory();
 		break;
 	}
 	m_input->m_DI_Keyboard->GetDeviceState(sizeof(m_keys),&m_lastKeys);
@@ -827,7 +841,7 @@ void CGame::UpdateGamePlay()
 		m_currentMap++;
 		if(m_currentMap > NumberOfMap)
 		{
-			m_currentMap = 1;
+			m_currentState = GameVictory;
 		}	
 		Loadmap();
 		SaveFile(m_currentMap,m_prinny->x,m_prinny->y);
@@ -893,6 +907,27 @@ void CGame::UpdateGameOver()
 	{
 		m_prinnyLife = 3;
 		m_currentState = GameMenu;
+		m_bassSound->Stop("GameOver");
+	}
+}
+/************************************************************************/
+/*                 Render Congratulation Screen                         */
+/************************************************************************/
+void CGame::RenderGameVictory()
+{
+	m_allSprite->m_gameVictory->Render(0,0,D3DCOLOR_ARGB(255,255,255,255));
+}
+/************************************************************************/
+/*                 Update congratulation screen                         */
+/************************************************************************/
+void CGame::UpdateGameVictory()
+{
+	if(KEYDOWN(m_keys,DIK_RETURN)&&KEYUP(m_lastKeys,DIK_RETURN))
+	{
+		m_prinnyLife = 3;
+		m_currentState = GameMenu;
+		m_currentMap = 1;
+		m_bassSound->Stop("GameVictory");
 	}
 }
 #pragma endregion

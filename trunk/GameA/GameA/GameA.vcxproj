@@ -145,8 +145,11 @@
     <None Include="Pics\UNIT\RockM2.png" />
     <None Include="Pics\UNIT\Save.png" />
     <None Include="Pics\UNIT\TrapM2.png" />
+    <None Include="Pics\Victory.png" />
     <None Include="Sounds\Boom.ogg" />
     <None Include="Sounds\Cut.wav" />
+    <None Include="Sounds\GameOver.ogg" />
+    <None Include="Sounds\GameVictory.ogg" />
     <None Include="Sounds\Jump.mp3" />
     <None Include="Sounds\MainBackground.wav" />
     <None Include="Sounds\MonsterDeath.ogg" />
